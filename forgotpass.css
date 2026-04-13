@@ -1,0 +1,204 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 550px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+legend {
+  text-align: center;
+  font-size: 22px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.img1 {
+  display: block;
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+
+h1 {
+  font-size: 22px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+input,
+button {
+  width: 100%;
+  height: 42px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+button {
+  cursor: pointer;
+  background-color: #262626;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 10px auto 0 auto;
+  background: none;
+}
+
+/* ===== Desktop padrão ===== */
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 550px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+input,
+button {
+  width: 100%;
+  height: 42px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+/* ===== Celular até 440px ===== */
+@media (max-width: 440px) {
+  section {
+    padding: 20px;
+  }
+
+  fieldset {
+    width: 100%;
+    padding: 20px 15px;
+    gap: 10px;
+  }
+
+  legend {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .img1 {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  input,
+  button {
+    height: 40px;
+    font-size: 15px;
+  }
+
+  a {
+    font-size: 15px;
+  }
+}
+
+/* ===== Tablet / telas até 768px ===== */
+@media (min-width: 441px) and (max-width: 768px) {
+  section {
+    padding: 30px;
+  }
+
+  fieldset {
+    width: 90%;
+    max-width: 600px;
+    padding: 25px 20px;
+  }
+
+  legend {
+    font-size: 22px;
+  }
+
+  .img1 {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input,
+  button {
+    height: 42px;
+    font-size: 16px;
+  }
+
+  a {
+    font-size: 16px;
+  }
+}
+
+/* ===== Tablet maior / telas até 1024px ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  section {
+    padding: 40px;
+  }
+
+  fieldset {
+    width: 80%;
+    max-width: 700px;
+    padding: 30px 25px;
+  }
+
+  legend {
+    font-size: 24px;
+  }
+
+  .img1 {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  input,
+  button {
+    height: 44px;
+    font-size: 17px;
+  }
+
+  a {
+    font-size: 17px;
+  }
+}
