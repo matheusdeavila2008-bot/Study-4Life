@@ -7,10 +7,9 @@
 }
 /* 👤 */
 
-/* body */
 body {
-  /* background-color: black; */
-  background-image: linear-gradient(to bottom, black, gray);
+  /* background-image: linear-gradient(to bottom, black, gray); */
+  background-color: black;
   height: 100vh;
   color: white;
 }
