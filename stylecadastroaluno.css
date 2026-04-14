@@ -1,0 +1,72 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.circulo {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  text-decoration: none;
+  color: #aaa;
+  background: #2a2a2a;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 150px;
+  transition: all 0.25s ease;
+  cursor: default;
+  animation: descer 1s ease-out;
+}
+
+.opcao-aluno {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: descer 1s ease-out;
+}
+
+.opcao-aluno p {
+  margin-top: 10px;
+  font-size: 45px;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+/* container */
+.container {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container2 {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 240px;
+}
+
+/* keyframes */
+@keyframes descer {
+from{
+  transform: translateY(-200px);
+  opacity: 0;
+}
+to {
+  transform: translateY(0);
+opacity: 1;
+}
+}
