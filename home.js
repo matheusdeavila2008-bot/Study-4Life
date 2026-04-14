@@ -1,3 +1,4 @@
+// ===== EFEITO DIGITANDO =====
 function typeWriter(elementId, texto, velocidade = 50) {
     let index = 0;
     const elemento = document.getElementById(elementId);
@@ -13,5 +14,27 @@ function typeWriter(elementId, texto, velocidade = 50) {
     escrever();
 }
 
-// 🔥 chamando para os dois textos
 typeWriter("typing-text", 'Bem-Vindo "nome do usuario"', 50);
+
+
+// ===== MENU LATERAL =====
+const menu = document.getElementById("menuLateral");
+const menuIcon = document.querySelector(".menu-icon");
+
+// abrir menu
+function openMenu() {
+    menu.classList.add("active");
+}
+
+// fechar menu
+function closeMenu() {
+    menu.classList.remove("active");
+}
+
+
+// ===== FECHAR CLICANDO FORA (EXTRA 🔥) =====
+document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
+        menu.classList.remove("active");
+    }
+});
