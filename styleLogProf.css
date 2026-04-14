@@ -258,7 +258,7 @@ input[type="password"]:focus {
     font-size: 70px;
   }
 
-  .opcao-aluno p {
+  .opcao-professor p {
     font-size: 28px;
   }
 
@@ -345,7 +345,7 @@ input[type="password"]:focus {
     font-size: 95px;
   }
 
-  .opcao-aluno p {
+  .opcao-professor p {
     font-size: 34px;
   }
 
@@ -411,7 +411,7 @@ input[type="password"]:focus {
     font-size: 110px;
   }
 
-  .opcao-aluno p {
+  .opcao-professor p {
     font-size: 36px;
   }
 
