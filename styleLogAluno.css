@@ -224,6 +224,8 @@ input[type="password"]:focus {
   }
 }
 
+/* responsividade */
+
 @media (max-width: 440px) {
   body {
     flex-direction: column;
