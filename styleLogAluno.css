@@ -203,23 +203,233 @@ input[type="password"]:focus {
 
 /* keyframes */
 @keyframes descer {
-from{
-  transform: translateY(-200px);
-  opacity: 0;
-}
-to {
-  transform: translateY(0);
-opacity: 1;
-}
+  from {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes entrarDireita {
-from{
-  transform: translateX(300px);
-  opacity: 0;
+  from {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
-to {
-  transform: translateX(0);
-opacity: 1;
+
+@media (max-width: 440px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    margin: 0;
+  }
+
+  .container2 {
+    flex: none;
+    justify-content: center;
+    padding-left: 0;
+    padding: 20px 20px 10px;
+  }
+
+  .circulo {
+    width: 140px;
+    height: 140px;
+    font-size: 70px;
+  }
+
+  .opcao-aluno p {
+    font-size: 28px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 15px 20px;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    border-radius: 18px;
+    padding: 30px 20px;
+  }
+
+  .subtitulo {
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    padding: 11px;
+    font-size: 14px;
+  }
+
+  .opcoes {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .forgot {
+    margin-left: 0;
+  }
+
+  .btn,
+  .google-btn {
+    font-size: 14px;
+  }
+
+  .footer {
+    font-size: 12px;
+    text-align: center;
+  }
 }
+
+/* =========================
+   TELAS ENTRE 441px E 768px
+========================= */
+@media (min-width: 441px) and (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+  }
+
+  .container2 {
+    flex: none;
+    justify-content: center;
+    padding-left: 0;
+    padding: 30px 30px 15px;
+  }
+
+  .circulo {
+    width: 190px;
+    height: 190px;
+    font-size: 95px;
+  }
+
+  .opcao-aluno p {
+    font-size: 34px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 30px 30px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 40px 35px;
+  }
+
+  h1 {
+    font-size: 34px;
+    margin-bottom: 22px;
+  }
+
+  .subtitulo {
+    font-size: 14px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    font-size: 15px;
+  }
+
+  .forgot {
+    margin-left: 0;
+  }
+
+  .footer {
+    text-align: center;
+  }
+}
+
+/* =========================
+   TABLET - ENTRE 769px E 1024px
+========================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    height: 100vh;
+  }
+
+  .logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 10px;
+  }
+
+  .container2 {
+    padding-left: 80px;
+    justify-content: center;
+  }
+
+  .circulo {
+    width: 220px;
+    height: 220px;
+    font-size: 110px;
+  }
+
+  .opcao-aluno p {
+    font-size: 36px;
+  }
+
+  .container {
+    width: 430px;
+  }
+
+  .card {
+    padding: 40px 35px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .subtitulo {
+    font-size: 13px;
+  }
+
+  .forgot {
+    margin-left: 0;
+  }
 }
