@@ -224,7 +224,7 @@ input[type="password"]:focus {
   }
 }
 
-/* responsividade */
+/* responsividade ===========================================================================================*/
 
 @media (max-width: 440px) {
   body {
@@ -235,8 +235,8 @@ input[type="password"]:focus {
 
   header {
     display: flex;
-    justify-content: center;
-    padding-top: 20px;
+    justify-content: flex-start;
+    padding: 20px 0px 0px 20px;
   }
 
   .logo {
