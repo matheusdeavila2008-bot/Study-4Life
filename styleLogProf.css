@@ -201,8 +201,6 @@ input[type="password"]:focus {
   text-decoration: none;
 }
 
-/* teste de responsividade */
-
 /* keyframes */
 @keyframes descer {
   from {
@@ -225,6 +223,8 @@ input[type="password"]:focus {
     opacity: 1;
   }
 }
+
+/* responsividade================================================================================================ */
 
 @media (max-width: 440px) {
   body {
