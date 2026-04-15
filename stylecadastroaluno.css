@@ -6,13 +6,43 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    display: flex;
+    height: 100vh;   
 }
 
-fieldset{
-    border: 1px solid black;
+main{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+
+.logo {
+  margin: 0px 20px;
+  width: 100px;
+  height: 100px;
+}
+
+.container-form{
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 8px;
+    background-color: white;
+    animation: entrarDireita 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+.pcolor{
+  color: #888;
+  font-size: 14px;
+  margin: 10px;
+}
+
+.titulo{
+  margin: 10px;
+}
 .circulo {
   width: 300px;
   height: 300px;
@@ -43,20 +73,72 @@ fieldset{
   color: #ffffff;
 }
 
-/* container */
-.container {
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container2 {
   flex: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding-left: 240px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus{
+  border: 1px solid #3b83f6;
+}
+
+.cadastro{
+  padding: 10px;
+}
+
+.form{
+  color: rgb(0, 0, 0);
+  font-size: 19px;
+  font-weight: bold;
+  max-width: 800px;
+} 
+
+span{
+  color: red;
+}
+
+.conect{
+  text-align: center;
+  font-size: 14px;
+}
+
+a{
+  text-decoration: none;
+  color: #3b82f6;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+button{
+  color: white;
+  background: #3b82f6;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 10px 0px 10px 0px;
+
+}
+
+button:hover{
+  background: #2563eb;
 }
 
 /* keyframes */
@@ -69,4 +151,36 @@ to {
   transform: translateY(0);
 opacity: 1;
 }
+}
+
+@keyframes entrarDireita{
+  from{
+    transform: translateY(300px);
+    opacity: 0;
+  }
+
+  to{
+    transform: translateX(0);
+  opacity: 1;
+  }
+}
+
+@media (max-width: 440px){
+
+  body{
+
+  }
+
+  header{
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 0px 0px 20px;
+  }
+
+  .logo{
+    width: 70px;
+    height: 70px;
+    margin: 0;
+  }
+
 }

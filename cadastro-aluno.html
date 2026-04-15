@@ -1,41 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Cadastro - Aluno</title>
-    <link rel="stylesheet" href="stylecadastroaluno.css">
-</head>
+    <link rel="stylesheet" href="stylecadastroaluno.css" />
+  </head>
 
-<body>
-    <header></header>
+  <body>
+    <header>
+        <a href="indexLogaluno.html"> <img class="logo" src="study4life_glitch_rgb.gif" alt="" srcset=""></a>
+    </header>
     <main>
-        <!-- circulo -->
-        <section>
-            <div class="container2">
-                <div class="opcao-aluno">
-                    <span class="circulo">🧑‍💻</span>
-                    <p>Aluno</p>
-                </div>
-            </div>
-        </section>
+      <!-- circulo -->
+      <section>
+        <div class="container2">
+          <div class="opcao-aluno">
+            <span class="circulo">🧑‍💻</span>
+            <p>Aluno</p>
+          </div>
+        </div>
+      </section>
 
-        <!-- formulario -->
-        <filedset>
-            <legend>Cadastre-se</legend>
-            <form>
-                <section>
-                    <input type="text">
-                </section>
-
-
+      <!-- formulario -->
+        <div class="container-form">
+            <p class="pcolor">Cadastre-se para acessar o Study4Life!</p>
+            <h1 class="titulo">Cadastre-se</h1>
+            <form class="cadastro">
+              <section class="form">
+                <label for="">Nome<span>*</span></label>
+                <input type="text" placeholder="Digite seu nome completo" />
+              </section>
+              <section class="form">
+                <label for="">Email<span>*</span></label>
+                <input type="email" placeholder="Digite seu email" />
+              </section>
+              <section class="form">
+                <label for="">Senha<span>*</span></label>
+                <input type="text" placeholder="Digite sua senha" />
+              </section>
+              <section class="form">
+                <label for="">Confirme sua senha<span>*</span></label>
+                <input type="text" placeholder="Digite sua senha novamente" />
+              </section>
+              <section class="form">
+                <label for="">CPF<span>*</span></label>
+                <input type="text" placeholder="Digite seu CPF" />
+              </section>
+              <p class="conect">Já tem uma conta? 
+                <a href="indexLogaluno.html">Faça login</a>
+            </p>
+              <button type="submit">Enviar</button>
             </form>
-        </filedset>
+        </div>
     </main>
     <footer></footer>
     <script src="scriptCadastroAluno.js"></script>
-</body>
-
+  </body>
 </html>
