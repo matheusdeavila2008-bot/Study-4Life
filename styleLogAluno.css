@@ -215,7 +215,7 @@ input[type="password"]:focus {
 
 @keyframes entrarDireita {
   from {
-    transform: translateX(300px);
+    transform: translateY(300px);
     opacity: 0;
   }
   to {
