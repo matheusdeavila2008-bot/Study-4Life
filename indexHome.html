@@ -1,126 +1,123 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="public/assets/favicon.ico" type="image/x-icon" />
-    <title>Study 4Life</title>
-    <!-- conexao com o css -->
-    <link rel="stylesheet" href="public/style/styleHome.css">
-  </head>
 
-  <body>
-    <!-- cabeçalho do site -->
-    <header>
-      <!-- logo -->
-      <section class="header-container">
-        <img src="public/assets/study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <title>Study 4Life</title>
+  <!-- conexao com o css -->
+  <link rel="stylesheet" href="styleHome.css">
+</head>
 
-        <!--Links para os outros sites  -->
-        <nav class="apagar">
-          <a href="public/indexFoco.html" target="_self">Foco</a>
-          <a href="public/indexBiblioteca.html" target="_self">Biblioteca</a>
-          <a href="public/indexQuiz.html" target="_self">Quiz</a>
-          <a href="public/indexChatIA.html" target="_self">StudyChat.IA</a>
-          <a href="public/indexRanking.html" target="_self">Ranking</a>
-        </nav>
-        
-        <a href="public/indexPerfil.html" class="icone-perfil">👨‍💻</a>
-        
-        <img src="public/assets/menu.png" class="menu-icon" onclick="openMenu()" alt="Menu"/>
+<body>
+  <!-- cabeçalho do site -->
+  <header>
+    <!-- logo -->
+    <section class="header-container">
+      <img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" />
 
-         <!-- Menu lateral (abre da direita) -->
+      <!--Links para os outros sites  -->
+      <nav class="apagar">
+        <a href="indexFoco.html" target="_self">Foco</a>
+        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
+      </nav>
+
+      <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+
+      <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
+
+      <!-- Menu lateral (abre da direita) -->
       <div id="menuLateral" class="sidebar">
         <span class="closebtn" onclick="closeMenu()">&times;</span>
-        <a href="public/indexFoco.html" target="_self">Foco</a>
-          <a href="public/indexBiblioteca.html" target="_self">Biblioteca</a>
-          <a href="public/indexQuiz.html" target="_self">Quiz</a>
-          <a href="public/indexChatIA.html" target="_self">StudyChat.IA</a>
-          <a href="public/indexRanking.html" target="_self">Ranking</a>
+        <a href="indexFoco.html" target="_self">Foco</a>
+        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
       </div>
-      </section>
-    </header>
+    </section>
+  </header>
 
-    <!-- area princial do site -->
-    <main>
-      <section class="main-container">
-        <!-- aqui eu usei o id para conectr no JavaScript e fazer com que o bem vindo mexa ao abrir o site -->
-        <h2 id="typing-text"></h2>
+  <!-- area princial do site -->
+  <main>
+    <section class="main-container">
+      <!-- aqui eu usei o id para conectr no JavaScript e fazer com que o bem vindo mexa ao abrir o site -->
+      <h2 id="typing-text"></h2>
 
-        <div class="cards-container">
-          <div class="nivel-home">
-            <h1>Nivel 1</h1>
-            <h2>1 Hora total🕒</h2>
-          </div>
-
-          <div class="foco-home">
-            <h1>Dias consecutivos</h1>
-            <h2>1 dia🔥</h2>
-            <!-- <h4>Continue assim!</h4> -->
-          </div>
+      <div class="cards-container">
+        <div class="nivel-home">
+          <h1>Nivel 1</h1>
+          <h2>1 Hora total🕒</h2>
         </div>
 
-        <h1>Study4Life Blog:</h1>
-
-        <div class="blog">
-          <div>
-            <a href="" target="_self">
-              <img
-                src="public/assets/Study_4Life-removebg-preview.png"
-                class="imagem-blog"
-                alt="imagem-blog"
-              />
-            </a>
-          </div>
-
-          <div class="blog-texto">
-            <h1>Bem-Vindo ao Study<span>4Life</span>!</h1>
-            <h2>
-              Aqui você encontra facilidade e agilidade para potencializar seus
-              estudos da melhor forma
-            </h2>
-            <p>
-              Nosso objetivo é ajudar você a estudar de forma mais eficiente,
-              mantendo foco, consistência e evolução diária. Para isso,
-              oferecemos recursos como uma área de foco, que desativa
-              notificações e ajuda no gerenciamento do seu tempo, além de uma
-              biblioteca completa com livros, podcasts, e-books, áudios e
-              vídeos.
-            </p>
-
-            <p>
-              Também contamos com uma área de quizzes para testar seus
-              conhecimentos de forma dinâmica e divertida, um chat com IA para
-              tirar dúvidas e auxiliar em pesquisas, e um ranking atualizado que
-              incentiva você a evoluir cada vez mais.
-            </p>
-
-            <p>
-              E isso é só o começo — para saber mais, acesse nosso Instagram!
-              <a href="https://www.instagram.com/" class="link-instagram">@Study4Life</a
-              >
-            </p>
-          </div>
+        <div class="foco-home">
+          <h1>Dias consecutivos</h1>
+          <h2>1 dia🔥</h2>
+          <!-- <h4>Continue assim!</h4> -->
         </div>
-      </section>
-    </main>
+      </div>
 
-    <!-- rodapé do site -->
-    <footer>
-      <div class="linha-footer"></div>
+      <h1>Study4Life Blog:</h1>
 
-      <section>
-        <div class="icone-footer">
-          <a href="https://www.instagram.com/" target="_self">
-            <img src="public/assets/instagram (1).svg" alt="instagram" />
-            <h2>@Study4Life</h2>
+      <div class="blog">
+        <div>
+          <a href="" target="_self">
+            <img src="Study_4Life-removebg-preview.png" class="imagem-blog" alt="imagem-blog" />
           </a>
         </div>
-        <h2>Copyright © 2026 Study4Life & Nex7 Step</h2>
-      </section>
-    </footer>
 
-    <!-- conexao com o JavaScript -->
-    <script src="public/js/scriptHome.js"></script>
-  </body>
+        <div class="blog-texto">
+          <h1>Bem-Vindo ao Study<span>4Life</span>!</h1>
+          <h2>
+            Aqui você encontra facilidade e agilidade para potencializar seus
+            estudos da melhor forma
+          </h2>
+          <p>
+            Nosso objetivo é ajudar você a estudar de forma mais eficiente,
+            mantendo foco, consistência e evolução diária. Para isso,
+            oferecemos recursos como uma área de foco, que desativa
+            notificações e ajuda no gerenciamento do seu tempo, além de uma
+            biblioteca completa com livros, podcasts, e-books, áudios e
+            vídeos.
+          </p>
+
+          <p>
+            Também contamos com uma área de quizzes para testar seus
+            conhecimentos de forma dinâmica e divertida, um chat com IA para
+            tirar dúvidas e auxiliar em pesquisas, e um ranking atualizado que
+            incentiva você a evoluir cada vez mais.
+          </p>
+
+          <p>
+            E isso é só o começo — para saber mais, acesse nosso Instagram!
+            <a href="https://www.instagram.com/" class="link-instagram">@Study4Life</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- rodapé do site -->
+  <footer>
+    <div class="linha-footer"></div>
+
+    <section>
+      <div class="icone-footer">
+        <a href="https://www.instagram.com/" target="_self">
+          <img src="instagram (1).svg" alt="instagram" />
+          <h2>@Study4Life</h2>
+        </a>
+      </div>
+      <h2>Copyright © 2026 Study4Life & Nex7 Step</h2>
+    </section>
+  </footer>
+
+  <!-- conexao com o JavaScript -->
+  <script src="scriptHome.js"></script>
+</body>
+
 </html>
