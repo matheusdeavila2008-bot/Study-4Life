@@ -6,7 +6,8 @@
 }
 
 body {
-  background: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
   display: flex;
   height: 100vh;
 }
@@ -59,9 +60,10 @@ body {
 .container2 {
   flex: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-left: 240px;
+  height: 100vh;
+  padding-left: 415px;
 }
 
 /* card */
@@ -108,7 +110,8 @@ input[type="checkbox"] {
 }
 
 input[type="email"]:focus,
-input[type="password"]:focus, input[type="text"]:focus {
+input[type="password"]:focus,
+input[type="text"]:focus {
   border-color: #3b82f6;
 }
 
@@ -162,11 +165,11 @@ input[type="password"]:focus, input[type="text"]:focus {
   background: #2563eb;
 }
 
-.color-verde{
-color: #7ed957;
+.color-verde {
+  color: #7ed957;
 }
 
-.color-vermelho{
+.color-vermelho {
   color: red;
 }
 
