@@ -8,9 +8,42 @@
     <link rel="stylesheet" href="styleFoco.css" />
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+      <!-- cabeçalho do site -->
+    <!-- logo -->
+    <section class="header-container">
+      <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
+
+      <!--Links para os outros sites  -->
+      <nav class="apagar">
+        <a href="indexHome.html" target="_self">Home</a>  
+        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
+      </nav>
+
+      <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+
+      <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
+
+      <!-- Menu lateral (abre da direita) -->
+      <div id="menuLateral" class="sidebar">
+        <span class="closebtn" onclick="closeMenu()">&times;</span>
+        <a href="indexHome.html" target="_self">Home</a>
+        <a href="indexFoco.html" target="_self">Foco</a>
+        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
+      </div>
+    </section>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
     <script src="scriptFoco.js"></script>
   </body>
 </html>
