@@ -139,7 +139,7 @@ input[type="password"]:focus {
   text-decoration: none;
 }
 
-.span {
+.cursor {
   cursor: text;
 }
 

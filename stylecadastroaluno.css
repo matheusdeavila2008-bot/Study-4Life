@@ -6,8 +6,7 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: black;
+  background: #000000;
   display: flex;
   height: 100vh;
 }
@@ -60,10 +59,9 @@ body {
 .container2 {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  padding-left: 415px;
+  padding-left: 240px;
 }
 
 /* card */
@@ -165,14 +163,6 @@ input[type="text"]:focus {
   background: #2563eb;
 }
 
-.color-verde {
-  color: #7ed957;
-}
-
-.color-vermelho {
-  color: red;
-}
-
 .cad-btn {
   font-size: 13px;
 }
@@ -180,6 +170,14 @@ input[type="text"]:focus {
 .cad-btn a {
   color: #3b82f6;
   text-decoration: none;
+}
+
+.color-verde {
+  color: #7ed957;
+}
+
+.color-vermelho {
+  color: red;
 }
 
 /* keyframes */
