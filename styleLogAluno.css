@@ -189,13 +189,12 @@ input[type="password"]:focus {
   width: 18px;
 }
 
-/* footer */
-.footer {
+.cad-btn {
   margin-top: 15px;
   font-size: 13px;
 }
 
-.footer a {
+.cad-btn a {
   color: #3b82f6;
   text-decoration: none;
 }
