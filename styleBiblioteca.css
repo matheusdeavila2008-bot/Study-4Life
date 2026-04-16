@@ -1,6 +1,149 @@
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BODY */
+body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* HEADER */
+header {
+  color: #ffffff;
+  border-bottom: 1px solid #444;
+  margin-bottom: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  margin: 0px 20px;
+  width: 100px;
+  height: 100px;
+}
+
+/* NAV (DESKTOP) */
+nav {
+  margin-left: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
+nav a:hover {
+  color: #7ed957;
+}
+
+/* PERFIL */
+.icone-perfil {
+  margin-left: auto;
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  background: #2a2a2a;
+  margin-right: 30px;
+}
+
+/* MENU ICON (HAMBURGUER) */
+.menu-icon {
+  display: none;
+  width: 25px;
+  cursor: pointer;
+}
+
+/* ===== MENU LATERAL ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: #222;
+  padding-top: 60px;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 25px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: #575757;
+  color: #7ed957;
+}
+
+.closebtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #7ed957;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header-container {
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+  }
+
+  /* ESCONDE MENU DESKTOP */
+  .apagar {
+    display: none;
+  }
+
+  /* MOSTRA HAMBURGUER */
+  .menu-icon {
+    display: block;
+    width: 32px;
+    height: 30px;
+  }
+
+  /* PERFIL AO LADO DO MENU */
+  .icone-perfil {
+    margin-left: auto;
+    margin-right: 10px;
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
 }
