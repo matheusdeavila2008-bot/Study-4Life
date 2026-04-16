@@ -1,37 +1,45 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-  height: 90vh;
+  background-color: black;
+  min-height: 100vh;
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 section {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: none;
 }
 
 fieldset {
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 550px;
+  max-width: 100%;
   border: 1px solid black;
   border-radius: 8px;
   padding: 30px;
+  box-sizing: border-box;
 }
 
-legend {
+.legend {
   text-align: center;
   font-size: 22px;
   margin: 0 auto;
   padding: 0 10px;
+  background-color: white;
+  width: 100%;
+  max-width: 550px;
+  box-sizing: border-box;
 }
 
 .img1 {
@@ -46,6 +54,7 @@ h1 {
   font-size: 22px;
   text-align: left;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 input,
@@ -53,13 +62,18 @@ button {
   width: 100%;
   height: 42px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid;
+  box-sizing: border-box;
 }
 
 button {
   cursor: pointer;
-  background-color: #262626;
+  background-color: #3b82f6;
   color: white;
+}
+
+button:hover {
+  background: #2563eb;
 }
 
 a {
@@ -75,29 +89,51 @@ a {
 
 /* ===== Celular até 440px ===== */
 @media (max-width: 440px) {
+  body {
+    min-height: 100vh;
+  }
+
   section {
-    padding: 20px;
+    padding: 16px;
+    align-items: center;
+  }
+
+  header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 0px 0px 20px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    display: block;
   }
 
   fieldset {
     width: 100%;
     padding: 20px 15px;
     gap: 10px;
+    border-radius: 6px;
   }
 
-  legend {
+  .legend {
+    width: 100%;
+    max-width: 100%;
     font-size: 18px;
-    text-align: center;
+    padding: 0 6px;
   }
 
   .img1 {
     width: 50px;
     height: 50px;
-    margin: 0 auto;
   }
 
   h1 {
     font-size: 18px;
+    margin-top: 6px;
+    margin-bottom: 6px;
   }
 
   input,
@@ -107,7 +143,8 @@ a {
   }
 
   a {
-    font-size: 15px;
+    font-size: 14px;
+    margin-top: 8px;
   }
 }
 
@@ -123,7 +160,7 @@ a {
     padding: 25px 20px;
   }
 
-  legend {
+  .legend {
     font-size: 22px;
   }
 
@@ -160,7 +197,7 @@ a {
     padding: 30px 25px;
   }
 
-  legend {
+  .legend {
     font-size: 24px;
   }
 
