@@ -5,13 +5,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* BODY */
+/* body */
 body {
   background-color: #000000;
   color: #ffffff;
 }
 
-/* HEADER */
+/* header */
 header {
   color: #ffffff;
   border-bottom: 1px solid #444;
@@ -23,14 +23,14 @@ header {
   align-items: center;
 }
 
-/* LOGO */
+/* logo */
 .logo {
   margin: 0px 20px;
   width: 100px;
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
+/* nav (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -49,7 +49,7 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
+/* icone do perfil */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -63,14 +63,14 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
+/* style icone do menu hamburguer */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
+/* style menu lateral */
 .sidebar {
   position: fixed;
   top: 0;
@@ -109,19 +109,20 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* From Uiverse.io by satyamchaudharydev */
-/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
-
 .form button {
   border: none;
   background: none;
   color: #8b8ba7;
 }
-/* styling of whole input container */
+
+main{
+
+}
+
+/* style dos input do container */
 .form {
   --timing: 0.3s;
-  --width-of-input: 200px;
+  --width-of-input: 400px;
   --height-of-input: 40px;
   --border-height: 2px;
   --input-bg: #fff;
@@ -138,7 +139,8 @@ nav a:hover {
   transition: border-radius 0.5s ease;
   background: var(--input-bg, #fff);
 }
-/* styling of Input */
+
+/* style dos imput */
 .input {
   font-size: 0.9rem;
   background-color: transparent;
@@ -148,7 +150,8 @@ nav a:hover {
   padding-block: 0.7em;
   border: none;
 }
-/* styling of animated border */
+
+/* style da borda animada */
 .form:before {
   content: "";
   position: absolute;
@@ -162,7 +165,7 @@ nav a:hover {
   border-radius: 1px;
   transition: transform var(--timing) ease;
 }
-/* Hover on Input */
+/* hover dos Input */
 .form:focus-within {
   border-radius: var(--after-border-radius);
 }
@@ -170,24 +173,23 @@ nav a:hover {
 input:focus {
   outline: none;
 }
-/* here is code of animated border */
+/* animação do border */
 .form:focus-within:before {
   transform: scale(1);
 }
-/* styling of close button */
-/* == you can click the close button to remove text == */
+/* style do close button */
 .reset {
   border: none;
   background: none;
   opacity: 0;
   visibility: hidden;
 }
-/* close button shown when typing */
+/* close button aparece quando digita*/
 input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
-/* sizing svg icons */
+/* tamanho dos svg icons */
 .form svg {
   width: 17px;
   margin-top: 3px;
@@ -210,19 +212,19 @@ input:not(:placeholder-shown) ~ .reset {
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
+  /* esconde menu no desktop */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
+  /* mostra menu hamburguer */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
+  /* perfil lado a lado menu */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;
