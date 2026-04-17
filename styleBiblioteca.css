@@ -115,9 +115,21 @@ nav a:hover {
   color: #8b8ba7;
 }
 
-main{
-
+.btn-top {
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+  width: 150px;
+  height: 40px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  border-radius: 30px;
+  padding-left: 25px;
 }
+
+/* main {
+} */
 
 /* style dos input do container */
 .form {
@@ -149,6 +161,7 @@ main{
   padding-inline: 0.5em;
   padding-block: 0.7em;
   border: none;
+  cursor: pointer;
 }
 
 /* style da borda animada */
@@ -172,6 +185,7 @@ main{
 
 input:focus {
   outline: none;
+  cursor: text;
 }
 /* animação do border */
 .form:focus-within:before {
