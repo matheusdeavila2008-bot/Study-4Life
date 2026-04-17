@@ -9,6 +9,16 @@
 body {
   background-color: #000000;
   color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* CENTRALIZA */
+  align-items: center;
 }
 
 /* HEADER */
@@ -109,10 +119,96 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 800px) {
+h1, p{
+  display: grid;
+  justify-content: center;
+  padding: 5px;
+}
+
+.titulo h1{
+  color: #7ed957;
+  font-size: 36px;
+}
+
+.titulo p{
+  font-size: 18px;
+}
+
+.container-foco{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 120px;
+  max-width: 900px; /* limita largura */
+  width: 100%;
+  justify-items: center;
+}
+
+.caixa1,
+.caixa2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #7ed957;
+}
+
+.circulo {
+  width: 60vw;
+  height: 60vw;
+  max-width: 280px;
+  max-height: 280px;
+  display: flex;
+  text-decoration: none;
+  color: #aaa;
+  background: #2a2a2a;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  transition: all 0.25s ease;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 12px;
+}
+
+button:hover{
+  scale: 1.07;
+}
+
+img{
+  width: 32px;
+  height: 32px;
+}
+
+h2{
+  font-size: 32px;
+  padding: 10px;
+  text-align: center;
+}
+
+.botoes{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: 440px) {
   body {
     overflow-x: hidden;
+  }
+
+  main {
+    align-items: flex-start; /* sobe o conteúdo */
+    padding-top: 20px; /* controla a distância do header */
   }
 
   .header-container {
@@ -121,29 +217,67 @@ nav a:hover {
   }
 
   .logo {
-    width: 85px;
-    height: 85px;
-    margin: 0;
+    width: 70px;
+    height: 70px;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
-    width: 32px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  /* 🔥 STACK VERTICAL */
+  .container-foco{
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* 🔥 CÍRCULO RESPONSIVO */
+  .circulo {
+    width: 220px;
+    height: 220px;
+    font-size: 20px;
+  }
+
+  /* 🔥 TEMPO DENTRO DO CÍRCULO */
+  .circulo h1{
+    font-size: 28px;
+  }
+
+  /* 🔥 TÍTULOS */
+  h2{
+    font-size: 26px;
+  }
+
+  /* 🔥 BOTÕES MAIS COMPACTOS */
+  button {
     width: 55px;
     height: 55px;
-    font-size: 22px;
+    padding: 8px;
+  }
+
+  img{
+    width: 24px;
+    height: 24px;
+  }
+
+  .botoes{
+    gap: 10px;
+    margin-top: 10px;
   }
 }
