@@ -10,40 +10,66 @@
   <body>
     <header>
       <!-- cabeçalho do site -->
-    <!-- logo -->
-    <section class="header-container">
-      <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
+      <!-- logo -->
+      <section class="header-container">
+        <a href="indexHome.html"
+          ><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo"
+        /></a>
 
-      <!--Links para os outros sites  -->
-      <nav class="apagar">
-        <a href="indexHome.html" target="_self">Home</a>  
-        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
-        <a href="indexQuiz.html" target="_self">Quiz</a>
-        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
-        <a href="indexRanking.html" target="_self">Ranking</a>
-      </nav>
+        <!--Links para os outros sites  -->
+        <nav class="apagar">
+          <a href="indexHome.html" target="_self">Home</a>
+          <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+          <a href="indexQuiz.html" target="_self">Quiz</a>
+          <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+          <a href="indexRanking.html" target="_self">Ranking</a>
+        </nav>
 
-      <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+        <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
 
-      <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
+        <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
 
-      <!-- Menu lateral (abre da direita) -->
-      <div id="menuLateral" class="sidebar">
-        <span class="closebtn" onclick="closeMenu()">&times;</span>
-        <a href="indexHome.html" target="_self">Home</a>
-        <a href="indexFoco.html" target="_self">Foco</a>
-        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
-        <a href="indexQuiz.html" target="_self">Quiz</a>
-        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
-        <a href="indexRanking.html" target="_self">Ranking</a>
-      </div>
-    </section>
+        <!-- Menu lateral (abre da direita) -->
+        <div id="menuLateral" class="sidebar">
+          <span class="closebtn" onclick="closeMenu()">&times;</span>
+          <a href="indexHome.html" target="_self">Home</a>
+          <a href="indexFoco.html" target="_self">Foco</a>
+          <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+          <a href="indexQuiz.html" target="_self">Quiz</a>
+          <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+          <a href="indexRanking.html" target="_self">Ranking</a>
+        </div>
+      </section>
+    </header>
     <main>
+      <div class="container-foco">
+        <section class="caixa1">
+          <h2>Foco</h2>
+          <div class="circulo">
+            <div class="progresso"></div>
+            <h1 id="tempoFoco">25:00</h1>
+          </div>
+          <div class="botoes">
+            <button onclick="iniciarFoco()"><img src="play.svg" /></button>
+            <button onclick="pausar()"><img src="pause.svg" /></button>
+            <button onclick="resetar()"><img src="rotate-ccw.svg" /></button>
+          </div>
+        </section>
 
+        <section class="caixa2">
+          <h2>Descanso</h2>
+          <div class="circulo">
+            <h1 id="tempoDescanso">05:00</h1>
+          </div>
+          <div class="botoes">
+            <button onclick="iniciarDescanso()"><img src="play.svg" /></button>
+            <button onclick="pausar()"><img src="pause.svg" /></button>
+            <button onclick="resetar()"><img src="rotate-ccw.svg" /></button>
+          </div>
+        </section>
+      </div>
     </main>
-    <footer>
-
-    </footer>
+    <footer></footer>
     <script src="scriptFoco.js"></script>
   </body>
 </html>
