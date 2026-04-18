@@ -21,49 +21,59 @@ document.addEventListener("click", (e) => {
 
 // ===== catalogo
 
-const trilho = document.getElementById("trilho");
-const btnEsquerda = document.getElementById("btnEsquerda");
-const btnDireita = document.getElementById("btnDireita");
+const wrappers = document.querySelectorAll(".trilho-wrapper");
 
-let posicaoAtual = 0;
+wrappers.forEach((wrapper) => {
+  const trilho = wrapper.querySelector(".trilho");
+  const janela = wrapper.querySelector(".janela-carrossel");
+  const btnEsquerda = wrapper.querySelector(".seta-esquerda");
+  const btnDireita = wrapper.querySelector(".seta-direita");
+  const card = wrapper.querySelector(".card");
 
-function larguraDoCard() {
-  const card = document.querySelector(".card");
-  const estilo = window.getComputedStyle(trilho);
-  const gap = parseInt(estilo.columnGap || estilo.gap || 0);
-  return card.offsetWidth + gap;
-}
+  let posicaoAtual = 0;
 
-function maximoDeslocamento() {
-  const janela = document.getElementById("janelaCarrossel");
-  return Math.max(0, trilho.scrollWidth - janela.clientWidth);
-}
-
-function atualizarCarrossel() {
-  trilho.style.transform = `translateX(-${posicaoAtual}px)`;
-}
-
-btnDireita.addEventListener("click", () => {
-  posicaoAtual += larguraDoCard();
-  const limite = maximoDeslocamento();
-  if (posicaoAtual > limite) {
-    posicaoAtual = limite;
+  function larguraDoCard() {
+    const estilo = window.getComputedStyle(trilho);
+    const gap = parseInt(estilo.columnGap || estilo.gap || 0);
+    return card.offsetWidth + gap;
   }
-  atualizarCarrossel();
-});
 
-btnEsquerda.addEventListener("click", () => {
-  posicaoAtual -= larguraDoCard();
-  if (posicaoAtual < 0) {
-    posicaoAtual = 0;
+  function maximoDeslocamento() {
+    return Math.max(0, trilho.scrollWidth - janela.clientWidth);
   }
-  atualizarCarrossel();
-});
 
-window.addEventListener("resize", () => {
-  const limite = maximoDeslocamento();
-  if (posicaoAtual > limite) {
-    posicaoAtual = limite;
+  function atualizarCarrossel() {
+    trilho.style.transform = `translateX(-${posicaoAtual}px)`;
   }
-  atualizarCarrossel();
+
+  btnDireita.addEventListener("click", () => {
+    posicaoAtual += larguraDoCard();
+
+    const limite = maximoDeslocamento();
+    if (posicaoAtual > limite) {
+      posicaoAtual = limite;
+    }
+
+    atualizarCarrossel();
+  });
+
+  btnEsquerda.addEventListener("click", () => {
+    posicaoAtual -= larguraDoCard();
+
+    if (posicaoAtual < 0) {
+      posicaoAtual = 0;
+    }
+
+    atualizarCarrossel();
+  });
+
+  window.addEventListener("resize", () => {
+    const limite = maximoDeslocamento();
+
+    if (posicaoAtual > limite) {
+      posicaoAtual = limite;
+    }
+
+    atualizarCarrossel();
+  });
 });

@@ -231,13 +231,13 @@ input:not(:placeholder-shown) ~ .reset {
 
 .trilho {
   display: flex;
-  gap: 4px;
+  gap: 4px; /*espaçamento entre os cards aq=========================================================*/
   transition: transform 0.35s ease;
   will-change: transform;
 }
 
 .card {
-  flex: 0 0 300px;
+  flex: 0 0 300px; /*possivel largura dos cards aq==================================================*/
   height: 174px;
   background: #111;
   border-radius: 10px;
@@ -353,6 +353,10 @@ input:not(:placeholder-shown) ~ .reset {
 .card:hover img {
   transform: scale(1.03);
   transition: transform 0.35s ease;
+}
+
+.titulo-catalogo {
+  background-color: blue;
 }
 
 /* ================= MOBILE ================= */
