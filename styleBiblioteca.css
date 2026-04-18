@@ -115,17 +115,24 @@ nav a:hover {
   color: #8b8ba7;
 }
 
+.top-bar {
+  display: flex;
+}
+
 .btn-top {
   align-items: center;
-  margin-top: 20px;
+  margin: 0px 0px 0px 45px;
   display: flex;
   width: 150px;
   height: 40px;
-  background-color: white;
+  background: #111;
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
   border-radius: 30px;
   padding-left: 25px;
+  gap: 5px;
+  border: none;
+  font-size: 16px;
 }
 
 /* main================================================================== */
@@ -138,8 +145,8 @@ nav a:hover {
   --width-of-input: 400px;
   --height-of-input: 40px;
   --border-height: 2px;
-  --input-bg: #fff;
-  --border-color: #2f2ee9;
+  --input-bg: #111;
+  --border-color: #7ed957;
   --border-radius: 30px;
   --after-border-radius: 1px;
   position: relative;
@@ -151,6 +158,7 @@ nav a:hover {
   border-radius: var(--border-radius);
   transition: border-radius 0.5s ease;
   background: var(--input-bg, #fff);
+  margin-left: 45px;
 }
 
 /* style dos imput */
@@ -158,11 +166,12 @@ nav a:hover {
   font-size: 0.9rem;
   background-color: transparent;
   width: 100%;
-  height: 100%;
+  height: 40px;
   padding-inline: 0.5em;
   padding-block: 0.7em;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 /* style da borda animada */
@@ -208,6 +217,20 @@ input:not(:placeholder-shown) ~ .reset {
 .form svg {
   width: 17px;
   margin-top: 3px;
+  cursor: pointer;
+  color: white;
+}
+
+.titulo-preview {
+  color: #7ed957;
+  padding: 45px 0px 0px 45px;
+  font-weight: 600;
+}
+
+.titulo {
+  padding: 0px 0px 0px 45px;
+  margin-bottom: 45px;
+  font-weight: 800;
 }
 
 /* =================================== CATALOGO =================================== */
@@ -231,7 +254,7 @@ input:not(:placeholder-shown) ~ .reset {
 
 .trilho {
   display: flex;
-  gap: 4px; /*espaçamento entre os cards aq=========================================================*/
+  gap: 10px; /*espaçamento entre os cards aq=========================================================*/
   transition: transform 0.35s ease;
   will-change: transform;
 }
@@ -356,7 +379,17 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 .titulo-catalogo {
-  background-color: blue;
+  background-color: #111; /*tentar um rgba aqui depois*/
+  font-weight: 600;
+  padding-left: 45px;
+  margin: 10px 0px;
+}
+/* ===============================================apagar */
+.recomendados {
+  /* background-color: red; */
+  color: #7ed957;
+  padding: 45px 0px 0px 45px;
+  font-weight: 600;
 }
 
 /* ================= MOBILE ================= */
