@@ -135,12 +135,12 @@ nav a:hover {
   font-size: 16px;
 }
 
-.btn-top:hover{
-transform: scale(1.02);
+.btn-top:hover {
+  transform: scale(1.02);
 }
 
-.btn-top:focus{
-border: 2px solid #7ed957;
+.btn-top:focus {
+  border: 2px solid #7ed957;
 }
 
 /* main================================================================== */
