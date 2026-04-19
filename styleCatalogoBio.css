@@ -81,6 +81,7 @@ nav a:hover {
   padding-top: 60px;
   transition: 0.3s ease;
   z-index: 1000;
+  border: 1px solid #7ed957;
 }
 
 .sidebar.active {
@@ -143,9 +144,46 @@ nav a:hover {
   border: 2px solid #7ed957;
 }
 
-/* main================================================================== */
-/* main {
-} */
+/* menu lateral categorias */
+.sidebar-categorias {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100vh;
+  background-color: #111;
+  padding-top: 60px;
+  transition: 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+  border: 1px solid #7ed957;
+}
+
+.sidebar-categorias.active {
+  right: 0;
+}
+
+.sidebar-categorias a {
+  display: block;
+  padding: 15px 25px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-categorias a:hover {
+  background-color: #2a2a2a;
+  color: #7ed957;
+}
+
+.closebtn-categorias {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #7ed957;
+}
 
 /* style dos input do container */
 .form {
@@ -262,13 +300,13 @@ input:not(:placeholder-shown) ~ .reset {
 
 .trilho {
   display: flex;
-  gap: 10px; /*espaçamento entre os cards aq=========================================================*/
+  gap: 10px;
   transition: transform 0.35s ease;
   will-change: transform;
 }
 
 .card {
-  flex: 0 0 300px; /*possivel largura dos cards aq==================================================*/
+  flex: 0 0 300px;
   height: 174px;
   background: #111;
   border-radius: 10px;

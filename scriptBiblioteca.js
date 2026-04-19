@@ -77,3 +77,36 @@ wrappers.forEach((wrapper) => {
     atualizarCarrossel();
   });
 });
+
+// ===== menu lateral das categorias
+const menuCategorias = document.getElementById("menuCategorias");
+
+// ===== abrir menu das categorias
+function openCategorias() {
+  menuCategorias.classList.add("active");
+}
+
+// ===== fechar menu das categorias
+function closeCategorias() {
+  menuCategorias.classList.remove("active");
+}
+
+// ===== fechar menu ao clicar fora
+document.addEventListener("click", (e) => {
+  const botaoCategorias = document.querySelector('[onclick="openCategorias()"]');
+
+  if(
+    menuCategorias &&
+    !menuCategorias.contains(e.target) &&
+    botaoCategorias &&
+    !botaoCategorias.contains(e.target)
+){
+    menuCategorias.classList.remove("active");
+  }
+});
+
+document.querySelectorAll("#menuCategorias a").forEach((link) => {
+  link.addEventListener("click", () => {
+    closeCategorias();
+  });
+});

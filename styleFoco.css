@@ -91,6 +91,7 @@ nav a:hover {
   padding-top: 60px;
   transition: 0.3s ease;
   z-index: 1000;
+  border: 1px solid #7ed957;
 }
 
 .sidebar.active {
@@ -119,22 +120,23 @@ nav a:hover {
   color: #7ed957;
 }
 
-h1, p{
+h1,
+p {
   display: grid;
   justify-content: center;
   padding: 5px;
 }
 
-.titulo h1{
+.titulo h1 {
   color: #7ed957;
   font-size: 36px;
 }
 
-.titulo p{
+.titulo p {
   font-size: 18px;
 }
 
-.container-foco{
+.container-foco {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 120px;
@@ -144,7 +146,7 @@ h1, p{
 }
 
 .caixa1,
-.caixa2{
+.caixa2 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,22 +181,22 @@ button {
   border-radius: 12px;
 }
 
-button:hover{
+button:hover {
   scale: 1.07;
 }
 
-img{
+img {
   width: 32px;
   height: 32px;
 }
 
-h2{
+h2 {
   font-size: 32px;
   padding: 10px;
   text-align: center;
 }
 
-.botoes{
+.botoes {
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -240,7 +242,7 @@ h2{
   }
 
   /* 🔥 STACK VERTICAL */
-  .container-foco{
+  .container-foco {
     grid-template-columns: 1fr;
     gap: 40px;
     width: 100%;
@@ -255,12 +257,12 @@ h2{
   }
 
   /* 🔥 TEMPO DENTRO DO CÍRCULO */
-  .circulo h1{
+  .circulo h1 {
     font-size: 28px;
   }
 
   /* 🔥 TÍTULOS */
-  h2{
+  h2 {
     font-size: 26px;
   }
 
@@ -271,12 +273,12 @@ h2{
     padding: 8px;
   }
 
-  img{
+  img {
     width: 24px;
     height: 24px;
   }
 
-  .botoes{
+  .botoes {
     gap: 10px;
     margin-top: 10px;
   }

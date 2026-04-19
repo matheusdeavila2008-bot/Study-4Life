@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <title>Biblioteca</title>
-  <link rel="stylesheet" href="styleCatalogoOutros.css" />
+  <link rel="stylesheet" href="styleBiblioteca.css">
 </head>
 
 <body>
@@ -72,10 +72,29 @@
       <!-- buttons depois barra de pesquisa -->
 
       <!-- button categoria -->
-      <button type="submit" class="btn-top"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-          viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+      <button type="button" class="btn-top" onclick="openCategorias()"><svg xmlns="http://www.w3.org/2000/svg"
+          height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
           <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
         </svg> Categorias</button>
+
+      <!-- menu lateral categorias -->
+      <div id="menuCategorias" class="sidebar-categorias">
+        <span class="closebtn-categorias" onclick="closeCategorias()">&times;</span>
+        <a href="indexBiblioteca.html">Recomendados</a>
+        <a href="indexCatalogoPort.html">Português</a>
+        <a href="indexCatalogoMat.html">Matemática</a>
+        <a href="indexCatalogoCie.html">Ciências</a>
+        <a href="indexCatalogoGeo.html">Geografia</a>
+        <a href="indexCatalogoFilo.html">Filosofia</a>
+        <a href="indexCatalogoHist.html">História</a>
+        <a href="indexCatalogoFis.html">Física</a>
+        <a href="indexCatalogoQui.html">Química</a>
+        <a href="indexCatalogoReda.html">Redação</a>
+        <a href="indexCatalogoBio.html">Biologia</a>
+        <a href="indexCatalogoLing.html">Línguas Extrangeiras</a>
+        <a href="indexCatalogoTec.html">Técnologias</a>
+        <a href="indexCatalogoOutros.html"><span class="categoria-destaque">Outros</span></a>
+      </div>
 
       <!-- button historico -->
       <a href="#" class="btn-top"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
