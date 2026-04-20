@@ -1,7 +1,4 @@
 # Study 4Life
 
 Repositório Study 4Life.
-kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-saaaaaaaaaaaaaaaaaaassssssssssssssssssssssssssssssss
+l
