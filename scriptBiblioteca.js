@@ -93,14 +93,16 @@ function closeCategorias() {
 
 // ===== fechar menu ao clicar fora
 document.addEventListener("click", (e) => {
-  const botaoCategorias = document.querySelector('[onclick="openCategorias()"]');
+  const botaoCategorias = document.querySelector(
+    '[onclick="openCategorias()"]',
+  );
 
-  if(
+  if (
     menuCategorias &&
     !menuCategorias.contains(e.target) &&
     botaoCategorias &&
     !botaoCategorias.contains(e.target)
-){
+  ) {
     menuCategorias.classList.remove("active");
   }
 });
@@ -109,4 +111,61 @@ document.querySelectorAll("#menuCategorias a").forEach((link) => {
   link.addEventListener("click", () => {
     closeCategorias();
   });
+});
+
+// ===== modal reutilizável
+const modalOverlay = document.getElementById("modalOverlay");
+const fecharModal = document.getElementById("fecharModal");
+
+const modalImagem = document.getElementById("modalImagem");
+const modalTitulo = document.getElementById("modalTitulo");
+const modalSubtitulo = document.getElementById("modalSubtitulo");
+const modalAutor = document.getElementById("modalAutor");
+const modalResumo = document.getElementById("modalResumo");
+const modalCategoria1 = document.getElementById("modalCategoria1");
+const modalCategoria2 = document.getElementById("modalCategoria2");
+
+const cardsModal = document.querySelectorAll(".abrir-modal");
+
+cardsModal.forEach((card) => {
+  card.addEventListener("click", () => {
+    const titulo = card.dataset.titulo;
+    const subtitulo = card.dataset.subtitulo;
+    const autor = card.dataset.autor;
+    const resumo = card.dataset.resumo;
+    const imagem = card.dataset.imagem;
+    const categoria1 = card.dataset.categoria1;
+    const categoria2 = card.dataset.categoria2;
+
+    modalImagem.src = imagem;
+    modalImagem.alt = titulo;
+    modalTitulo.textContent = titulo;
+    modalSubtitulo.textContent = subtitulo;
+    modalAutor.textContent = autor;
+    modalResumo.textContent = resumo;
+    modalCategoria1.textContent = categoria1;
+    modalCategoria2.textContent = categoria2;
+
+    modalOverlay.classList.add("ativo");
+    document.body.classList.add("modal-aberto");
+  });
+});
+
+function fecharModalFuncao() {
+  modalOverlay.classList.remove("ativo");
+  document.body.classList.remove("modal-aberto");
+}
+
+fecharModal.addEventListener("click", fecharModalFuncao);
+
+modalOverlay.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) {
+    fecharModalFuncao();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modalOverlay.classList.contains("ativo")) {
+    fecharModalFuncao();
+  }
 });
