@@ -19,6 +19,7 @@
         <!--Links para os outros sites  -->
         <nav class="apagar">
           <a href="indexHome.html" target="_self">Home</a>
+          <p class="headerp">Foco</p>
           <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
           <a href="indexQuiz.html" target="_self">Quiz</a>
           <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
@@ -33,7 +34,6 @@
         <div id="menuLateral" class="sidebar">
           <span class="closebtn" onclick="closeMenu()">&times;</span>
           <a href="indexHome.html" target="_self">Home</a>
-          <a href="indexFoco.html" target="_self">Foco</a>
           <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
           <a href="indexQuiz.html" target="_self">Quiz</a>
           <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
@@ -46,7 +46,7 @@
         <section class="caixa1">
           <h2>Foco</h2>
           <div class="circulo">
-            <div class="progresso"></div>
+            <div class="progressooi" id="progressoFoco"></div>
             <h1 id="tempoFoco">25:00</h1>
           </div>
           <div class="botoes">
@@ -59,6 +59,7 @@
         <section class="caixa2">
           <h2>Descanso</h2>
           <div class="circulo">
+            <div class="progressooi" id="progressoDescanso"></div>
             <h1 id="tempoDescanso">05:00</h1>
           </div>
           <div class="botoes">
@@ -70,6 +71,8 @@
       </div>
     </main>
     <footer></footer>
+    <audio id="alarme" src="universfield-ringtone-047-494553.mp3"></audio>
     <script src="scriptFoco.js"></script>
+
   </body>
 </html>
