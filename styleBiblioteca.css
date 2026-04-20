@@ -597,6 +597,14 @@ body.modal-aberto {
   overflow: hidden;
 }
 
+.headerp{
+  cursor: default;
+  color: #7ed957;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 800px) {
   body {
