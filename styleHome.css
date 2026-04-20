@@ -216,6 +216,14 @@ span {
   color: #7ed957;
 }
 
+.headerp{
+  cursor: default;
+  color: #7ed957;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
 @keyframes blink {
   50% {
     opacity: 0;

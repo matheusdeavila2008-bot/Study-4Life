@@ -120,8 +120,7 @@ nav a:hover {
   color: #7ed957;
 }
 
-h1,
-p {
+h1{
   display: grid;
   justify-content: center;
   padding: 5px;
@@ -237,6 +236,14 @@ h2 {
   height: 96%;
   background: #2a2a2a;
   border-radius: 50%;
+}
+
+.headerp{
+  cursor: default;
+  color: #7ed957;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
 }
 
 @media (max-width: 440px) {
