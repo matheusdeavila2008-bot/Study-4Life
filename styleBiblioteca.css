@@ -449,6 +449,154 @@ input:not(:placeholder-shown) ~ .reset {
   font-weight: 600;
 }
 
+/* modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-overlay.ativo {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 540px;
+  background: linear-gradient(90deg, #140d0d 0%, #1b1111 55%, #221515 100%);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: #d8d8d8;
+  font-size: 34px;
+  cursor: pointer;
+  z-index: 5;
+  transition: 0.2s;
+}
+
+.fechar-modal:hover {
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.modal-esquerda {
+  width: 50%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-esquerda img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-tags {
+  display: flex;
+  gap: 12px;
+  padding: 18px 20px 20px 20px;
+  background: #120909;
+}
+
+.modal-tag {
+  background: #2b1f1f;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.modal-direita {
+  width: 50%;
+  padding: 42px 34px 30px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modal-direita h2 {
+  font-size: 48px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+
+.modal-subtitulo {
+  font-size: 28px;
+  color: #c9c2c2;
+  margin-bottom: 16px;
+}
+
+.modal-autor {
+  color: #ff2e2e;
+  font-size: 24px;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.modal-resumo-area h3 {
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #bdb5b5;
+  margin-bottom: 14px;
+}
+
+.modal-resumo {
+  font-size: 28px;
+  line-height: 1.7;
+  color: #f1eaea;
+  margin-bottom: 34px;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-modal {
+  background: #0f0a0a;
+  color: #ffffff;
+  border: 1px solid #3b2a2a;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-modal:hover {
+  background: #1a1212;
+  transform: scale(1.02);
+}
+
+body.modal-aberto {
+  overflow: hidden;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 800px) {
   body {
