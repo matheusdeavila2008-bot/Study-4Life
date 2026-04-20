@@ -164,7 +164,8 @@ nav a:hover {
   right: 0;
 }
 
-.sidebar-categorias a {
+.sidebar-categorias a,
+.sidebar-categorias p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
@@ -172,7 +173,8 @@ nav a:hover {
   text-decoration: none;
 }
 
-.sidebar-categorias a:hover {
+.sidebar-categorias a:hover,
+.sidebar-categorias p:hover {
   background-color: #2a2a2a;
   color: #7ed957;
 }
@@ -188,6 +190,7 @@ nav a:hover {
 
 .categoria-destaque {
   color: #7ed957;
+  cursor: default;
 }
 
 /* style dos input do container */
