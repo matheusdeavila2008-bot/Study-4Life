@@ -9,64 +9,64 @@
   </head>
   <body>
     <header>
-    <!-- logo -->
-    <section class="header-container">
-      <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
+      <!-- logo -->
+      <section class="header-container">
+        <a href="indexHome.html"
+          ><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo"
+        /></a>
 
-      <!--Links para os outros sites  -->
-      <nav class="apagar">
-        <a href="indexHome.html" target="_self">Home</a>  
-        <a href="indexFoco.html" target="_self">Foco</a>
-        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
-        <a href="indexQuiz.html" target="_self">Quiz</a>
-        <p class="headerp">StudyChat.IA</p>
-        <a href="indexRanking.html" target="_self">Ranking</a>
-      </nav>
+        <!--Links para os outros sites  -->
+        <nav class="apagar">
+          <a href="indexHome.html" target="_self">Home</a>
+          <a href="indexFoco.html" target="_self">Foco</a>
+          <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+          <a href="indexQuiz.html" target="_self">Quiz</a>
+          <p class="headerp">StudyChat.IA</p>
+          <a href="indexRanking.html" target="_self">Ranking</a>
+        </nav>
 
-      <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+        <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+        <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
 
-      <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
-
-      <!-- Menu lateral (abre da direita) -->
-      <div id="menuLateral" class="sidebar">
-        <span class="closebtn" onclick="closeMenu()">&times;</span>
-        <a href="indexHome.html" target="_self">Home</a>
-        <a href="indexFoco.html" target="_self">Foco</a>
-        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
-        <a href="indexQuiz.html" target="_self">Quiz</a>
-        <p>&gt;StudyChat.IA&lt;</p>
-        <a href="indexRanking.html" target="_self">Ranking</a>
-      </div>
-    </section>
+        <!-- Menu lateral (abre da direita) -->
+        <div id="menuLateral" class="sidebar">
+          <span class="closebtn" onclick="closeMenu()">&times;</span>
+          <a href="indexHome.html" target="_self">Home</a>
+          <a href="indexFoco.html" target="_self">Foco</a>
+          <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+          <a href="indexQuiz.html" target="_self">Quiz</a>
+          <p>&gt;StudyChat.IA&lt;</p>
+          <a href="indexRanking.html" target="_self">Ranking</a>
+        </div>
+      </section>
     </header>
     <main class="layout-chat">
+      <!-- HISTÓRICO (ESQUERDA) -->
+      <section class="historico">
+        <h2>Histórico</h2>
+        <div class="item-historico">Chat 1</div>
+        <div class="item-historico">Chat 2</div>
+        <div class="item-historico">Chat 3</div>
+        <div class="item-historico">Chat 4</div>
+        <div class="item-historico">Chat 5</div>
+      </section>
 
-  <!-- HISTÓRICO (ESQUERDA) -->
-  <section class="historico">
-    <h2>Histórico</h2>
-    <div class="item-historico">Chat 1</div>
-    <div class="item-historico">Chat 2</div>
-    <div class="item-historico">Chat 3</div>
-    <div class="item-historico">Chat 4</div>
-    <div class="item-historico">Chat 5</div>
-  </section>
-
-  <!-- CHAT (DIREITA) -->
-  <section class="conteinarChat">
-    <div class="box-resposta" id="chatBox">
-      <div class="mensagem ia">Qual sua duvida? 👇</div>
-    </div>
-    <div class="input-area">
-      <input 
-        id="pergunta"
-        class="caixa-pergunta"
-        type="text"
-        placeholder="Escreva sua pergunta"
-      >
-      <button onclick="enviarMensagem()">Enviar</button>
-    </div>
-  </section>
-</main>
+      <!-- CHAT (DIREITA) -->
+      <section class="conteinarChat">
+        <div class="box-resposta" id="chatBox">
+          <div class="mensagem ia">Qual sua duvida? 👇</div>
+        </div>
+        <div class="input-area">
+          <input
+            id="pergunta"
+            class="caixa-pergunta"
+            type="text"
+            placeholder="Escreva sua pergunta"
+          />
+          <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+      </section>
+    </main>
     <script src="scriptChatIA.js"></script>
   </body>
 </html>
