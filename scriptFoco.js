@@ -16,7 +16,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ===== CONFIG =====
+//  CONFIG 
 let tempoTotalFoco = 25 * 60;
 let tempoTotalDescanso = 5 * 60;
 
@@ -26,14 +26,14 @@ let tempoDescanso = tempoTotalDescanso;
 let modo = "foco"; // foco ou descanso
 let intervalo = null;
 
-// ===== FORMATAR =====
+// FORMATAR 
 function formatarTempo(segundos) {
   let min = Math.floor(segundos / 60);
   let sec = segundos % 60;
   return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 }
 
-// ===== PROGRESSO =====
+//  PROGRESSO 
 function atualizarProgresso() {
   let grausFoco = (tempoFoco / tempoTotalFoco) * 360;
   let grausDescanso = (tempoDescanso / tempoTotalDescanso) * 360;
@@ -52,7 +52,6 @@ function atualizarProgresso() {
   }
 }
 
-// ===== TELA =====
 function atualizarTela() {
   const foco = document.getElementById("tempoFoco");
   const descanso = document.getElementById("tempoDescanso");
@@ -63,7 +62,6 @@ function atualizarTela() {
   atualizarProgresso();
 }
 
-// ===== SOM =====
 function tocarAlarme() {
   const audio = document.getElementById("alarme");
   if (audio) {
@@ -72,18 +70,17 @@ function tocarAlarme() {
   }
 }
 
-// ===== SALVAR =====
+// SALVAR
 function salvarEstado() {
   localStorage.setItem("modo", modo);
   localStorage.setItem("fim", Date.now() + getTempoAtual() * 1000);
 }
 
-// ===== PEGAR TEMPO ATUAL =====
+//PEGAR TEMPO ATUAL 
 function getTempoAtual() {
   return modo === "foco" ? tempoFoco : tempoDescanso;
 }
 
-// ===== TIMER =====
 function iniciarTimer() {
   if (intervalo) return;
 

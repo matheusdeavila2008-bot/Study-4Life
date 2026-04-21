@@ -87,7 +87,7 @@ a {
   background: none;
 }
 
-/* ===== Celular até 440px ===== */
+/*Celular até 440px*/
 @media (max-width: 440px) {
   body {
     min-height: 100vh;
