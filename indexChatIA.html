@@ -9,7 +9,6 @@
   </head>
   <body>
     <header>
-      <!-- cabeçalho do site -->
     <!-- logo -->
     <section class="header-container">
       <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
@@ -35,13 +34,40 @@
         <a href="indexFoco.html" target="_self">Foco</a>
         <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
         <a href="indexQuiz.html" target="_self">Quiz</a>
-        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <p>&gt;StudyChat.IA&lt;</p>
         <a href="indexRanking.html" target="_self">Ranking</a>
       </div>
     </section>
-    <main>
+    </header>
+    <main class="layout-chat">
 
-    </main>
+  <!-- HISTÓRICO (ESQUERDA) -->
+  <section class="historico">
+    <h2>Histórico</h2>
+    <div class="item-historico">Chat 1</div>
+    <div class="item-historico">Chat 2</div>
+  </section>
+
+  <!-- CHAT (DIREITA) -->
+  <section class="conteinarChat">
+
+    <div class="box-resposta" id="chatBox">
+      <div class="mensagem ia">Fala! Manda sua dúvida 👇</div>
+    </div>
+
+    <div class="input-area">
+      <input 
+        id="pergunta"
+        class="caixa-pergunta"
+        type="text"
+        placeholder="Escreva sua pergunta"
+      >
+      <button onclick="enviarMensagem()">Enviar</button>
+    </div>
+
+  </section>
+
+</main>
     <footer>
 
     </footer>

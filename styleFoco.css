@@ -98,12 +98,17 @@ nav a:hover {
   right: 0;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
   color: white;
   text-decoration: none;
+}
+
+.sidebar p{
+  color: #7ed957;
 }
 
 .sidebar a:hover {
@@ -244,7 +249,7 @@ h2 {
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
-}
+} 
 
 @media (max-width: 440px) {
   body {

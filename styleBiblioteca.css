@@ -88,12 +88,17 @@ nav a:hover {
   right: 0;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
   color: white;
   text-decoration: none;
+}
+
+.sidebar p{
+  color: #7ed957;
 }
 
 .sidebar a:hover {
@@ -242,6 +247,7 @@ nav a:hover {
   border-radius: 1px;
   transition: transform var(--timing) ease;
 }
+
 /* hover dos Input */
 .form:focus-within {
   border-radius: var(--after-border-radius);
@@ -251,10 +257,12 @@ input:focus {
   outline: none;
   cursor: text;
 }
+
 /* animação do border */
 .form:focus-within:before {
   transform: scale(1);
 }
+
 /* style do close button */
 .reset {
   border: none;
@@ -262,11 +270,13 @@ input:focus {
   opacity: 0;
   visibility: hidden;
 }
+
 /* close button aparece quando digita*/
 input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
+
 /* tamanho dos svg icons */
 .form svg {
   width: 17px;

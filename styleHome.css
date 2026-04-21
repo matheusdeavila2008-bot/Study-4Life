@@ -89,12 +89,17 @@ nav a:hover {
   right: 0;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
   color: white;
   text-decoration: none;
+}
+
+.sidebar p{
+  color: #7ed957;
 }
 
 .sidebar a:hover {
@@ -214,14 +219,6 @@ footer {
 
 span {
   color: #7ed957;
-}
-
-.headerp{
-  cursor: default;
-  color: #7ed957;
-  font-weight: bold;
-  transition: 0.3s;
-  font-size: 22px;
 }
 
 @keyframes blink {

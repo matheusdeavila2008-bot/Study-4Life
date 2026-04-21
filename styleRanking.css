@@ -81,18 +81,24 @@ nav a:hover {
   padding-top: 60px;
   transition: 0.3s ease;
   z-index: 1000;
+  border: 1px solid #7ed957;
 }
 
 .sidebar.active {
   right: 0;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
   color: white;
   text-decoration: none;
+}
+
+.sidebar p{
+  color: #7ed957;
 }
 
 .sidebar a:hover {
@@ -107,14 +113,6 @@ nav a:hover {
   font-size: 30px;
   cursor: pointer;
   color: #7ed957;
-}
-
-.headerp{
-  cursor: default;
-  color: #7ed957;
-  font-weight: bold;
-  transition: 0.3s;
-  font-size: 22px;
 }
 
 /* ================= MOBILE ================= */
