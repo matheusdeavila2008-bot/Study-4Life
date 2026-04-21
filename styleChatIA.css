@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -7,15 +8,13 @@
 
 /* BODY */
 body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
 }
 
 /* HEADER */
 header {
-  color: #ffffff;
   border-bottom: 1px solid #444;
-  margin-bottom: 10px;
 }
 
 .header-container {
@@ -25,12 +24,12 @@ header {
 
 /* LOGO */
 .logo {
-  margin: 0px 20px;
+  margin: 0 20px;
   width: 100px;
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
+/* NAV */
 nav {
   margin-left: 40px;
   display: flex;
@@ -39,7 +38,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
@@ -63,14 +62,14 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
+/* MENU MOBILE */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
+/* SIDEBAR MOBILE */
 .sidebar {
   position: fixed;
   top: 0;
@@ -81,18 +80,24 @@ nav a:hover {
   padding-top: 60px;
   transition: 0.3s ease;
   z-index: 1000;
+  border: 1px solid #7ed957;
 }
 
 .sidebar.active {
   right: 0;
 }
 
-.sidebar a {
+.sidebar a,
+.sidebar p {
   display: block;
   padding: 15px 25px;
   font-size: 18px;
   color: white;
   text-decoration: none;
+}
+
+.sidebar p{
+  color: #7ed957;
 }
 
 .sidebar a:hover {
@@ -109,16 +114,117 @@ nav a:hover {
   color: #7ed957;
 }
 
-.headerp{
-  cursor: default;
-  color: #7ed957;
-  font-weight: bold;
-  transition: 0.3s;
-  font-size: 22px;
+/* LAYOUT PRINCIPAL */
+.layout-chat {
+  display: flex;
+  height: calc(100vh - 110px);
 }
 
-/* ================= MOBILE ================= */
+/* HISTÓRICO */
+.historico {
+  width: 260px;
+  background: #111;
+  padding: 20px;
+  border-right: 1px solid #333;
+}
+
+.historico h2 {
+  margin-bottom: 15px;
+}
+
+.item-historico {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #222;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.item-historico:hover {
+  background: #333;
+}
+
+/* ÁREA DO CHAT */
+.conteinarChat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box-resposta {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-resposta::-webkit-scrollbar {
+  width: 6px;
+}
+
+.box-resposta::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+/* MENSAGENS */
+.mensagem {
+  max-width: 65%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.ia {
+  background: #2a2a2a;
+  align-self: flex-start;
+}
+
+.usuario {
+  background: #7ed957;
+  color: #000;
+  align-self: flex-end;
+}
+
+.input-area {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #333;
+  background: #000;
+}
+
+.caixa-pergunta {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 12px 20px;
+  background: #7ed957;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/*MOBILE */
 @media (max-width: 800px) {
+
   body {
     overflow-x: hidden;
   }
@@ -129,29 +235,37 @@ nav a:hover {
   }
 
   .logo {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
-    width: 32px;
-    height: 30px;
+    width: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
-    margin-left: auto;
     margin-right: 10px;
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     font-size: 22px;
+  }
+
+  /* CHAT MOBILE */
+  .layout-chat {
+    flex-direction: column;
+  }
+
+  .historico {
+    display: none;
+  }
+
+  .mensagem {
+    max-width: 85%;
   }
 }

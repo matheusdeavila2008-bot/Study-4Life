@@ -5,6 +5,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+*{
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.logo {
+  margin: 0px 20px;
+  width: 100px;
+  height: 100px;
+}
+
 /* CONTAINER */
 .termos-container {
   max-width: 900px;

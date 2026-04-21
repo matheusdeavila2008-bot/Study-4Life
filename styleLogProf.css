@@ -126,23 +126,6 @@ input[type="password"]:focus {
   text-decoration: none;
 }
 
-.checkbox-area {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  color: #000;
-  line-height: 1.4;
-}
-
-.checkbox-area a {
-  color: #3b82f6;
-  text-decoration: none;
-}
-
-.span {
-  cursor: text;
-}
-
 .forgot {
   color: #3b82f6;
   text-decoration: none;
