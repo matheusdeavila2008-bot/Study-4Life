@@ -97,7 +97,7 @@ nav a:hover {
   text-decoration: none;
 }
 
-.sidebar p{
+.sidebar p {
   color: #7ed957;
 }
 
@@ -115,13 +115,163 @@ nav a:hover {
   color: #7ed957;
 }
 
-.headerp{
+.headerp {
   cursor: default;
   color: #7ed957;
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
-} 
+}
+
+/* style do pódio */
+.ranking-page {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+}
+
+.ranking-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.ranking-topo h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.filtros-rankings {
+  background: #1a2332;
+  border-radius: 16px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.filtro {
+  border: none;
+  color: #7f8aa3;
+  background: transparent;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filtro.ativo {
+  background: #2bd66f;
+  color: #08120c;
+}
+
+.podio {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.podio-item {
+  text-align: center;
+  width: 150px;
+}
+
+.avatar {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.podio-item h2 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.bloco-podio {
+  border-radius: 14px 14px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+}
+
+.segundo .bloco-podio {
+  height: 95px;
+  background: #1c2432;
+  color: #c0c7d4;
+}
+
+.primeiro .bloco-podio {
+  height: 130px;
+  background: #1c2432;
+  color: #ffcc00;
+}
+
+.terceiro .bloco-podio {
+  height: 80px;
+  background: #1c2432;
+  color: #d17d1f;
+}
+
+.lista-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ranking-card {
+  background: #0d1523;
+  border: 1px solid #1e2a3d;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ranking-card.voce {
+  background: rgba(28, 88, 55, 0.35);
+  border: 1px solid #1ea85c;
+}
+
+.ranking-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.posicao {
+  width: 24px;
+  text-align: center;
+  font-size: 22px;
+  color: #8ea0bc;
+}
+
+.posicao.medalha {
+  font-size: 22px;
+}
+
+.avatar-lista {
+  font-size: 24px;
+}
+
+.ranking-info h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.ranking-info p {
+  color: #8ea0bc;
+  font-size: 14px;
+}
+
+.pontuacao {
+  color: #2bd66f;
+  font-size: 14px;
+  font-weight: 700;
+}
 
 /* ================= MOBILE ================= */
 @media (max-width: 800px) {
