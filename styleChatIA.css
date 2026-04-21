@@ -222,6 +222,14 @@ button:hover {
   opacity: 0.8;
 }
 
+.headerp{
+  cursor: default;
+  color: #7ed957;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+} 
+
 /*MOBILE */
 @media (max-width: 800px) {
 
@@ -259,10 +267,6 @@ button:hover {
   /* CHAT MOBILE */
   .layout-chat {
     flex-direction: column;
-  }
-
-  .historico {
-    display: none;
   }
 
   .mensagem {
