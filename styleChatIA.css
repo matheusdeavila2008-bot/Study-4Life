@@ -68,13 +68,14 @@ nav a:hover {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -250px;
-  width: 250px;
+  right: -280px;
   height: 100vh;
-  background-color: #222;
+  width: 280px;
+  background-color: #111;
   padding-top: 60px;
   transition: 0.3s ease;
-  z-index: 1000;
+  z-index: 1001;
+  overflow-y: auto;
   border: 1px solid #7ed957;
 }
 

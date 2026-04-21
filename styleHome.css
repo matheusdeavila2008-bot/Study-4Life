@@ -71,13 +71,14 @@ nav a:hover {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -250px;
-  width: 250px;
+  right: -280px;
   height: 100vh;
-  background-color: #222;
+  width: 280px;
+  background-color: #111;
   padding-top: 60px;
   transition: 0.3s ease;
-  z-index: 1000;
+  z-index: 1001;
+  overflow-y: auto;
   border: 1px solid #7ed957;
 }
 
@@ -94,7 +95,7 @@ nav a:hover {
   text-decoration: none;
 }
 
-.sidebar p{
+.sidebar p {
   color: #7ed957;
 }
 
@@ -132,7 +133,7 @@ nav a:hover {
   flex: 1;
   padding: 20px;
   border-radius: 15px;
-  background-color: #2c3136;
+  background-color: #111;
   border: 1px solid #7ed957;
 }
 
@@ -148,7 +149,7 @@ nav a:hover {
 
 /* BLOG */
 .blog {
-  background-color: #2c3136;
+  background-color: #111;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -217,13 +218,13 @@ span {
   color: #7ed957;
 }
 
-.headerp{
+.headerp {
   cursor: default;
   color: #7ed957;
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
-} 
+}
 
 @keyframes blink {
   50% {
