@@ -180,27 +180,17 @@ nav a:hover {
   margin-bottom: 15px;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 10px;
-}
-
-.icone-footer img {
-  width: 40px;
+.icone-footer {
+  display: flex;
+  justify-content: center;
 }
 
 .icone-footer a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   text-decoration: none;
   color: white;
-}
-
-.icone-footer h2 {
-  font-size: 24px;
 }
 
 /* CURSOR */
@@ -230,6 +220,21 @@ span {
 footer{
   margin-top: 20px;
   border-top: 1px solid #7ed957;
+  text-align: center;
+  padding: 30px;
+}
+
+footer h2{
+  margin-bottom: 20px;
+}
+
+footer img{
+  margin-bottom: 20px;
+  width: 40px;
+}
+
+.icone-footer:hover{
+  scale: 1.03;
 }
 
 @keyframes blink {
