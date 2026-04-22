@@ -138,13 +138,13 @@ nav a:hover {
 }
 
 .nivel-home:hover {
-  color: #000;
-  background-color: white;
+  color: #ffffff;
+  transform: scale(1.02);
 }
 
 .foco-home:hover {
-  background-color: #ff9800;
-  color: #000;
+  color: #ffffff;
+  transform: scale(1.02);
 }
 
 /* BLOG */
@@ -313,6 +313,6 @@ span {
   .foco-home:hover {
     background-color: #111;
     color: #ffffff;
-    scale: 1.03;
+    scale: 1.02;
   }
 }
