@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <title>Biblioteca</title>
   <link rel="stylesheet" href="styleBiblioteca.css" />
 </head>
+
 <body>
   <!-- cabeçalho do site -->
   <header>
@@ -110,8 +112,9 @@
         <div class="janela-carrossel">
           <div class="trilho">
 
-            <article class="card abrir-modal" data-titulo="aaaa" data-subtitulo="aaa" data-autor="aaa" data-resumo="aa"
-              data-imagem="PLACEHOLDER.jpeg" data-tipo="📚 CURSO" data-categoria1="aaa" data-categoria2="aaa">
+            <article class="card abrir-modal" data-titulo="titulo" data-autor="autor" data-resumo="bla bla bla"
+            data-imagem="PLACEHOLDER.jpeg" data-categoria1="categoria1" data-categoria2="categoria2">
+
               <div class="thumb">
                 <img src="PLACEHOLDER.jpeg" alt="Curso de HTML e CSS">
                 <span class="tag video">📚 CURSO</span>
@@ -122,8 +125,9 @@
               </div>
             </article>
 
-            <article class="card abrir-modal" data-titulo="" data-subtitulo="" data-autor="" data-resumo=""
-              data-imagem="PLACEHOLDER.jpeg" data-tipo="📄 PDF" data-categoria1="" data-categoria2="">
+            <article class="card abrir-modal" data-titulo="titulo" data-autor="autor" data-resumo="bla bla bla"
+              data-imagem="PLACEHOLDER.jpeg" data-categoria1="categoria1" data-categoria2="categoria2">
+
               <div class="thumb">
                 <img src="PLACEHOLDER.jpeg" alt="">
                 <span class="tag video">📄 PDF</span>
@@ -1866,48 +1870,47 @@
 
   </main>
 
-      <!-- menu lateral categorias -->
-      <div id="menuCategorias" class="sidebar-categorias">
-        <span class="closebtn-categorias" onclick="closeCategorias()">&times;</span>
-        <p><span class="categoria-destaque"> &gt;Recomendados&lt; </span></p>
-        <a href="indexCatalogoPort.html">Português</a>
-        <a href="indexCatalogoMat.html">Matemática</a>
-        <a href="indexCatalogoCie.html">Ciências</a>
-        <a href="indexCatalogoGeo.html">Geografia</a>
-        <a href="indexCatalogoFilo.html">Filosofia</a>
-        <a href="indexCatalogoHist.html">História</a>
-        <a href="indexCatalogoFis.html">Física</a>
-        <a href="indexCatalogoQui.html">Química</a>
-        <a href="indexCatalogoReda.html">Redação</a>
-        <a href="indexCatalogoBio.html">Biologia</a>
-        <a href="indexCatalogoLing.html">Línguas Extrangeiras</a>
-        <a href="indexCatalogoTec.html">Técnologias</a>
-        <a href="indexCatalogoOutros.html">Outros</a>
-        <a href="indexCatalogoCanais.html">Canais Recomendados</a>
-      </div>
+  <!-- menu lateral categorias -->
+  <div id="menuCategorias" class="sidebar-categorias">
+    <span class="closebtn-categorias" onclick="closeCategorias()">&times;</span>
+    <p><span class="categoria-destaque"> &gt;Recomendados&lt; </span></p>
+    <a href="indexCatalogoPort.html">Português</a>
+    <a href="indexCatalogoMat.html">Matemática</a>
+    <a href="indexCatalogoCie.html">Ciências</a>
+    <a href="indexCatalogoGeo.html">Geografia</a>
+    <a href="indexCatalogoFilo.html">Filosofia</a>
+    <a href="indexCatalogoHist.html">História</a>
+    <a href="indexCatalogoFis.html">Física</a>
+    <a href="indexCatalogoQui.html">Química</a>
+    <a href="indexCatalogoReda.html">Redação</a>
+    <a href="indexCatalogoBio.html">Biologia</a>
+    <a href="indexCatalogoLing.html">Línguas Extrangeiras</a>
+    <a href="indexCatalogoTec.html">Técnologias</a>
+    <a href="indexCatalogoOutros.html">Outros</a>
+    <a href="indexCatalogoCanais.html">Canais Recomendados</a>
+  </div>
 
   <!-- caixa modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box" id="modalBox">
-      <button class="fechar-modal" id="fecharModal">&times;</button>
 
-      <div class="modal-esquerda">
+      <div class="modal-topo">
         <img id="modalImagem" src="" alt="Capa do conteúdo">
+        <button class="fechar-modal" id="fecharModal">&times;</button>
+      </div>
+
+      <div class="modal-conteudo">
+        <h2 id="modalTitulo"></h2>
+        <p id="modalAutor" class="modal-Autor"></p>
+
+
+        <div class="modal-resumo-area">
+          <p id="modalResumo" class="modal-resumo"></p>
+        </div>
 
         <div class="modal-tags">
           <span id="modalCategoria1" class="modal-tag"></span>
           <span id="modalCategoria2" class="modal-tag"></span>
-        </div>
-      </div>
-
-      <div class="modal-direita">
-        <h2 id="modalTitulo"></h2>
-        <p id="modalSubtitulo" class="modal-subtitulo"></p>
-        <p id="modalAutor" class="modal-autor"></p>
-
-        <div class="modal-resumo-area">
-          <h3>Resumo</h3>
-          <p id="modalResumo" class="modal-resumo"></p>
         </div>
 
         <div class="modal-botoes">
@@ -1919,13 +1922,14 @@
           <button class="btn-modal"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
               width="24px" fill="#FFFFFF">
               <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
-            </svg> Marcar como concluído</button>
+            </svg> Concluído</button>
         </div>
 
       </div>
     </div>
   </div>
-  </div>
+
 </body>
 <script src="scriptBiblioteca.js"></script>
+
 </html>

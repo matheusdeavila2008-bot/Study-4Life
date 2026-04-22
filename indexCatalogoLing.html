@@ -2052,28 +2052,27 @@
 
   </main>
 
-  <!-- caixa modal -->
+<!-- caixa modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-box" id="modalBox">
-      <button class="fechar-modal" id="fecharModal">&times;</button>
 
-      <div class="modal-esquerda">
+      <div class="modal-topo">
         <img id="modalImagem" src="" alt="Capa do conteúdo">
+        <button class="fechar-modal" id="fecharModal">&times;</button>
+      </div>
+
+      <div class="modal-conteudo">
+        <h2 id="modalTitulo"></h2>
+        <p id="modalAutor" class="modal-Autor"></p>
+
+
+        <div class="modal-resumo-area">
+          <p id="modalResumo" class="modal-resumo"></p>
+        </div>
 
         <div class="modal-tags">
           <span id="modalCategoria1" class="modal-tag"></span>
           <span id="modalCategoria2" class="modal-tag"></span>
-        </div>
-      </div>
-
-      <div class="modal-direita">
-        <h2 id="modalTitulo"></h2>
-        <p id="modalSubtitulo" class="modal-subtitulo"></p>
-        <p id="modalAutor" class="modal-autor"></p>
-
-        <div class="modal-resumo-area">
-          <h3>Resumo</h3>
-          <p id="modalResumo" class="modal-resumo"></p>
         </div>
 
         <div class="modal-botoes">
@@ -2085,12 +2084,11 @@
           <button class="btn-modal"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
               width="24px" fill="#FFFFFF">
               <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
-            </svg> Marcar como concluído</button>
+            </svg> Concluído</button>
         </div>
 
       </div>
     </div>
-  </div>
   </div>
 
   <script src="scriptBiblioteca.js"></script>
