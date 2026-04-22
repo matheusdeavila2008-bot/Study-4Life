@@ -303,4 +303,16 @@ span {
   .icone-footer h2 {
     font-size: 17px;
   }
+
+  .nivel-home:hover {
+    color: #ffffff;
+    background-color: #111;
+    scale: 1.03;
+  }
+
+  .foco-home:hover {
+    background-color: #111;
+    color: #ffffff;
+    scale: 1.03;
+  }
 }
