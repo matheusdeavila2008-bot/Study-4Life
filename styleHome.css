@@ -12,7 +12,7 @@ body {
 
 header {
   color: #ffffff;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #7ed957;
   margin-bottom: 10px;
 }
 
@@ -156,6 +156,7 @@ nav a:hover {
   padding: 30px;
   border-radius: 15px;
   border: 1px solid #7ed957;
+  margin: 0px 0px 25px 0px;
 }
 
 .imagem-blog {
@@ -224,6 +225,11 @@ span {
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
+}
+
+footer{
+  margin-top: 20px;
+  border-top: 1px solid #7ed957;
 }
 
 @keyframes blink {
