@@ -738,7 +738,6 @@ body.modal-aberto {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 12px 8px;
   }
 
   .modal-tag,
