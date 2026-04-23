@@ -108,7 +108,7 @@ nav a:hover {
   text-decoration: none;
 }
 
-.sidebar p{
+.sidebar p {
   color: #7ed957;
 }
 
@@ -126,7 +126,7 @@ nav a:hover {
   color: #7ed957;
 }
 
-h1{
+h1 {
   display: grid;
   justify-content: center;
   padding: 4px;
@@ -135,15 +135,14 @@ h1{
 .titulo-foco {
   text-align: center;
   padding-top: 45px;
-
 }
 
-.titulo-foco h1{
+.titulo-foco h1 {
   font-size: 34px;
   color: #7ed957;
 }
 
-.titulo-foco{
+.titulo-foco {
   font-size: 18px;
   color: white;
 }
@@ -230,13 +229,11 @@ h2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: conic-gradient(
-    #7ed957 360deg,
-    #2a2a2a 0deg);
-    z-index: 1; /* fica atrás do número */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: conic-gradient(#7ed957 360deg, #2a2a2a 0deg);
+  z-index: 1; /* fica atrás do número */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* cria o "buraco" no meio */
@@ -249,13 +246,13 @@ h2 {
   border-radius: 50%;
 }
 
-.headerp{
+.headerp {
   cursor: default;
   color: #7ed957;
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
-} 
+}
 
 @media (max-width: 440px) {
   body {
@@ -273,8 +270,9 @@ h2 {
   }
 
   .logo {
-    width: 70px;
-    height: 70px;
+    width: 85px;
+    height: 85px;
+    margin: 0;
   }
 
   .apagar {
