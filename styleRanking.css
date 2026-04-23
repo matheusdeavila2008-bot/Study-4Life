@@ -204,6 +204,10 @@ nav a:hover {
   margin-bottom: 28px;
 }
 
+.ranking-card:hover{
+  scale: 1.01;
+}
+
 .podio-item {
   text-align: center;
   width: 280px;
