@@ -124,6 +124,7 @@ const modalResumo = document.getElementById("modalResumo");
 const modalCategoria1 = document.getElementById("modalCategoria1");
 const modalCategoria2 = document.getElementById("modalCategoria2");
 
+const modalLink = document.getElementById("modalLink");
 const cardsModal = document.querySelectorAll(".abrir-modal");
 
 cardsModal.forEach((card) => {
@@ -134,6 +135,7 @@ cardsModal.forEach((card) => {
     const imagem = card.dataset.imagem;
     const categoria1 = card.dataset.categoria1;
     const categoria2 = card.dataset.categoria2;
+    const link = card.dataset.link;
 
     modalImagem.src = imagem;
     modalImagem.alt = titulo;
@@ -142,6 +144,7 @@ cardsModal.forEach((card) => {
     modalResumo.textContent = resumo;
     modalCategoria1.textContent = categoria1;
     modalCategoria2.textContent = categoria2;
+    modalLink.href = link;
 
     modalOverlay.classList.add("ativo");
     document.body.classList.add("modal-aberto");
