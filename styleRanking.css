@@ -124,10 +124,38 @@ nav a:hover {
   font-size: 22px;
 }
 
+.titulo {
+  text-align: center;
+  font-weight: 800;
+  padding-top: 45px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.2;
+  color: #7ed957;
+}
+
+.sub-titulo {
+  text-align: center;
+  font-weight: 800;
+  padding: 10px 0px 20px 0px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.2;
+  font-size: 20px;
+}
+
 /* style do pódio */
+
+.voce{
+  position: sticky;
+  top: 20px;
+  z-index: 20;
+  background-color: red;
+}
+
 .ranking-page {
   width: 100%;
-  max-width: 580px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 28px 20px 40px;
 }
@@ -176,9 +204,13 @@ nav a:hover {
   margin-bottom: 28px;
 }
 
+.ranking-card:hover{
+  scale: 1.01;
+}
+
 .podio-item {
   text-align: center;
-  width: 180px;
+  width: 280px;
 }
 
 .avatar {
@@ -232,7 +264,6 @@ nav a:hover {
 }
 
 .ranking-card.voce {
-  background: rgba(28, 88, 55, 0.35);
   border: 1px solid #7ed957;
 }
 
@@ -309,5 +340,9 @@ nav a:hover {
     width: 55px;
     height: 55px;
     font-size: 22px;
+  }
+
+  .sub-titulo {
+    font-size: 13px;
   }
 }
