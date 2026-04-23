@@ -16,16 +16,19 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// btn mensal e semanal
+// ===== BOTÕES SEMANAL E MENSAL =====
 const btnSemanal = document.getElementById("btnSemanal");
 const btnMensal = document.getElementById("btnMensal");
+const titulo = document.getElementById("tituloRanking");
 
 btnMensal.addEventListener("click", () => {
   btnMensal.classList.add("ativo");
   btnSemanal.classList.remove("ativo");
+  titulo.textContent = "Ranking Mensal";
 });
 
 btnSemanal.addEventListener("click", () => {
   btnSemanal.classList.add("ativo");
   btnMensal.classList.remove("ativo");
+  titulo.textContent = "Ranking Semanal";
 });

@@ -639,7 +639,7 @@ body.modal-aberto {
 /* responsividade */
 @media (max-width: 440px) {
   .modal-conteudo,
-  .modal-conteudo h2,
+  .modal-conteudo h2,x
   .modal-autor,
   .modal-resumo {
     max-width: 100%;
