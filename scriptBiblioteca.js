@@ -125,6 +125,7 @@ const modalCategoria1 = document.getElementById("modalCategoria1");
 const modalCategoria2 = document.getElementById("modalCategoria2");
 const modalLink = document.getElementById("modalLink");
 const btnFavoritar = document.getElementById("btnFavoritar");
+const btnConcluir = document.getElementById("btnConcluir")
 
 const cardsModal = document.querySelectorAll(".abrir-modal");
 
@@ -184,6 +185,13 @@ btnFavoritar.addEventListener("click", () => {
   if (conteudoAtual) {
     salvarSemDuplicar("favoritos", conteudoAtual);
     btnFavoritar.innerHTML = "★ Favoritado";
+  }
+});
+
+btnConcluir.addEventListener("click", () => {
+  if (conteudoAtual) {
+    salvarSemDuplicar("Concluir", conteudoAtual);
+    btnConcluir.innerHTML = "✓ Concluido";
   }
 });
 
