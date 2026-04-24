@@ -143,6 +143,7 @@ nav a:hover {
 
 .btn-top:hover {
   transform: scale(1.02);
+  color: #7ed957;
 }
 
 .btn-top:focus {
