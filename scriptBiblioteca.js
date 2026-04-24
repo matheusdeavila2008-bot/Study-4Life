@@ -123,32 +123,68 @@ const modalAutor = document.getElementById("modalAutor");
 const modalResumo = document.getElementById("modalResumo");
 const modalCategoria1 = document.getElementById("modalCategoria1");
 const modalCategoria2 = document.getElementById("modalCategoria2");
-
 const modalLink = document.getElementById("modalLink");
+const btnFavoritar = document.getElementById("btnFavoritar");
+
 const cardsModal = document.querySelectorAll(".abrir-modal");
+
+let conteudoAtual = null;
+
+function pegarLista(nomeLista) {
+  return JSON.parse(localStorage.getItem(nomeLista)) || [];
+}
+
+function salvarLista(nomeLista, lista) {
+  localStorage.setItem(nomeLista, JSON.stringify(lista));
+}
+
+function salvarSemDuplicar(nomeLista, conteudo) {
+  const lista = pegarLista(nomeLista);
+
+  const jaExiste = lista.some((item) => item.id === conteudo.id);
+
+  if (!jaExiste) {
+    lista.push(conteudo);
+    salvarLista(nomeLista, lista);
+  }
+}
 
 cardsModal.forEach((card) => {
   card.addEventListener("click", () => {
-    const titulo = card.dataset.titulo;
-    const autor = card.dataset.autor;
-    const resumo = card.dataset.resumo;
-    const imagem = card.dataset.imagem;
-    const categoria1 = card.dataset.categoria1;
-    const categoria2 = card.dataset.categoria2;
-    const link = card.dataset.link;
+    conteudoAtual = {
+      id: card.dataset.id,
+      titulo: card.dataset.titulo,
+      autor: card.dataset.autor,
+      resumo: card.dataset.resumo,
+      imagem: card.dataset.imagem,
+      categoria1: card.dataset.categoria1,
+      categoria2: card.dataset.categoria2,
+      link: card.dataset.link
+    };
 
-    modalImagem.src = imagem;
-    modalImagem.alt = titulo;
-    modalTitulo.textContent = titulo;
-    modalAutor.textContent = autor;
-    modalResumo.textContent = resumo;
-    modalCategoria1.textContent = categoria1;
-    modalCategoria2.textContent = categoria2;
-    modalLink.href = link;
+    modalImagem.src = conteudoAtual.imagem;
+    modalImagem.alt = conteudoAtual.titulo;
+    modalTitulo.textContent = conteudoAtual.titulo;
+    modalAutor.textContent = conteudoAtual.autor;
+    modalResumo.textContent = conteudoAtual.resumo;
+    modalCategoria1.textContent = conteudoAtual.categoria1;
+    modalCategoria2.textContent = conteudoAtual.categoria2;
+    modalLink.href = conteudoAtual.link;
+
+    salvarSemDuplicar("historico", conteudoAtual);
+
+    btnFavoritar.innerHTML = "⭐ Favoritar";
 
     modalOverlay.classList.add("ativo");
     document.body.classList.add("modal-aberto");
   });
+});
+
+btnFavoritar.addEventListener("click", () => {
+  if (conteudoAtual) {
+    salvarSemDuplicar("favoritos", conteudoAtual);
+    btnFavoritar.innerHTML = "⭐ Favoritado";
+  }
 });
 
 function fecharModalFuncao() {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="styleFavoritos.css">
+</head>
+
+<body>
+
+    <header>
+        <section class="header-container">
+            <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
+
+            <!--Links para os outros sites  -->
+            <nav class="apagar">
+                <a href="indexHome.html" target="_self">Home</a>
+                <a href="indexFoco.html" target="_self">Foco</a>
+                <p class="headerp">Biblioteca</p>
+                <a href="indexQuiz.html" target="_self">Quiz</a>
+                <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+                <a href="indexRanking.html" target="_self">Ranking</a>
+            </nav>
+
+            <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
+            <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
+
+            <!-- Menu lateral -->
+            <div id="menuLateral" class="sidebar">
+        <span class="closebtn" onclick="closeMenu()">&times;</span>
+        <a href="indexHome.html" target="_self">Home</a>
+        <a href="indexFoco.html" target="_self">Foco</a>
+        <p class="headerp">&gt;Biblioteca&lt;</p>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
+            </div>
+        </section>
+    </header>
+
+<section id="listaFavoritos"></section>
+
+    <script src="scriptFavoritos.js"></script>
+</body>
+
+</html>
