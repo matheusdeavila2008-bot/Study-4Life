@@ -173,7 +173,7 @@ cardsModal.forEach((card) => {
 
     salvarSemDuplicar("historico", conteudoAtual);
 
-    btnFavoritar.innerHTML = "⭐ Favoritar";
+    btnFavoritar.innerHTML = "★ Favoritar";
 
     modalOverlay.classList.add("ativo");
     document.body.classList.add("modal-aberto");
@@ -183,7 +183,7 @@ cardsModal.forEach((card) => {
 btnFavoritar.addEventListener("click", () => {
   if (conteudoAtual) {
     salvarSemDuplicar("favoritos", conteudoAtual);
-    btnFavoritar.innerHTML = "⭐ Favoritado";
+    btnFavoritar.innerHTML = "★ Favoritado";
   }
 });
 
