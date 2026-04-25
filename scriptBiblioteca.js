@@ -125,7 +125,7 @@ const modalCategoria1 = document.getElementById("modalCategoria1");
 const modalCategoria2 = document.getElementById("modalCategoria2");
 const modalLink = document.getElementById("modalLink");
 const btnFavoritar = document.getElementById("btnFavoritar");
-const btnConcluir = document.getElementById("btnConcluir")
+const btnConcluir = document.getElementById("btnConcluir");
 
 const cardsModal = document.querySelectorAll(".abrir-modal");
 
@@ -160,7 +160,7 @@ cardsModal.forEach((card) => {
       imagem: card.dataset.imagem,
       categoria1: card.dataset.categoria1,
       categoria2: card.dataset.categoria2,
-      link: card.dataset.link
+      link: card.dataset.link,
     };
 
     modalImagem.src = conteudoAtual.imagem;
@@ -172,9 +172,15 @@ cardsModal.forEach((card) => {
     modalCategoria2.textContent = conteudoAtual.categoria2;
     modalLink.href = conteudoAtual.link;
 
-    salvarSemDuplicar("historico", conteudoAtual);
-
     btnFavoritar.innerHTML = "★ Favoritar";
+
+    const estaConcluido = localStorage.getItem("concluido_" + conteudoAtual.id);
+
+    if (estaConcluido === "true") {
+      btnConcluir.innerHTML = "✓ Concluído";
+    } else {
+      btnConcluir.innerHTML = "Concluir";
+    }
 
     modalOverlay.classList.add("ativo");
     document.body.classList.add("modal-aberto");
@@ -188,11 +194,19 @@ btnFavoritar.addEventListener("click", () => {
   }
 });
 
-btnConcluir.addEventListener("click", () => {
+modalLink.addEventListener("click", () => {
   if (conteudoAtual) {
-    salvarSemDuplicar("Concluir", conteudoAtual);
-    btnConcluir.innerHTML = "✓ Concluido";
+    salvarSemDuplicar("historico", conteudoAtual);
+    fecharModalFuncao();
   }
+});
+
+btnConcluir.addEventListener("click", () => {
+  if (!conteudoAtual) return;
+
+  btnConcluir.innerHTML = "✓ Concluído";
+
+  localStorage.setItem("concluido_" + conteudoAtual.id, "true");
 });
 
 function fecharModalFuncao() {
