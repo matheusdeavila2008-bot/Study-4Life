@@ -258,7 +258,7 @@ input:not(:placeholder-shown) ~ .reset {
 
 .barra-acoes button:focus{
     border-color: #7ed957;
-  color: #7ed957;
+  color: #7ed957; 
 }
 
 .grid-favoritos {
