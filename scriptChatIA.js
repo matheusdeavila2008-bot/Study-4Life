@@ -1,4 +1,4 @@
-// ===== MENU LATERAL =====
+// MENU LATERAL
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -18,7 +18,12 @@ document.addEventListener("click", (e) => {
 
 function toggleHistorico() {
   const historico = document.querySelector(".historico");
-  historico.classList.toggle("fechado");
+
+  if (window.innerWidth <= 440) {
+    historico.classList.toggle("ativo");
+  } else {
+    historico.classList.toggle("fechado");
+  }
 }
 
 function enviarMensagem() {
@@ -49,4 +54,3 @@ function enviarMensagem() {
     chatBox.scrollTop = chatBox.scrollHeight;
   }, 1000);
 }
-

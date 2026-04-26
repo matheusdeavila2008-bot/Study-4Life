@@ -119,7 +119,6 @@ function iniciarTimer() {
         salvarEstado();
       }
     }
-
     atualizarTela();
 
   }, 1000);
@@ -179,6 +178,6 @@ function recuperarEstado() {
   iniciarTimer();
 }
 
-// ===== INICIAR =====
+// INICIAR
 recuperarEstado();
 atualizarTela();

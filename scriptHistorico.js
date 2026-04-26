@@ -1,4 +1,4 @@
-// ===== MENU LATERAL =====
+// MENU LATERAL
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
