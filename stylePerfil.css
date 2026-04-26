@@ -1,17 +1,266 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
-  background-color: black;
+  font-family: "Inter", sans-serif;
+  background: #000000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
+  padding: 30px;
 }
 
 .logo {
   margin: 0px 20px;
   width: 100px;
   height: 100px;
+}
+
+/* CONTAINER PRINCIPAL */
+.dashboard {
+  width: 100%;
+  max-width: 620px;
+}
+
+/* TOPO */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.usuario-info p {
+  color: #7ed957;
+  font-size: 15px;
+}
+
+.usuario-nome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.usuario-nome h1 {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  background: #2a2a2a;
+  cursor: pointer;
+  color: white;
+}
+
+.nivel-badge {
+  background: linear-gradient(180deg, #7ed957, #18b86e);
+  color: #000000;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 18px;
+  /* margin-top: 40px; */
+}
+
+/* CARD PADRAO */
+.card {
+  background: linear-gradient(135deg, #0c1220, #111827);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+}
+
+.card:hover {
+  scale: 1.02;
+}
+
+/* STREAK */
+.streak {
+  background: linear-gradient(90deg, #ff9518, #ff5b1e);
+  color: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+}
+
+.streak h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.streak-numero {
+  font-size: 3.5em;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fogo {
+  font-size: 70px;
+}
+
+/* XP */
+.xp-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.xp-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.level-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #7ed957, #18b86e);
+  color: #000000;
+  font-weight: 800;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xp-texto p {
+  color: #ffffff;
+}
+
+.xp-texto h3 {
+  font-size: 32px;
+}
+
+.xp-numero {
+  color: #7ed957;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.barra {
+  width: 100%;
+  height: 16px;
+  background: #1f2937;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progresso {
+  height: 100%;
+  width: 68%;
+  background: linear-gradient(90deg, #7ed957, #7ed957);
+  border-radius: 999px;
+  transition: 0.4s;
+}
+
+/* MINI CARDS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  /* margin-bottom:22px; */
+}
+
+.mini {
+  text-align: center;
+  padding: 26px 10px;
+}
+
+.mini .icone {
+  margin-bottom: 12px;
+}
+
+.mini h4 {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.mini p {
+  color: #ffffff;
+}
+
+/* MISSOES */
+.missoes-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.missoes-topo h2 {
+  font-size: 32px;
+}
+
+.contador {
+  color: #7ed957;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.missao {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 18px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.missao-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.missao input {
+  width: 22px;
+  height: 22px;
+  accent-color: #22ff88;
+}
+
+.recompensa {
+  color: #7ed957;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .usuario-nome h1 {
+    font-size: 32px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .xp-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
 }
