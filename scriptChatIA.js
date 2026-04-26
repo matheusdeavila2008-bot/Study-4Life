@@ -18,12 +18,7 @@ document.addEventListener("click", (e) => {
 
 function toggleHistorico() {
   const historico = document.querySelector(".historico");
-
-  if (window.innerWidth <= 440) {
-    historico.classList.toggle("ativo");
-  } else {
-    historico.classList.toggle("fechado");
-  }
+  historico.classList.toggle("fechado");
 }
 
 function enviarMensagem() {

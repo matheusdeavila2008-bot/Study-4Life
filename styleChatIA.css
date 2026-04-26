@@ -127,69 +127,73 @@ nav a:hover {
 /* BOTÃO HISTÓRICO (CORRIGIDO) */
 .toggle-historico {
   position: absolute;
-  top: 110px;
+  top: 130px;
+  left: 22px;
   z-index: 1000;
-  background: #7ed957;
+  background: transparent;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
-  margin: 1% 0% 0% 1%;
   height: 42px;
   width: 42px;
 }
 
-.novo-chat{
-  position: absolute;
-  top: 110px;
-  left: 5px;
-  z-index: 1000;
-  background: #334155;
-  color: rgb(255, 255, 255);
+.novo-chat {
+  text-align: left;
+  background: transparent;
+  color: white;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
-  margin: 1% 0% 0% 1%;
   height: 42px;
-  width: 84px;
+  width: 100%;
   font-size: 14px;
-  margin-left: 60px;
+  margin: 0px 0px 20px 0px;
+  font-size: 20px;
+  transition: 0.2s;
 }
 
 .toggle-historico:hover {
   transform: scale(1.1);
 }
 
+.novo-chat,
+.item-historico {
+  padding-left: 30px;
+  font-weight: 800px;
+}
+
 /* HISTÓRICO */
 .historico {
-  width: 260px;
+  width: 280px;
   background: #111;
-  padding: 70px 20px 20px 20px;
-  border-right: 1px solid #1e293b;
+  padding: 70px 20px 20px 0px;
+  border: 1px solid #7ed957;
   transition: 0.3s;
 }
 
 .historico h2 {
   margin-bottom: 15px;
+  padding-left: 30px;
+  color: rgb(146, 137, 137);
 }
 
 .historico.fechado {
   width: 0;
   padding: 0;
   overflow: hidden;
+  border: none;
 }
 
 .item-historico {
-  padding: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   margin-bottom: 10px;
-  background: #242323;
-  border-radius: 10px;
+  /* background: #242323; */
   cursor: pointer;
   transition: 0.2s;
 }
 
-.item-historico:hover {
+.item-historico:hover,
+.novo-chat:hover {
   background: #334155;
   transform: translateX(5px);
 }
@@ -283,4 +287,103 @@ button:hover {
 
 /* MOBILE */
 @media (max-width: 440px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header-container {
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+  }
+
+  .apagar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    width: 32px;
+    height: 30px;
+  }
+
+  .icone-perfil {
+    margin-left: auto;
+    margin-right: 12px;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .layout-chat {
+    height: calc(100vh - 101px);
+  }
+
+  .toggle-historico {
+    top: 115px;
+    left: 14px;
+  }
+
+  .historico {
+    position: fixed;
+    top: 101px;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: calc(100vh - 101px);
+    z-index: 999;
+    padding: 70px 15px 20px 0;
+    transform: translateX(0);
+  }
+
+  .historico.fechado {
+    width: 80%;
+    padding: 70px 15px 20px 0;
+    transform: translateX(-100%);
+    overflow: hidden;
+  }
+
+  .conteinarChat {
+    width: 100%;
+  }
+
+  .chat-central {
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .box-resposta {
+    padding: 70px 14px 15px;
+  }
+
+  .mensagem {
+    max-width: 90%;
+    font-size: 14px;
+  }
+
+  .input-area {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .caixa-pergunta {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .botao-enviar {
+    margin-left: 0;
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .sidebar {
+    width: 260px;
+    right: -260px;
+  }
 }
