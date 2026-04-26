@@ -147,6 +147,10 @@ nav a:hover {
   transform: scale(1.02);
 }
 
+.titulo-blog{
+  margin-bottom: 10px;
+}
+
 /* BLOG */
 .blog {
   background-color: #111;

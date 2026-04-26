@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,9 +8,14 @@
   <title>Perfil</title>
   <link rel="stylesheet" href="stylePerfil.css" />
 </head>
+
 <body>
+
   <header>
-    <!-- <a href="indexHome.html"><img class="logo" src="study4life_glitch_rgb.gif" alt="" srcset="" /></a> -->
+    <section class="header-container">
+      <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" /></a>
+
+      <a href="indexHome.html" class="icone-fechar">&times;</a>
   </header>
 
   <main>
@@ -19,16 +25,14 @@
       <div class="topo">
 
         <div class="usuario-info">
-          <p>Olá,</p>
-
           <div class="usuario-nome">
-            <h1 id="nomeUsuario">Estudante</h1>
+            <h1>Olá,</h1>
+            <h1 id="nomeUsuario"><span>Estudante</span></h1>
 
             <button class="avatar" onclick="trocarAvatar()" id="avatarBtn">👤</button>
           </div>
         </div>
 
-        <div class="nivel-badge" id="nivelTopo">Nível 7</div>
       </div>
 
       <!-- DIAS -->
@@ -46,16 +50,16 @@
         <div class="xp-topo">
 
           <div class="xp-esquerda">
-            <div class="level-box" id="boxNivel">7</div>
+            <div class="level-box" id="boxNivel">13</div>
 
             <div class="xp-texto">
               <p>Nível</p>
-              <h3 id="tituloNivel">Aprendiz</h3>
+              <h3 id="tituloNivel">Expert</h3>
             </div>
           </div>
 
           <div class="xp-numero">
-            ⚡ <span id="xpAtual">340</span>/<span id="xpMeta">500</span> XP
+            <span id="xpAtual">3400</span>/<span id="xpMeta">4000</span> XP
           </div>
         </div>
 
@@ -92,7 +96,7 @@
               fill="#7ed957">
               <path d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z" />
             </svg></div>
-          <h4 id="nivelMini">7</h4>
+          <h4 id="nivelMini">13</h4>
           <p>Nível</p>
         </div>
       </div>
@@ -106,33 +110,45 @@
 
         <div class="missao">
           <div class="missao-left">
-            <input type="checkbox" onchange="completarMissao(this,50)">
-            <span>Estudar 1 hora</span>
+            <span>Estudar por 1 hora</span>
           </div>
-          <div class="recompensa">+50 XP</div>
+          <div class="recompensa">+60 XP</div>
         </div>
 
         <div class="missao">
           <div class="missao-left">
-            <input type="checkbox" onchange="completarMissao(this,70)">
             <span>Concluir 1 aula</span>
           </div>
-          <div class="recompensa">+70 XP</div>
+          <div class="recompensa">+80 XP</div>
         </div>
 
         <div class="missao">
           <div class="missao-left">
-            <input type="checkbox" onchange="completarMissao(this,40)">
             <span>Responder Quiz</span>
           </div>
           <div class="recompensa">+40 XP</div>
         </div>
       </div>
 
-      <p>Configurações <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-360 280-560h400L480-360Z"/></svg></p>
+      <div class="config-container">
+        <button class="btn-config" onclick="toggleConfig()">
+          Configurações
+          <span id="setaConfig">▾</span>
+        </button>
+
+        <div class="menu-config" id="menuConfig">
+          <button>Falar com o Suporte</button>
+          <button>Alterar tema</button>
+          <button>Trocar de Conta</button>
+          <button>Sair da conta</button>
+        </div>
+
+      </div>
 
     </div>
   </main>
+
   <script src="scriptPerfil.js"></script>
 </body>
+
 </html>

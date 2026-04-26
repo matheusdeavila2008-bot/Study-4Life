@@ -1,6 +1,6 @@
-let xp = 340;
-let xpMeta = 500;
-let nivel = 7;
+let xp = 3400;
+let xpMeta = 4000;
+let nivel = 13;
 let feitas = 0;
 
 const avatares = ["🧑‍🎓", "👨‍💻", "👩‍💻", "🧠", "🚀", "😎"];
@@ -14,21 +14,16 @@ function atualizarBarra() {
   document.getElementById("xpAtual").textContent = xp;
 }
 
-function completarMissao(check, valor) {
-  if (check.checked) {
-    xp += valor;
-    feitas++;
-  } else {
-    xp -= valor;
-    feitas--;
-  }
+function concluirMeta(valorXP) {
+  xp += valorXP;
+  feitas++;
 
   if (xp >= xpMeta) {
     xp -= xpMeta;
     nivel++;
+
     document.getElementById("boxNivel").textContent = nivel;
     document.getElementById("nivelMini").textContent = nivel;
-    document.getElementById("nivelTopo").textContent = "✨ Nível " + nivel;
   }
 
   document.getElementById("feitas").textContent = feitas;
@@ -37,6 +32,7 @@ function completarMissao(check, valor) {
 
 function trocarAvatar() {
   avatarAtual++;
+
   if (avatarAtual >= avatares.length) {
     avatarAtual = 0;
   }
@@ -45,3 +41,18 @@ function trocarAvatar() {
 }
 
 atualizarBarra();
+
+function toggleConfig() {
+  const menu = document.getElementById("menuConfig");
+  const btn = document.querySelector(".btn-config");
+  const seta = document.getElementById("setaConfig");
+
+  menu.classList.toggle("ativo");
+  btn.classList.toggle("aberto");
+
+  if (menu.classList.contains("ativo")) {
+    seta.textContent = "▴";
+  } else {
+    seta.textContent = "▾";
+  }
+}
