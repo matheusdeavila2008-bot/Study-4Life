@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Quiz - Matemática</title>
+    <link rel="stylesheet" href="styleQuizMat.css">
+</head>
+
+<body>
+    <main class="area-jornada">
+
+        <section class="card-capitulo">
+            <p>‹ Seção 1, Capítulo 1</p>
+            <h1>Introdução</h1>
+        </section>
+
+        <section class="titulo-trilha">
+            <span></span>
+            <h2>Introdução</h2>
+            <span></span>
+        </section>
+
+        <section class="trilha">
+            <button class="fase desbloqueada" onclick="abrirFase(0)">🏆</button>
+            <button class="fase bloqueada" onclick="abrirFase(1)">🧠</button>
+            <button class="fase bloqueada" onclick="abrirFase(2)">🧠</button>
+            <button class="fase bloqueada" onclick="abrirFase(3)">🏅</button>
+        </section>
+
+<div class="modal-quiz" id="modalQuiz">
+  <div class="quiz-box">
+    <button class="fechar-quiz" onclick="fecharQuiz()">×</button>
+
+    <h2 id="perguntaQuiz">Pergunta aqui</h2>
+
+    <div id="opcoesQuiz" class="opcoes-quiz"></div>
+
+    <p id="resultadoQuiz"></p>
+  </div>
+</div>
+
+    </main>
+
+    <script src="scriptQuizMat.js"></script>
+</body>
+
+</html>
