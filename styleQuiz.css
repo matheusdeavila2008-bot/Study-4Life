@@ -8,6 +8,7 @@
 body {
   background-color: #000000;
   color: #ffffff;
+  min-height: 100vh;
 }
 
 header {
@@ -96,7 +97,7 @@ nav a:hover {
   text-decoration: none;
 }
 
-.sidebar p{
+.sidebar p {
   color: #7ed957;
 }
 
@@ -114,13 +115,177 @@ nav a:hover {
   color: #7ed957;
 }
 
-.headerp{
+.headerp {
   cursor: default;
   color: #7ed957;
   font-weight: bold;
   transition: 0.3s;
   font-size: 22px;
-} 
+}
+
+/* CONTEÚDO */
+.conteudo-principal {
+  width: 100%;
+  padding: 45px;
+}
+
+/* TOPO */
+.topo-pagina {
+  margin-bottom: 35px;
+}
+
+.topo-pagina h1 {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.topo-pagina p {
+  color: #bdbdbd;
+  font-size: 16px;
+}
+
+/* GRID */
+.grid-materias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(267px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.card-materia {
+  position: relative;
+  min-height: 220px;
+  background: #1f1f1f;
+  border: 2px solid #333;
+  border-radius: 18px;
+  text-decoration: none;
+  color: white;
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s;
+}
+
+.card-materia:hover {
+  transform: translateY(-8px);
+  border-color: #7ed957;
+  box-shadow: 0 0 18px rgba(126, 217, 87, 0.18);
+}
+
+.card-materia .icone {
+  font-size: 58px;
+  margin-bottom: 18px;
+}
+
+.card-materia h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.card-materia p {
+  text-align: center;
+  font-size: 15px;
+  color: #c8c8c8;
+  line-height: 1.4;
+}
+
+.check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  background: #10b981;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media (max-width: 440px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  header {
+    margin-bottom: 0;
+  }
+
+  .header-container {
+    padding: 10px 14px;
+  }
+
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+  }
+
+  .icone-perfil {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    margin-right: 8px;
+  }
+
+  .menu-icon {
+    width: 30px;
+    height: 28px;
+  }
+
+  .sidebar {
+    width: 260px;
+    right: -260px;
+  }
+
+  .conteudo-principal {
+    padding: 25px 16px;
+  }
+
+  .topo-pagina {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .topo-pagina h1 {
+    font-size: 30px;
+  }
+
+  .topo-pagina p {
+    font-size: 14px;
+  }
+
+  .grid-materias {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card-materia {
+    min-height: 180px;
+    padding: 22px;
+  }
+
+  .card-materia .icone {
+    font-size: 48px;
+    margin-bottom: 14px;
+  }
+
+  .card-materia h3 {
+    font-size: 23px;
+  }
+
+  .card-materia p {
+    font-size: 14px;
+  }
+}
 
 /* ================= MOBILE ================= */
 @media (max-width: 800px) {
