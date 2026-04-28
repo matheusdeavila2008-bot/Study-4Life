@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Português</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.quiz-box{
+  width:100%;
+  max-width:850px;
+  background:#111827;
+  border:1px solid #222;
+  border-radius:22px;
+  padding:28px;
+}
+
+/* TOPO */
+.topo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.lvl{
+  font-size:22px;
+  font-weight:bold;
+  color:#7ed957;
+  min-width:180px;
+}
+
+.barra-area{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.barra{
+  flex:1;
+  height:14px;
+  background:#1f2937;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progresso{
+  width:10%;
+  height:100%;
+  background:#7ed957;
+  transition:0.4s;
+}
+
+.contador{
+  font-weight:bold;
+  color:#7ed957;
+  min-width:45px;
+}
+
+/* IMAGEM */
+.area-img{
+  width:100%;
+  height:260px;
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:22px;
+  background:#222;
+}
+
+.area-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* PERGUNTA */
+.pergunta{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:24px;
+  line-height:1.4;
+}
+
+/* RESPOSTAS */
+.respostas{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.respostas button{
+  background:#0c1220;
+  border:1px solid #222;
+  color:#fff;
+  padding:18px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+  transition:0.2s;
+}
+
+.respostas button:hover{
+  border-color:#7ed957;
+  transform:scale(1.02);
+}
+
+.correta{
+  background:#15803d !important;
+}
+
+.errada{
+  background:#991b1b !important;
+}
+
+.final{
+  text-align:center;
+  padding:40px 20px;
+}
+
+.final h2{
+  font-size:36px;
+  color:#7ed957;
+  margin-bottom:15px;
+}
+
+.final p{
+  font-size:20px;
+}
+
+@media(max-width:700px){
+  .topo{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .respostas{
+    grid-template-columns:1fr;
+  }
+
+  .pergunta{
+    font-size:22px;
+  }
+
+  .area-img{
+    height:220px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-box">
+
+  <div class="topo">
+    <div class="lvl" id="tituloNivel">LVL 1 Português</div>
+
+    <div class="barra-area">
+      <div class="barra">
+        <div class="progresso" id="barra"></div>
+      </div>
+
+      <div class="contador" id="contador">1/10</div>
+    </div>
+  </div>
+
+  <div id="conteudoQuiz">
+
+    <div class="area-img">
+      <img id="imagemQuestao" src="" alt="">
+    </div>
+
+    <div class="pergunta" id="pergunta"></div>
+
+    <div class="respostas" id="respostas"></div>
+
+  </div>
+
+</div>
+
+<script>
+const questoes = [
+{
+imagem:"https://picsum.photos/900/400?1",
+pergunta:"Qual palavra está escrita corretamente?",
+respostas:["Excessão","Exceção","Esceção","Exsesão"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?2",
+pergunta:"Qual é um substantivo?",
+respostas:["Correr","Bonito","Casa","Rapidamente"],
+correta:2
+},
+{
+imagem:"https://picsum.photos/900/400?3",
+pergunta:"Qual sinal finaliza uma pergunta?",
+respostas:[".","!","?",";"],
+correta:2
+},
+{
+imagem:"https://picsum.photos/900/400?4",
+pergunta:"Qual palavra é verbo?",
+respostas:["Mesa","Comer","Azul","Livro"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?5",
+pergunta:"Plural de pão:",
+respostas:["Pãos","Pães","Pãezes","Pãons"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?6",
+pergunta:"Qual frase está correta?",
+respostas:["Nós vai","Nós vamos","Nós fui","Nós irá"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?7",
+pergunta:"Qual é adjetivo?",
+respostas:["Bonito","Correr","Escola","Ontem"],
+correta:0
+},
+{
+imagem:"https://picsum.photos/900/400?8",
+pergunta:"Sinônimo de feliz:",
+respostas:["Triste","Alegre","Bravo","Lento"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?9",
+pergunta:"Antônimo de alto:",
+respostas:["Grande","Baixo","Largo","Forte"],
+correta:1
+},
+{
+imagem:"https://picsum.photos/900/400?10",
+pergunta:"Qual palavra está no feminino?",
+respostas:["Menino","Garoto","Menina","Rapaz"],
+correta:2
+}
+];
+
+let atual = 0;
+let acertos = 0;
+
+function carregarQuestao(){
+const q = questoes[atual];
+
+document.getElementById("imagemQuestao").src = q.imagem;
+document.getElementById("pergunta").textContent = q.pergunta;
+document.getElementById("contador").textContent = `${atual+1}/10`;
+
+let progresso = ((atual+1)/10)*100;
+document.getElementById("barra").style.width = progresso + "%";
+
+const area = document.getElementById("respostas");
+area.innerHTML = "";
+
+q.respostas.forEach((texto,indice)=>{
+const btn = document.createElement("button");
+btn.textContent = texto;
+btn.onclick = ()=>responder(btn,indice);
+area.appendChild(btn);
+});
+}
+
+function responder(botao,indice){
+const correta = questoes[atual].correta;
+const botoes = document.querySelectorAll(".respostas button");
+
+botoes.forEach(btn=>btn.disabled=true);
+
+if(indice === correta){
+botao.classList.add("correta");
+acertos++;
+}else{
+botao.classList.add("errada");
+botoes[correta].classList.add("correta");
+}
+
+setTimeout(()=>{
+atual++;
+
+if(atual < questoes.length){
+carregarQuestao();
+}else{
+finalizarQuiz();
+}
+
+},1000);
+}
+
+function finalizarQuiz(){
+document.getElementById("conteudoQuiz").innerHTML = `
+<div class="final">
+<h2>Quiz Finalizado 🎉</h2>
+<p>Você acertou ${acertos} de ${questoes.length} questões.</p>
+</div>
+`;
+
+document.getElementById("contador").textContent = "10/10";
+document.getElementById("barra").style.width = "100%";
+}
+
+carregarQuestao();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+}
+
+.area-jornada {
+  margin-left: 260px;
+  min-height: 100vh;
+  background: #262626;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-capitulo {
+  width: 600px;
+  background: #0d5570;
+  padding: 18px 24px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.card-capitulo p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-capitulo h1 {
+  font-size: 26px;
+}
+
+.titulo-trilha {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #cfcfcf;
+  margin-bottom: 55px;
+}
+
+.titulo-trilha span {
+  flex: 1;
+  height: 1px;
+  background: #777;
+}
+
+.trilha {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+}
+
+.trilha::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  width: 12px;
+  background: #3b3f42;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.fase {
+  position: relative;
+  z-index: 1;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  border: 6px solid #42474a;
+  background: #303437;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fase.desbloqueada {
+  background: #0ea5e9;
+  border-color: #0369a1;
+  box-shadow: 0 8px 0 #075985;
+}
+
+.fase.desbloqueada:hover {
+  transform: scale(1.08);
+}
+
+.fase.bloqueada {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fase.concluida {
+  background: #7ed957;
+  border-color: #22c55e;
+  box-shadow: 0 8px 0 #15803d;
+}
