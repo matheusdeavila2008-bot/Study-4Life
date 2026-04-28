@@ -1,7 +1,7 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: 0;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
 }
 
 .area-jornada {
@@ -98,65 +98,4 @@
   background: #7ed957;
   border-color: #22c55e;
   box-shadow: 0 8px 0 #15803d;
-}
-
-.modal-quiz {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.modal-quiz.ativo {
-  display: flex;
-}
-
-.quiz-box {
-  width: 90%;
-  max-width: 500px;
-  background: #1f1f1f;
-  border: 2px solid #0ea5e9;
-  border-radius: 18px;
-  padding: 28px;
-  position: relative;
-}
-
-.fechar-quiz {
-  position: absolute;
-  top: 12px;
-  right: 18px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 34px;
-  cursor: pointer;
-}
-
-.opcoes-quiz {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.opcoes-quiz button {
-  padding: 14px;
-  border-radius: 10px;
-  border: 2px solid #444;
-  background: #2b2b2b;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.opcoes-quiz button:hover {
-  border-color: #7ed957;
-}
-
-#resultadoQuiz {
-  margin-top: 20px;
-  font-weight: bold;
 }
