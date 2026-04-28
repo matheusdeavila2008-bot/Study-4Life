@@ -12,23 +12,14 @@ body {
   color: white;
 }
 
-header {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.header-container {
+main {
   display: flex;
-}
-
-.logo {
-  margin: 0px 20px;
-  width: 100px;
-  height: 100px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 30px 40px;
 }
 
 header {
-  color: #ffffff;
   border-bottom: 1px solid #7ed957;
   margin-bottom: 10px;
 }
@@ -44,44 +35,12 @@ header {
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
-nav {
-  margin-left: 40px;
-  display: flex;
-  gap: 40px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  transition: 0.3s;
-  font-size: 22px;
-}
-
-nav a:hover {
-  color: #7ed957;
-}
-
-/* PERFIL */
-.icone-perfil {
-  margin-left: auto;
-  font-size: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  height: 65px;
-  width: 65px;
-  background: #2a2a2a;
-  margin-right: 30px;
-}
-
 /* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 /* ===== MENU LATERAL ===== */
@@ -127,13 +86,6 @@ nav a:hover {
   left: 15px;
   font-size: 30px;
   cursor: pointer;
-}
-
-main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 30px 40px;
 }
 
 /* CONTAINER PRINCIPAL */
