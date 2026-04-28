@@ -227,3 +227,11 @@ document.addEventListener("keydown", (e) => {
     fecharModalFuncao();
   }
 });
+
+document.querySelector("#btnFavoritar").addEventListener("click", () => {
+  alert("Favoritado com Sucesso");
+});
+
+document.querySelector("#btnConcluir").addEventListener("click", () => {
+  alert("Concluido com Sucesso");
+});
