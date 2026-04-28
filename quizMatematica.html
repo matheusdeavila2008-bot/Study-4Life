@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Quiz - Matemática</title>
-    <link rel="stylesheet" href="styleQuizMat.css">
+    <link rel="stylesheet" href="styleQuizGeral.css">
 </head>
 
 <body>
     <main class="area-jornada">
 
         <section class="card-capitulo">
-            <p>‹ Seção 1, Capítulo 1</p>
+            <p>Seção, Capítulo 1</p>
             <h1>Introdução</h1>
         </section>
 
-        <section class="titulo-trilha"> 
+        <section class="titulo-trilha">
             <span></span>
-            <h2>Introdução</h2>
+            <h2>Aritmética</h2>
             <span></span>
         </section>
 
@@ -27,12 +27,30 @@
             <button class="fase desbloqueada" onclick="abrirFase(0)">🏆</button>
             <button class="fase bloqueada" onclick="abrirFase(1)">🧠</button>
             <button class="fase bloqueada" onclick="abrirFase(2)">🧠</button>
-            <button class="fase bloqueada" onclick="abrirFase(3)">🏅</button>
+            <button class="fase bloqueada ultima-fase" onclick="abrirFase(3)">🏅</button>
+        </section>
+
+        <section class="card-capitulo">
+            <p>Seção, Capítulo 2</p>
+            <h1>Introdução</h1>
+        </section>
+
+        <section class="titulo-trilha">
+            <span></span>
+            <h2>Álgebra</h2>
+            <span></span>
+        </section>
+
+        <section class="trilha">
+            <button class="fase desbloqueada" onclick="abrirFase(4)">🏆</button>
+            <button class="fase bloqueada" onclick="abrirFase(5)">🧠</button>
+            <button class="fase bloqueada" onclick="abrirFase(6)">🧠</button>
+            <button class="fase bloqueada ultima-fase" onclick="abrirFase(7)">🏅</button>
         </section>
 
     </main>
 
-    <script src="scriptQuizMat.js"></script>
+    <script src="scriptQuizMatematica.js"></script>
 </body>
 
 </html>
