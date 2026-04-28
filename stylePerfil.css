@@ -27,18 +27,106 @@ header {
   height: 100px;
 }
 
-.icone-fechar {
+header {
+  color: #ffffff;
+  border-bottom: 1px solid #7ed957;
+  margin-bottom: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin: 0px 20px;
+  width: 100px;
+  height: 100px;
+}
+
+/* NAV (DESKTOP) */
+nav {
+  margin-left: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
+nav a:hover {
+  color: #7ed957;
+}
+
+/* PERFIL */
+.icone-perfil {
+  margin-left: auto;
   font-size: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  height: 55px;
-  width: 55px;
+  height: 65px;
+  width: 65px;
   background: #2a2a2a;
-  margin: 30px 20px 0px auto;
-  color: #7ed957;
+  margin-right: 30px;
+}
+
+/* MENU ICON (HAMBURGUER) */
+.menu-icon {
+  display: none;
+  width: 25px;
+  cursor: pointer;
+}
+
+/* ===== MENU LATERAL ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  height: 100vh;
+  width: 280px;
+  background-color: #111;
+  padding-top: 60px;
+  transition: 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+  border: 1px solid #7ed957;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar a,
+.sidebar p {
+  display: block;
+  padding: 15px 25px;
+  font-size: 18px;
+  color: white;
   text-decoration: none;
+}
+
+.sidebar p {
+  color: #7ed957;
+}
+
+.sidebar a:hover {
+  background-color: #575757;
+  color: #7ed957;
+}
+
+.closebtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 main {
@@ -445,3 +533,35 @@ span {
     font-size: 30px;
   }
 }
+
+.header-container {
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+  }
+
+  /* ESCONDE MENU DESKTOP */
+  .apagar {
+    display: none;
+  }
+
+  /* MOSTRA HAMBURGUER */
+  .menu-icon {
+    display: block;
+    width: 32px;
+    height: 30px;
+  }
+
+  /* PERFIL AO LADO DO MENU */
+  .icone-perfil {
+    margin-left: auto;
+    margin-right: 10px;
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }

@@ -221,6 +221,7 @@ input:not(:placeholder-shown) ~ .reset {
   margin-top: 3px;
   cursor: pointer;
   color: white;
+  background: transparent;
 }
 
 .top-bar {
@@ -392,7 +393,22 @@ input:not(:placeholder-shown) ~ .reset {
   font-weight: bold;
 }
 
+.form button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 /* ================= MOBILE ================= */
+
+@media (max-width: 440px){
+
+.btn-limpar{
+  width: 100px;
+}
+}
+
 @media (max-width: 800px) {
   body {
     overflow-x: hidden;
