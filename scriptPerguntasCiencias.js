@@ -154,7 +154,7 @@ function finalizarQuiz() {
 }
 
 function voltarFases() {
-  window.location.href = "quizMatematica.html";
+  window.location.href = "quizCiencias.html";
 }
 
 function reiniciarQuiz() {

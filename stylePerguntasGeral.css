@@ -176,6 +176,12 @@ body {
   background: #1f2937;
   color: #fff;
   border: 1px solid #444;
+   margin-top: 15px;
+}
+
+.btn-retry:hover, .btn-voltar:hover{
+  scale: 1.02;
+  border: 1px solid #7ed957;
 }
 
 /*responsividade*/

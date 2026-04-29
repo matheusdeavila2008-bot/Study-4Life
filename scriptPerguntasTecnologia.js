@@ -1,63 +1,94 @@
 // perguntas quiz tecnologia
 const questoes = [
   {
-    imagem: "https://picsum.photos/900/400?1",
+    imagem:
+      "https://images.unsplash.com/photo-1656863492763-23732b72ea4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "O que significa HTML?",
-    respostas: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Modern Language", "Home Tool Markup Language"],
+    respostas: [
+      "Hyper Text Markup Language",
+      "High Text Machine Language",
+      "Hyper Tool Modern Language",
+      "Home Tool Markup Language",
+    ],
     correta: 0,
   },
   {
-    imagem: "https://picsum.photos/900/400?2",
+    imagem:
+      "https://images.unsplash.com/photo-1569323112699-e222ee4916e5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual linguagem é usada para estilizar páginas web?",
     respostas: ["Python", "CSS", "Java", "C++"],
     correta: 1,
   },
   {
-    imagem: "https://picsum.photos/900/400?3",
+    imagem:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual linguagem é usada para interatividade em sites?",
     respostas: ["JavaScript", "SQL", "PHP", "C#"],
     correta: 0,
   },
   {
-    imagem: "https://picsum.photos/900/400?4",
-    pergunta: "Qual símbolo é usado para comentários em JavaScript de uma linha?",
+    imagem:
+      "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    pergunta:
+      "Qual símbolo é usado para comentários em JavaScript de uma linha?",
     respostas: ["<!-- -->", "##", "//", "**"],
     correta: 2,
   },
   {
-    imagem: "https://picsum.photos/900/400?5",
+    imagem:
+      "https://images.unsplash.com/photo-1774901128283-64c62117216a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "O que o comando console.log() faz em JavaScript?",
-    respostas: ["Cria um botão", "Mostra mensagens no console", "Fecha o navegador", "Cria um banco de dados"],
+    respostas: [
+      "Cria um botão",
+      "Mostra mensagens no console",
+      "Fecha o navegador",
+      "Cria um banco de dados",
+    ],
     correta: 1,
   },
   {
-    imagem: "https://picsum.photos/900/400?6",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual tag HTML cria um link?",
     respostas: ["<img>", "<p>", "<a>", "<div>"],
     correta: 2,
   },
   {
-    imagem: "https://picsum.photos/900/400?7",
+    imagem:
+      "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "O que significa CSS?",
-    respostas: ["Creative Style System", "Cascading Style Sheets", "Colorful Style Syntax", "Computer Style Sheets"],
+    respostas: [
+      "Creative Style System",
+      "Cascading Style Sheets",
+      "Colorful Style Syntax",
+      "Computer Style Sheets",
+    ],
     correta: 1,
   },
   {
-    imagem: "https://picsum.photos/900/400?8",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1681487942927-e1a2786e6036?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual desses é um banco de dados?",
     respostas: ["MySQL", "Photoshop", "Chrome", "Figma"],
     correta: 0,
   },
   {
-    imagem: "https://picsum.photos/900/400?9",
+    imagem:
+      "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual estrutura é usada para repetir ações no código?",
     respostas: ["Loop", "Link.", "Input", "Array"],
     correta: 0,
   },
   {
-    imagem: "https://picsum.photos/900/400?10",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1678565999332-1cde462f7b24?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "O que faz o comando if em programação?",
-    respostas: ["Repete o código infinitamente", "Faz uma condição/decisão", "Cria imagens", "Apaga arquivos"],
+    respostas: [
+      "Repete o código infinitamente",
+      "Faz uma condição/decisão",
+      "Cria imagens",
+      "Apaga arquivos",
+    ],
     correta: 1,
   },
 ];
@@ -154,7 +185,7 @@ function finalizarQuiz() {
 }
 
 function voltarFases() {
-  window.location.href = "quizMatematica.html";
+  window.location.href = "quizTecnologia.html";
 }
 
 function reiniciarQuiz() {
