@@ -1,3 +1,6 @@
+Repositório Study4Life
 
+Por:
+@matheusavila.dev e @dev.gabrielrodrigues
 
-Repositório Study 4Life.
+Link do pages:
