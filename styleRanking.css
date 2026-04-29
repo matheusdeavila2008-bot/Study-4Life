@@ -1,5 +1,5 @@
 @charset "UTF-8";
- 
+
 * {
   margin: 0;
   padding: 0;
@@ -143,7 +143,6 @@ nav a:hover {
   position: sticky;
   top: 20px;
   z-index: 20;
-  background-color: red;
 }
 
 .ranking-page {
@@ -166,7 +165,7 @@ nav a:hover {
 }
 
 .filtros-ranking {
-  background: #1a2332;
+  background-color: #111;
   border-radius: 16px;
   padding: 4px;
   display: flex;
@@ -227,17 +226,17 @@ nav a:hover {
 
 .segundo .bloco-podio {
   height: 95px;
-  background: #1c2432;
+  background-color: #111;
 }
 
 .primeiro .bloco-podio {
   height: 130px;
-  background: #1c2432;
+  background-color: #111;
 }
 
 .terceiro .bloco-podio {
   height: 80px;
-  background: #1c2432;
+  background-color: #111;
 }
 
 .lista-ranking {
@@ -247,7 +246,7 @@ nav a:hover {
 }
 
 .ranking-card {
-  background: #0d1523;
+  background-color: #111;
   border: 1px solid #1e2a3d;
   border-radius: 16px;
   padding: 14px 16px;

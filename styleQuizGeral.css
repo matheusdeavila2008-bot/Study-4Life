@@ -1,5 +1,5 @@
 @charset "UTF-8";
- 
+
 * {
   padding: 0;
   margin: 0;
@@ -109,4 +109,77 @@ body {
 
 .ultima-fase {
   margin-bottom: 30px;
+}
+
+/*responsividade*/
+@media (max-width: 440px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .area-jornada {
+    padding: 20px 14px;
+  }
+
+  .card-capitulo {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+
+  .card-capitulo p {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .card-capitulo h1 {
+    font-size: 22px;
+  }
+
+  .titulo-trilha {
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 35px;
+  }
+
+  .titulo-trilha h2 {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .titulo-trilha span {
+    height: 1px;
+  }
+
+  .trilha {
+    gap: 32px;
+  }
+
+  .trilha::before {
+    width: 8px;
+    top: 35px;
+    bottom: 35px;
+    border-radius: 20px;
+  }
+
+  .fase {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    border-width: 4px;
+    font-size: 22px;
+  }
+
+  .fase.desbloqueada {
+    box-shadow: 0 6px 0 #075985;
+  }
+
+  .fase.concluida {
+    box-shadow: 0 6px 0 #15803d;
+  }
+
+  .ultima-fase {
+    margin-bottom: 20px;
+  }
 }

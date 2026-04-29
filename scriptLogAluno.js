@@ -1,3 +1,3 @@
 document.querySelector(".btn").addEventListener("click", () => {
-  alert("Login enviado!");
+  alert("Login efetuado com sucesso!");
 });

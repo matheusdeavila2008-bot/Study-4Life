@@ -124,7 +124,7 @@ function finalizarQuiz() {
       ${
         aprovado
           ? `
-            <p class="aprovado">Parabéns! Você concluiu essa fase.</p>
+            <p class="aprovado">Parabéns! Você concluiu esse level</p>
 
             <button class="btn-voltar" onclick="voltarFases()">
               Voltar para Fases

@@ -1,5 +1,5 @@
 @charset "UTF-8";
- 
+
 * {
   margin: 0;
   padding: 0;
@@ -128,7 +128,7 @@ span {
 }
 
 .card {
-  background: linear-gradient(135deg, #0c1220, #111827);
+  background-color: #111;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 22px;
   padding: 24px;
@@ -270,7 +270,7 @@ span {
 }
 
 .missao {
-  background: rgba(255, 255, 255, 0.03);
+  background-color: #111;
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 18px;
   border-radius: 18px;
@@ -304,7 +304,7 @@ span {
 
 .btn-config {
   width: 100%;
-  background: linear-gradient(135deg, #0c1220, #111827);
+  background-color: #111;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
@@ -325,7 +325,7 @@ span {
 .menu-config {
   display: none;
   width: 100%;
-  background: linear-gradient(135deg, #0c1220, #111827);
+  background-color: #111;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: none;
   border-radius: 0 0 22px 22px;

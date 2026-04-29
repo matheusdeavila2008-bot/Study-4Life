@@ -10,6 +10,7 @@
 body {
   background-color: #000;
   color: #fff;
+  min-height: 100vh;
 }
 
 header {
@@ -282,6 +283,7 @@ button:hover {
 @media (max-width: 440px) {
   body {
     overflow-x: hidden;
+    min-height: 90px;
   }
 
   .header-container {
@@ -290,8 +292,8 @@ button:hover {
   }
 
   .logo {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     margin: 0;
   }
 
