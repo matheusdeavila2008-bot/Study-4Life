@@ -1,4 +1,4 @@
-// ===== MENU LATERAL =====
+// menu lateal
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -16,14 +16,14 @@ document.addEventListener("click", (e) => {
   }
 });
 
-//  CONFIG 
+//  config de tempo
 let tempoTotalFoco = 25 * 60;
 let tempoTotalDescanso = 5 * 60;
 
 let tempoFoco = tempoTotalFoco;
 let tempoDescanso = tempoTotalDescanso;
 
-let modo = "foco"; // foco ou descanso
+let modo = "foco";
 let intervalo = null;
 
 // FORMATAR 
@@ -33,7 +33,7 @@ function formatarTempo(segundos) {
   return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 }
 
-//  PROGRESSO 
+// progresso
 function atualizarProgresso() {
   let grausFoco = (tempoFoco / tempoTotalFoco) * 360;
   let grausDescanso = (tempoDescanso / tempoTotalDescanso) * 360;
@@ -70,13 +70,13 @@ function tocarAlarme() {
   }
 }
 
-// SALVAR
+// salvar
 function salvarEstado() {
   localStorage.setItem("modo", modo);
   localStorage.setItem("fim", Date.now() + getTempoAtual() * 1000);
 }
 
-//PEGAR TEMPO ATUAL 
+// tempo atual
 function getTempoAtual() {
   return modo === "foco" ? tempoFoco : tempoDescanso;
 }
@@ -124,7 +124,7 @@ function iniciarTimer() {
   }, 1000);
 }
 
-// ===== BOTÕES =====
+// btns
 function iniciarFoco() {
   modo = "foco";
   iniciarTimer();
@@ -153,7 +153,6 @@ function resetar() {
   atualizarTela();
 }
 
-// ===== RECUPERAR =====
 function recuperarEstado() {
   const fim = localStorage.getItem("fim");
   const modoSalvo = localStorage.getItem("modo");
@@ -178,6 +177,5 @@ function recuperarEstado() {
   iniciarTimer();
 }
 
-// INICIAR
 recuperarEstado();
 atualizarTela();

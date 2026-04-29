@@ -1,3 +1,4 @@
+// caminho quiz portugues
 let faseLiberada = 0;
 
 const fases = document.querySelectorAll(".fase");

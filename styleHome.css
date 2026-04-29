@@ -1,3 +1,5 @@
+@charset "UTF-8";
+ 
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +29,6 @@ header {
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -46,7 +47,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -60,14 +60,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -112,7 +110,6 @@ nav a:hover {
   cursor: pointer;
 }
 
-/* MAIN */
 .main-container {
   margin: 0px 30px;
 }
@@ -127,7 +124,6 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
-/* CARDS */
 .nivel-home,
 .foco-home {
   flex: 1;
@@ -147,11 +143,10 @@ nav a:hover {
   transform: scale(1.02);
 }
 
-.titulo-blog{
+.titulo-blog {
   margin-bottom: 10px;
 }
 
-/* BLOG */
 .blog {
   background-color: #111;
   display: flex;
@@ -197,7 +192,6 @@ nav a:hover {
   color: white;
 }
 
-/* CURSOR */
 #typing-text::after {
   content: "|";
   margin-left: 5px;
@@ -221,23 +215,23 @@ span {
   font-size: 22px;
 }
 
-footer{
+footer {
   margin-top: 20px;
   border-top: 1px solid #7ed957;
   text-align: center;
   padding: 30px;
 }
 
-footer h2{
+footer h2 {
   margin-bottom: 20px;
 }
 
-footer img{
+footer img {
   margin-bottom: 20px;
   width: 40px;
 }
 
-.icone-footer:hover{
+.icone-footer:hover {
   scale: 1.03;
 }
 
@@ -247,7 +241,7 @@ footer img{
   }
 }
 
-/* ================= MOBILE ================= */
+/*responsividade*/
 @media (max-width: 800px) {
   body {
     overflow-x: hidden;
@@ -264,19 +258,16 @@ footer img{
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;
@@ -285,12 +276,10 @@ footer img{
     font-size: 22px;
   }
 
-  /* CARDS */
   .cards-container {
     flex-direction: column;
   }
 
-  /* BLOG */
   .blog {
     flex-direction: column;
     text-align: center;
@@ -314,7 +303,6 @@ footer img{
     font-size: 19px;
   }
 
-  /* FOOTER */
   .icone-footer h2 {
     font-size: 17px;
   }

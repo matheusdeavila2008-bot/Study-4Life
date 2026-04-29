@@ -1,3 +1,4 @@
+// caminho quiz tecnologia
 let faseLiberada = 0;
 
 const fases = document.querySelectorAll(".fase");

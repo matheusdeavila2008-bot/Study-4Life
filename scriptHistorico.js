@@ -1,4 +1,4 @@
-// MENU LATERAL
+// menu lateral
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -16,7 +16,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ===== HISTÓRICO EM TELA =====
+// historico em tela
 const listaHistorico = document.getElementById("listaHistorico");
 const buscarHistorico = document.getElementById("buscarHistorico");
 const limparHistorico = document.getElementById("limparHistorico");

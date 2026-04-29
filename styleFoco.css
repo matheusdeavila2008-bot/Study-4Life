@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* BODY */
 body {
   background-color: #000000;
   color: #ffffff;
@@ -17,11 +18,10 @@ body {
 main {
   flex: 1;
   display: flex;
-  justify-content: center; /* CENTRALIZA */
+  justify-content: center;
   align-items: center;
 }
 
-/* HEADER */
 header {
   color: #ffffff;
   border-bottom: 1px solid #444;
@@ -33,14 +33,12 @@ header {
   align-items: center;
 }
 
-/* LOGO */
 .logo {
   margin: 0px 20px;
   width: 100px;
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -59,7 +57,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -73,14 +70,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -151,7 +146,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 120px;
-  max-width: 900px; /* limita largura */
+  max-width: 900px;
   width: 100%;
   justify-items: center;
 }
@@ -220,7 +215,7 @@ h2 {
 
 .circulo h1 {
   position: absolute;
-  z-index: 2; /* garante que fica por cima */
+  z-index: 2;
   color: #aaa;
 }
 
@@ -230,13 +225,12 @@ h2 {
   height: 100%;
   border-radius: 50%;
   background: conic-gradient(#7ed957 360deg, #2a2a2a 0deg);
-  z-index: 1; /* fica atrás do número */
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* cria o "buraco" no meio */
 .progressooi::before {
   content: "";
   position: absolute;
@@ -260,8 +254,8 @@ h2 {
   }
 
   main {
-    align-items: flex-start; /* sobe o conteúdo */
-    padding-top: 20px; /* controla a distância do header */
+    align-items: flex-start;
+    padding-top: 20px;
   }
 
   .header-container {
@@ -293,7 +287,6 @@ h2 {
     font-size: 20px;
   }
 
-  /* 🔥 STACK VERTICAL */
   .container-foco {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -301,24 +294,20 @@ h2 {
     padding: 10px;
   }
 
-  /* 🔥 CÍRCULO RESPONSIVO */
   .circulo {
     width: 220px;
     height: 220px;
     font-size: 20px;
   }
 
-  /* 🔥 TEMPO DENTRO DO CÍRCULO */
   .circulo h1 {
     font-size: 28px;
   }
 
-  /* 🔥 TÍTULOS */
   h2 {
     font-size: 26px;
   }
 
-  /* 🔥 BOTÕES MAIS COMPACTOS */
   button {
     width: 55px;
     height: 55px;

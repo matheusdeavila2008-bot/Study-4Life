@@ -1,4 +1,4 @@
-// EFEITO DIGITANDO
+// typeware effect
 function typeWriter(elementId, texto, velocidade = 50) {
     let index = 0;
     const elemento = document.getElementById(elementId);
@@ -15,7 +15,7 @@ function typeWriter(elementId, texto, velocidade = 50) {
 
 typeWriter("typing-text", 'Bem-Vindo "nome do usuario"', 50);
 
-// MENU LATERAL
+// menu lateral
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -29,7 +29,7 @@ function closeMenu() {
     menu.classList.remove("active");
 }
 
-// FECHAR CLICANDO FORA
+// fechar ao clicar fora
 document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
         menu.classList.remove("active");

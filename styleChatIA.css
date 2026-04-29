@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
@@ -43,7 +45,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -57,14 +58,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU MOBILE */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* SIDEBAR MOBILE */
 .sidebar {
   position: fixed;
   top: 0;
@@ -117,14 +116,12 @@ nav a:hover {
   font-size: 22px;
 }
 
-/* LAYOUT */
 .layout-chat {
   display: flex;
   height: calc(100vh - 110px);
   position: relative;
 }
 
-/* BOTÃO HISTÓRICO (CORRIGIDO) */
 .toggle-historico {
   position: absolute;
   top: 130px;
@@ -161,7 +158,6 @@ nav a:hover {
   font-weight: 800px;
 }
 
-/* HISTÓRICO */
 .historico {
   width: 280px;
   background: #111;
@@ -187,7 +183,7 @@ nav a:hover {
   padding-top: 12px;
   padding-bottom: 12px;
   margin-bottom: 10px;
-  /* background: #242323; */
+
   cursor: pointer;
   transition: 0.2s;
 }
@@ -215,7 +211,6 @@ nav a:hover {
   justify-content: space-between;
 }
 
-/* CAIXA DE RESPOSTA */
 .box-resposta {
   flex: 1;
   padding: 25px;
@@ -224,7 +219,6 @@ nav a:hover {
   flex-direction: column;
 }
 
-/* MENSAGENS */
 .mensagem {
   max-width: 70%;
   padding: 14px;
@@ -245,7 +239,6 @@ nav a:hover {
   align-self: flex-end;
 }
 
-/* INPUT */
 .input-area {
   display: flex;
   padding: 20px;

@@ -1,8 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   background-color: black;
   min-height: 100vh;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 section {
@@ -12,10 +17,6 @@ section {
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-}
-
-.logo {
-  display: none;
 }
 
 fieldset {
@@ -87,7 +88,7 @@ a {
   background: none;
 }
 
-/*Celular até 440px*/
+/* responsividade */
 @media (max-width: 440px) {
   body {
     min-height: 100vh;
@@ -96,19 +97,6 @@ a {
   section {
     padding: 16px;
     align-items: center;
-  }
-
-  header {
-    display: flex;
-    justify-content: flex-start;
-    padding: 20px 0px 0px 20px;
-  }
-
-  .logo {
-    width: 70px;
-    height: 70px;
-    margin: 0;
-    display: block;
   }
 
   fieldset {
@@ -145,79 +133,5 @@ a {
   a {
     font-size: 14px;
     margin-top: 8px;
-  }
-}
-
-/* ===== Tablet / telas até 768px ===== */
-@media (min-width: 441px) and (max-width: 768px) {
-  section {
-    padding: 30px;
-  }
-
-  fieldset {
-    width: 90%;
-    max-width: 600px;
-    padding: 25px 20px;
-  }
-
-  .legend {
-    font-size: 22px;
-  }
-
-  .img1 {
-    width: 55px;
-    height: 55px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  input,
-  button {
-    height: 42px;
-    font-size: 16px;
-  }
-
-  a {
-    font-size: 16px;
-  }
-}
-
-/* ===== Tablet maior / telas até 1024px ===== */
-@media (min-width: 769px) and (max-width: 1024px) {
-  section {
-    padding: 40px;
-  }
-
-  fieldset {
-    width: 80%;
-    max-width: 700px;
-    padding: 30px 25px;
-  }
-
-  .legend {
-    font-size: 24px;
-  }
-
-  .img1 {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  input,
-  button {
-    height: 44px;
-    font-size: 17px;
-  }
-
-  a {
-    font-size: 17px;
   }
 }

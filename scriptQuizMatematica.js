@@ -1,3 +1,4 @@
+// caminho quiz matematica
 let faseLiberada = 0;
 
 const fases = document.querySelectorAll(".fase");

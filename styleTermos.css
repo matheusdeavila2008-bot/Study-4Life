@@ -1,12 +1,15 @@
-body {
-  background-color: #000;
-  color: #fff;
+@charset "UTF-8";
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-*{
-  margin: 0%;
-  box-sizing: border-box;
+body {
+  background-color: #000;
+  color: #fff;
 }
 
 .logo {
@@ -15,14 +18,12 @@ body {
   height: 100px;
 }
 
-/* CONTAINER */
 .termos-container {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
 }
 
-/* TITULO */
 .termos-container h1 {
   text-align: center;
   margin-bottom: 10px;
@@ -34,7 +35,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* CAIXA DOS TERMOS */
 .termos-box {
   background: #2c3136;
   padding: 28px;
@@ -45,7 +45,6 @@ body {
   overflow-y: auto;
 }
 
-/* SCROLL PERSONALIZADO */
 .termos-box::-webkit-scrollbar {
   width: 8px;
 }
@@ -55,7 +54,6 @@ body {
   border-radius: 10px;
 }
 
-/* TEXTOS */
 .termos-box h2 {
   margin-top: 20px;
   color: #7ed957;
@@ -66,7 +64,6 @@ body {
   line-height: 1.6;
 }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;

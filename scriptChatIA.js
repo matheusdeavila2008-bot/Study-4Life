@@ -1,4 +1,4 @@
-// MENU LATERAL
+// menu lateral
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -34,7 +34,7 @@ function enviarMensagem() {
   msgUser.innerText = texto;
   chatBox.appendChild(msgUser);
 
-  // resposta fake da IA
+  // resposta da IA
   const msgIA = document.createElement("div");
   msgIA.classList.add("mensagem", "ia");
   msgIA.innerText = "Pensando...";

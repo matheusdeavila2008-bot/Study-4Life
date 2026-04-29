@@ -1,3 +1,4 @@
+// alert dos termos
 function aceitar() {
   const check = document.getElementById("check");
 

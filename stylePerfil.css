@@ -1,3 +1,5 @@
+@charset "UTF-8";
+ 
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +37,6 @@ header {
   height: 100px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
@@ -43,7 +44,6 @@ header {
   margin-right: 20px;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -88,13 +88,11 @@ header {
   cursor: pointer;
 }
 
-/* CONTAINER PRINCIPAL */
 .dashboard {
   width: 100%;
   max-width: 620px;
 }
 
-/* TOPO */
 .topo {
   display: flex;
   justify-content: space-between;
@@ -129,7 +127,6 @@ span {
   color: white;
 }
 
-/* CARD PADRAO */
 .card {
   background: linear-gradient(135deg, #0c1220, #111827);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -146,7 +143,6 @@ span {
   transform: scale(1.01);
 }
 
-/* STREAK */
 .streak {
   background: linear-gradient(90deg, #ff9518, #ff5b1e);
   color: #111;
@@ -173,7 +169,6 @@ span {
   font-size: 70px;
 }
 
-/* XP */
 .xp-topo {
   display: flex;
   justify-content: space-between;
@@ -233,7 +228,6 @@ span {
   transition: 0.4s;
 }
 
-/* MINI CARDS */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -258,7 +252,6 @@ span {
   color: #ffffff;
 }
 
-/* MISSOES */
 .missoes-topo {
   display: flex;
   justify-content: space-between;
@@ -487,33 +480,30 @@ span {
 }
 
 .header-container {
-    justify-content: space-between;
-    padding: 10px;
-  }
+  justify-content: space-between;
+  padding: 10px;
+}
 
-  .logo {
-    width: 85px;
-    height: 85px;
-    margin: 0;
-  }
+.logo {
+  width: 85px;
+  height: 85px;
+  margin: 0;
+}
 
-  /* ESCONDE MENU DESKTOP */
-  .apagar {
-    display: none;
-  }
+.apagar {
+  display: none;
+}
 
-  /* MOSTRA HAMBURGUER */
-  .menu-icon {
-    display: block;
-    width: 32px;
-    height: 30px;
-  }
+.menu-icon {
+  display: block;
+  width: 32px;
+  height: 30px;
+}
 
-  /* PERFIL AO LADO DO MENU */
-  .icone-perfil {
-    margin-left: auto;
-    margin-right: 10px;
-    width: 55px;
-    height: 55px;
-    font-size: 22px;
-  }
+.icone-perfil {
+  margin-left: auto;
+  margin-right: 10px;
+  width: 55px;
+  height: 55px;
+  font-size: 22px;
+}

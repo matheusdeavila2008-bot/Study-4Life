@@ -1,13 +1,15 @@
+@charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   background-color: #000000;
   color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -27,7 +29,6 @@ header {
   height: 100px;
 }
 
-/* nav (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -46,7 +47,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* icone do perfil */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -60,14 +60,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* style icone menu hamburguer */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* style menu lateral */
 .sidebar {
   position: fixed;
   top: 0;
@@ -149,7 +147,6 @@ nav a:hover {
   border: 2px solid #7ed957;
 }
 
-/* menu lateral categorias */
 .sidebar-categorias {
   position: fixed;
   top: 0;
@@ -197,7 +194,6 @@ nav a:hover {
   cursor: default;
 }
 
-/* style dos input do container */
 .form {
   --timing: 0.3s;
   --width-of-input: 400px;
@@ -219,7 +215,6 @@ nav a:hover {
   margin-left: 45px;
 }
 
-/* style dos imput */
 .input {
   font-size: 0.9rem;
   background-color: transparent;
@@ -232,7 +227,6 @@ nav a:hover {
   color: white;
 }
 
-/* style da borda animada */
 .form:before {
   content: "";
   position: absolute;
@@ -247,7 +241,6 @@ nav a:hover {
   transition: transform var(--timing) ease;
 }
 
-/* hover dos Input */
 .form:focus-within {
   border-radius: var(--after-border-radius);
 }
@@ -257,12 +250,10 @@ input:focus {
   cursor: text;
 }
 
-/* animação do border */
 .form:focus-within:before {
   transform: scale(1);
 }
 
-/* style do close button */
 .reset {
   border: none;
   background: none;
@@ -270,13 +261,11 @@ input:focus {
   visibility: hidden;
 }
 
-/* close button aparece quando digita*/
 input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
 
-/* tamanho dos svg icons */
 .form svg {
   width: 17px;
   margin-top: 3px;
@@ -301,8 +290,6 @@ input:not(:placeholder-shown) ~ .reset {
 .study4life {
   color: #7ed957;
 }
-
-/* ======================= CATALOGO =================*/
 
 .catalogo {
   width: 100%;
@@ -448,7 +435,7 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 .titulo-catalogo {
-  background-color: #111; /*tentar um rgba aqui depois*/
+  background-color: #111;
   font-weight: 600;
   padding-left: 45px;
   margin: 10px 0px;
@@ -460,7 +447,6 @@ input:not(:placeholder-shown) ~ .reset {
   font-weight: 600;
 }
 
-/* modal =================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -765,19 +751,16 @@ body.modal-aberto {
     margin: 0;
   }
 
-  /* esconde menu no desktop */
   .apagar {
     display: none;
   }
 
-  /* mostra menu hamburguer */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* perfil lado a lado menu */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;

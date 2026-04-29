@@ -1,3 +1,5 @@
+@charset "UTF-8";
+ 
 * {
   margin: 0;
   padding: 0;
@@ -21,14 +23,12 @@ header {
   align-items: center;
 }
 
-/* LOGO */
 .logo {
   margin: 0px 20px;
   width: 100px;
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -47,7 +47,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -61,14 +60,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -122,13 +119,11 @@ nav a:hover {
   font-size: 22px;
 }
 
-/* CONTEÚDO */
 .conteudo-principal {
   width: 100%;
   padding: 45px;
 }
 
-/* TOPO */
 .topo-pagina {
   margin-bottom: 35px;
 }
@@ -141,17 +136,15 @@ nav a:hover {
 .topo-pagina p {
   color: #7ed957;
   font-weight: 600;
-    padding: 15px 0px 0px 0px;
+  padding: 15px 0px 0px 0px;
 }
 
-/* GRID */
 .grid-materias {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 25px;
 }
 
-/* CARD */
 .card-materia {
   position: relative;
   min-height: 220px;
@@ -161,12 +154,10 @@ nav a:hover {
   text-decoration: none;
   color: white;
   padding: 25px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   transition: 0.3s;
 }
 
@@ -210,6 +201,7 @@ nav a:hover {
   font-weight: bold;
 }
 
+/*responsividade*/
 @media (max-width: 440px) {
   body {
     overflow-x: hidden;
@@ -287,7 +279,6 @@ nav a:hover {
   }
 }
 
-/* ================= MOBILE ================= */
 @media (max-width: 800px) {
   body {
     overflow-x: hidden;
@@ -304,19 +295,16 @@ nav a:hover {
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;

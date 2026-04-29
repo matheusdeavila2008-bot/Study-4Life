@@ -1,4 +1,4 @@
-// ===== MENU LATERAL =====
+// menu lateral
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -16,7 +16,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ===== BOTÕES SEMANAL E MENSAL =====
+// btns mensal e semanal
 const btnSemanal = document.getElementById("btnSemanal");
 const btnMensal = document.getElementById("btnMensal");
 const titulo = document.getElementById("tituloRanking");

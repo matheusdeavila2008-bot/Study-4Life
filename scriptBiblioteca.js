@@ -2,24 +2,24 @@
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
-// ===== abrir menu
+// abrir menu
 function openMenu() {
   menu.classList.add("active");
 }
 
-// ===== fechar menu
+// fechar menu
 function closeMenu() {
   menu.classList.remove("active");
 }
 
-// ===== fechar ao clicar fora
+// fechar ao clicar fora
 document.addEventListener("click", (e) => {
   if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
     menu.classList.remove("active");
   }
 });
 
-// ===== catalogo
+// catalogo
 
 const wrappers = document.querySelectorAll(".trilho-wrapper");
 
@@ -78,20 +78,20 @@ wrappers.forEach((wrapper) => {
   });
 });
 
-// ===== menu lateral das categorias
+// menu lateral das categorias
 const menuCategorias = document.getElementById("menuCategorias");
 
-// ===== abrir menu das categorias
+// abrir menu das categorias
 function openCategorias() {
   menuCategorias.classList.add("active");
 }
 
-// ===== fechar menu das categorias
+// fechar menu das categorias
 function closeCategorias() {
   menuCategorias.classList.remove("active");
 }
 
-// ===== fechar menu ao clicar fora
+// fechar menu ao clicar fora
 document.addEventListener("click", (e) => {
   const botaoCategorias = document.querySelector(
     '[onclick="openCategorias()"]',
@@ -113,7 +113,7 @@ document.querySelectorAll("#menuCategorias a").forEach((link) => {
   });
 });
 
-// ===== modal reutilizável
+// modal reutilizável
 const modalOverlay = document.getElementById("modalOverlay");
 const fecharModal = document.getElementById("fecharModal");
 

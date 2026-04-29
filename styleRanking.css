@@ -1,3 +1,5 @@
+@charset "UTF-8";
+ 
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +29,6 @@ header {
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -46,7 +47,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -60,14 +60,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -141,9 +139,7 @@ nav a:hover {
   font-size: 20px;
 }
 
-/* style do pódio */
-
-.voce{
+.voce {
   position: sticky;
   top: 20px;
   z-index: 20;
@@ -201,7 +197,7 @@ nav a:hover {
   margin-bottom: 28px;
 }
 
-.ranking-card:hover{
+.ranking-card:hover {
   scale: 1.01;
 }
 
@@ -301,7 +297,7 @@ nav a:hover {
   font-weight: 700;
 }
 
-/* ================ MOBILE ================ */
+/*responsividade*/
 @media (max-width: 800px) {
   body {
     overflow-x: hidden;
@@ -318,19 +314,16 @@ nav a:hover {
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;

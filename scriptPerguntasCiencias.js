@@ -1,3 +1,4 @@
+// perguntas quiz ciencias
 const questoes = [
   {
     imagem: "https://picsum.photos/900/400?1",

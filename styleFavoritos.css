@@ -1,4 +1,5 @@
-* {
+@charset "UTF-8";* {
+
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -25,14 +26,12 @@ main {
   align-items: center;
 }
 
-/* LOGO */
 .logo {
   margin: 0px 20px;
   width: 100px;
   height: 100px;
 }
 
-/* NAV (DESKTOP) */
 nav {
   margin-left: 40px;
   display: flex;
@@ -51,7 +50,6 @@ nav a:hover {
   color: #7ed957;
 }
 
-/* PERFIL */
 .icone-perfil {
   margin-left: auto;
   font-size: 35px;
@@ -65,14 +63,12 @@ nav a:hover {
   margin-right: 30px;
 }
 
-/* MENU ICON (HAMBURGUER) */
 .menu-icon {
   display: none;
   width: 25px;
   cursor: pointer;
 }
 
-/* ===== MENU LATERAL ===== */
 .sidebar {
   position: fixed;
   top: 0;
@@ -137,7 +133,6 @@ nav a:hover {
   margin-top: 45px;
 }
 
-/* style dos input do container */
 .form {
   --timing: 0.3s;
   --width-of-input: 400px;
@@ -158,7 +153,6 @@ nav a:hover {
   background: var(--input-bg, #fff);
 }
 
-/* style dos imput */
 .input {
   font-size: 0.9rem;
   background-color: transparent;
@@ -171,7 +165,6 @@ nav a:hover {
   color: white;
 }
 
-/* style da borda animada */
 .form:before {
   content: "";
   position: absolute;
@@ -186,7 +179,6 @@ nav a:hover {
   transition: transform var(--timing) ease;
 }
 
-/* hover dos Input */
 .form:focus-within {
   border-radius: var(--after-border-radius);
 }
@@ -196,12 +188,10 @@ input:focus {
   cursor: text;
 }
 
-/* animação do border */
 .form:focus-within:before {
   transform: scale(1);
 }
 
-/* style do close button */
 .reset {
   border: none;
   background: none;
@@ -209,13 +199,11 @@ input:focus {
   visibility: hidden;
 }
 
-/* close button aparece quando digita*/
 input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
 
-/* tamanho dos svg icons */
 .form svg {
   width: 17px;
   margin-top: 3px;
@@ -230,13 +218,12 @@ input:not(:placeholder-shown) ~ .reset {
   gap: 15px;
 }
 
-/* btn limpar */
 .barra-acoes {
   display: flex;
   align-items: center;
 }
 
-.btn-limpar{
+.btn-limpar {
   width: 200px;
   height: 40px;
   border: 1px solid #111;
@@ -257,9 +244,9 @@ input:not(:placeholder-shown) ~ .reset {
   color: #7ed957;
 }
 
-.barra-acoes button:focus{
-    border-color: #7ed957;
-  color: #7ed957; 
+.barra-acoes button:focus {
+  border-color: #7ed957;
+  color: #7ed957;
 }
 
 .grid-favoritos {
@@ -400,13 +387,12 @@ input:not(:placeholder-shown) ~ .reset {
   cursor: pointer;
 }
 
-/* ================= MOBILE ================= */
+/*responsiviade*/
 
-@media (max-width: 440px){
-
-.btn-limpar{
-  width: 100px;
-}
+@media (max-width: 440px) {
+  .btn-limpar {
+    width: 100px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -425,19 +411,16 @@ input:not(:placeholder-shown) ~ .reset {
     margin: 0;
   }
 
-  /* ESCONDE MENU DESKTOP */
   .apagar {
     display: none;
   }
 
-  /* MOSTRA HAMBURGUER */
   .menu-icon {
     display: block;
     width: 32px;
     height: 30px;
   }
 
-  /* PERFIL AO LADO DO MENU */
   .icone-perfil {
     margin-left: auto;
     margin-right: 10px;

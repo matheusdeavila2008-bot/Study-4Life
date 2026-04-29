@@ -1,199 +1,267 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
+@charset "UTF-8";
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-  background:#000;
-  color:#fff;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+body {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.quiz-box{
-  width:100%;
-  max-width:850px;
-  background:#111827;
-  border:1px solid #222;
-  border-radius:22px;
-  padding:28px;
+.quiz-box {
+  width: 100%;
+  max-width: 850px;
+  background: #111827;
+  border: 1px solid #222;
+  border-radius: 22px;
+  padding: 28px;
 }
 
-/* TOPO */
-.topo{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-bottom:25px;
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-.lvl{
-  font-size:22px;
-  font-weight:bold;
-  color:#7ed957;
-  min-width:180px;
+.lvl {
+  font-size: 22px;
+  font-weight: bold;
+  color: #7ed957;
+  min-width: 180px;
 }
 
-.barra-area{
-  flex:1;
-  display:flex;
-  align-items:center;
-  gap:12px;
+.barra-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.barra{
-  flex:1;
-  height:14px;
-  background:#1f2937;
-  border-radius:999px;
-  overflow:hidden;
+.barra {
+  flex: 1;
+  height: 14px;
+  background: #1f2937;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.progresso{
-  width:10%;
-  height:100%;
-  background:#7ed957;
-  transition:0.4s;
+.progresso {
+  width: 10%;
+  height: 100%;
+  background: #7ed957;
+  transition: 0.4s;
 }
 
-.contador{
-  font-weight:bold;
-  color:#7ed957;
-  min-width:45px;
+.contador {
+  font-weight: bold;
+  color: #7ed957;
+  min-width: 45px;
 }
 
-/* IMAGEM */
-.area-img{
-  width:100%;
-  height:260px;
-  border-radius:18px;
-  overflow:hidden;
-  margin-bottom:22px;
-  background:#222;
+.area-img {
+  width: 100%;
+  height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  background: #222;
 }
 
-.area-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.area-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* PERGUNTA */
-.pergunta{
-  font-size:28px;
-  font-weight:bold;
-  margin-bottom:24px;
-  line-height:1.4;
+.pergunta {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  line-height: 1.4;
 }
 
-/* RESPOSTAS */
-.respostas{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
+.respostas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
 
-.respostas button{
-  background:#0c1220;
-  border:1px solid #222;
-  color:#fff;
-  padding:18px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:16px;
-  font-weight:bold;
-  transition:0.2s;
+.respostas button {
+  background: #0c1220;
+  border: 1px solid #222;
+  color: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-.respostas button:hover{
-  border-color:#7ed957;
-  transform:scale(1.02);
+.respostas button:hover {
+  border-color: #7ed957;
+  transform: scale(1.02);
 }
 
-.correta{
-  background:#15803d !important;
+.correta {
+  background: #15803d !important;
 }
 
-.errada{
-  background:#991b1b !important;
+.errada {
+  background: #991b1b !important;
 }
 
-.final{
-  text-align:center;
-  padding:40px 20px;
+.final {
+  text-align: center;
+  padding: 40px 20px;
 }
 
-.final h2{
-  font-size:36px;
-  color:#7ed957;
-  margin-bottom:15px;
+.final h2 {
+  font-size: 36px;
+  color: #7ed957;
+  margin-bottom: 15px;
 }
 
-.final p{
-  font-size:20px;
+.final p {
+  font-size: 20px;
 }
 
-.aprovado{
-  margin-top:15px;
-  color:#7ed957;
-  font-weight:bold;
+.aprovado {
+  margin-top: 15px;
+  color: #7ed957;
+  font-weight: bold;
 }
 
-.reprovado{
-  margin-top:15px;
-  color:#ff4d4d;
-  font-weight:bold;
+.reprovado {
+  margin-top: 15px;
+  color: #ff4d4d;
+  font-weight: bold;
 }
 
-.acoes-finais{
-  margin-top:25px;
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
+.acoes-finais {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-voltar,
-.btn-retry{
-  padding:14px 22px;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
-  font-size:16px;
+.btn-retry {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.btn-voltar{
-  background:#7ed957;
-  color:#000;
+.btn-voltar {
+  background: #7ed957;
+  color: #000;
 }
 
-.btn-retry{
-  background:#1f2937;
-  color:#fff;
-  border:1px solid #444;
+.btn-retry {
+  background: #1f2937;
+  color: #fff;
+  border: 1px solid #444;
 }
 
-@media(max-width:700px){
-  .topo{
-    flex-direction:column;
-    align-items:flex-start;
+/*responsividade*/
+@media (max-width: 440px) {
+  body {
+    padding: 12px;
+    align-items: flex-start;
   }
 
-  .respostas{
-    grid-template-columns:1fr;
+  .quiz-box {
+    padding: 18px;
+    border-radius: 18px;
   }
 
-  .pergunta{
-    font-size:22px;
+  .topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
-  .area-img{
-    height:220px;
+  .lvl {
+    font-size: 18px;
+    min-width: auto;
+  }
+
+  .barra-area {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .barra {
+    height: 12px;
+  }
+
+  .contador {
+    font-size: 14px;
+    min-width: 38px;
+  }
+
+  /* IMAGEM */
+  .area-img {
+    height: 180px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+  }
+
+  /* PERGUNTA */
+  .pergunta {
+    font-size: 20px;
+    margin-bottom: 18px;
+    line-height: 1.35;
+  }
+
+  .respostas {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .respostas button {
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .final {
+    padding: 25px 10px;
+  }
+
+  .final h2 {
+    font-size: 28px;
+  }
+
+  .final p {
+    font-size: 17px;
+  }
+
+  .acoes-finais {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .btn-voltar,
+  .btn-retry {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
   }
 }

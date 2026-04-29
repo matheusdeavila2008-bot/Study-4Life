@@ -9,10 +9,11 @@
 </head>
 
 <body>
+
   <header>
     <section class="header-container">
       <a href="indexHome.html">
-        <img src="study4life_glitch_rgb.gif" class="logo" alt="Imagem-logo" />
+        <img src="study4life_glitch_rgb.gif" class="logo" alt="logo study4life" />
       </a>
 
       <nav class="apagar">
@@ -27,6 +28,7 @@
       <a href="indexPerfil.html" class="icone-perfil">👨‍💻</a>
       <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
 
+      <!-- Menu lateral -->
       <div id="menuLateral" class="sidebar">
         <span class="closebtn" onclick="closeMenu()">&times;</span>
         <a href="indexHome.html">Home</a>
@@ -39,13 +41,20 @@
     </section>
   </header>
 
-  <!-- BOTÃO (fora do histórico) -->
-  <button class="toggle-historico" onclick="toggleHistorico()"><span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7ed957"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></span></button>
+
+  <button class="toggle-historico" onclick="toggleHistorico()"><span><svg xmlns="http://www.w3.org/2000/svg"
+        height="24px" viewBox="0 -960 960 960" width="24px" fill="#7ed957">
+        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+      </svg></span></button>
 
   <main class="layout-chat">
-    <!-- HISTÓRICO -->
+
     <section class="historico fechado">
-      <button class="novo-chat"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-280h280v-80H280v80Zm0-160h400v-80H280v80Zm0-160h400v-80H280v80Zm-80 480q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg> Novo Chat</button>
+      <button class="novo-chat"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+          width="24px" fill="#FFFFFF">
+          <path
+            d="M280-280h280v-80H280v80Zm0-160h400v-80H280v80Zm0-160h400v-80H280v80Zm-80 480q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
+        </svg> Novo Chat</button>
       <h2>Chats Recentes</h2>
       <div class="item-historico">Dúvidas em Português</div>
       <div class="item-historico">Como usar Display Grid</div>
@@ -54,7 +63,6 @@
       <div class="item-historico">Dicas de Programação</div>
     </section>
 
-    <!-- CHAT -->
     <section class="conteinarChat">
       <div class="chat-central">
 
@@ -69,6 +77,7 @@
       </div>
     </section>
   </main>
+
   <script src="scriptChatIA.js"></script>
 </body>
 
