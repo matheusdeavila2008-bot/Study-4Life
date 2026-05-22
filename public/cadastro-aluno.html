@@ -14,60 +14,65 @@
     <a href="indexLogaluno.html"><img class="logo" src="study4life_glitch_rgb.gif" alt="logo study4life" srcset=""></a>
   </header>
 
-    <div class="container2">
-      <div class="opcao-aluno">
-        <span class="circulo">🧑‍💻</span>
-        <p>Aluno</p>
-      </div>
+  <div class="container2">
+    <div class="opcao-aluno">
+      <span class="circulo">🧑‍💻</span>
+      <p>Aluno</p>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="card">
-        <p class="subtitulo">Cadastre-se para acessar o Study<span class="color-verde">4Life</span>!</p>
-        <h1>Cadastre-se</h1>
+  <div class="container">
+    <div class="card">
+      <p class="subtitulo">Cadastre-se para acessar o Study<span class="color-verde">4Life</span>!</p>
+      <h1>Cadastre-se</h1>
 
+
+      <form id="formCadastroAluno">
         <section>
           <label>Nome<span class="color-vermelho">*</span></label>
-          <input type="text" placeholder="Digite seu nome completo" />
+          <input type="text" id="nome" placeholder="Digite seu nome completo" required />
         </section>
 
         <section>
           <label>Email<span class="color-vermelho">*</span></label>
-          <input type="email" placeholder="Digite seu email" />
+          <input type="email" id="email" placeholder="Digite seu email" required />
         </section>
 
         <section>
           <label>Senha<span class="color-vermelho">*</span></label>
-          <input type="password" placeholder="Digite sua senha" />
+          <input type="password" id="senha" placeholder="Digite sua senha" required />
         </section>
 
         <section>
           <label>Confirme sua senha<span class="color-vermelho">*</span></label>
-          <input type="password" placeholder="Digite sua senha novamente" />
+          <input type="password" id="confirmarSenha" placeholder="Digite sua senha novamente" required />
         </section>
 
         <section>
           <label>CPF<span class="color-vermelho">*</span></label>
-          <input type="text" placeholder="Digite seu CPF" />
+          <input type="text" id="cpf" placeholder="Digite seu CPF" required />
         </section>
 
         <div class="opcoes">
           <label class="checkbox-area">
-            <input type="checkbox" />
+            <input type="checkbox" id="termos" required />
             <p class="span">
-              Eu li e concordo com os <a href="indexTermos.html">termos de uso e politica de privacidade.</a></p>
+              Eu li e concordo com os
+              <a href="indexTermos.html">termos de uso e política de privacidade.</a>
+            </p>
           </label>
         </div>
 
         <section>
-          <a href="indexHome.html"> <button class="btn">Cadastrar</button></a>
+          <button type="submit" class="btn">Cadastrar</button>
         </section>
+      </form>
 
-        <section>
-          <p class="cad-btn">Já tem uma conta?<a href="indexLogaluno.html">Faça login</a></p>
-        </section>
-      </div>
+      <section>
+        <p class="cad-btn">Já tem uma conta?<a href="indexLogaluno.html">Faça login</a></p>
+      </section>
     </div>
+  </div>
 
 </body>
 
