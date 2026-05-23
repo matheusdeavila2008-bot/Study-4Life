@@ -1,22 +1,32 @@
+// nome do usuário logado
+const nomeSalvo = localStorage.getItem("usuario_nome");
+const nomeUsuario = document.getElementById("nomeUsuario");
+
+if (nomeSalvo) {
+  nomeUsuario.innerHTML = `<span>${nomeSalvo}</span>`;
+} else {
+  nomeUsuario.innerHTML = `<span>Estudante</span>`;
+}
+
 // menu lateral
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
 // abrir menu
 function openMenu() {
-    menu.classList.add("active");
+  menu.classList.add("active");
 }
 
 // fechar menu
 function closeMenu() {
-    menu.classList.remove("active");
+  menu.classList.remove("active");
 }
 
 // fechar ao clicar fora
 document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
-        menu.classList.remove("active");
-    }
+  if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
+    menu.classList.remove("active");
+  }
 });
 
 let xp = 3400;

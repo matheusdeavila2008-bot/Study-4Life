@@ -14,7 +14,9 @@ body {
 }
 
 header {
-  border-bottom: 1px solid #444;
+  color: #ffffff;
+  border-bottom: 1px solid #7ed957;
+  margin-bottom: 10px;
 }
 
 .header-container {

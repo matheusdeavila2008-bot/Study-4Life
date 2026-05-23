@@ -14,7 +14,7 @@ body {
 
 header {
   color: #ffffff;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #7ed957;
   margin-bottom: 10px;
 }
 
@@ -121,6 +121,15 @@ nav a:hover {
   display: flex;
 }
 
+.top-bar .btn-top:hover {
+  color: #7ed957;
+  transform: scale(1.02);
+}
+
+.top-bar .btn-top:hover svg {
+  fill: #7ed957;
+}
+
 .btn-top {
   align-items: center;
   margin: 0px 0px 0px 45px;
@@ -136,11 +145,6 @@ nav a:hover {
   border: none;
   font-size: 16px;
   cursor: pointer;
-}
-
-.btn-top:hover {
-  transform: scale(1.02);
-  color: #7ed957;
 }
 
 .btn-top:focus {

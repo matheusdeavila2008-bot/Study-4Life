@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,8 +15,18 @@
     <section class="header-container">
       <a href="indexHome.html"><img src="study4life_glitch_rgb.gif" class="logo" alt="logo study4life" /></a>
 
+      <nav class="apagar">
+        <a href="indexHome.html" target="_self">Home</a>
+        <a href="indexFoco.html" target="_self">Foco</a>
+        <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
+        <a href="indexQuiz.html" target="_self">Quiz</a>
+        <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
+        <a href="indexRanking.html" target="_self">Ranking</a>
+      </nav>
+
       <img src="menu.png" class="menu-icon" onclick="openMenu()" alt="Menu" />
 
+      <!-- Menu lateral -->
       <div id="menuLateral" class="sidebar">
         <span class="closebtn" onclick="closeMenu()">&times;</span>
         <a href="indexHome.html" target="_self">Home</a>
@@ -23,11 +34,9 @@
         <a href="indexBiblioteca.html" target="_self">Biblioteca</a>
         <a href="indexQuiz.html" target="_self">Quiz</a>
         <a href="indexChatIA.html" target="_self">StudyChat.IA</a>
-        <a href="indexRanking.html">Ranking</a>
-        <p>&gt;Perfil&lt;</p>
+        <a href="indexRanking.html" target="_self">Ranking</a>
       </div>
     </section>
-
   </header>
 
   <main>
@@ -156,6 +165,7 @@
   </main>
 
   <script src="protegerPagina.js"></script>
-<script src="scriptPerfil.js"></script>
+  <script src="scriptPerfil.js"></script>
 </body>
+
 </html>

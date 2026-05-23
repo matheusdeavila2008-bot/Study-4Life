@@ -21,7 +21,8 @@ main {
   padding: 0 30px 40px;
 }
 
-header {
+header{
+  color: #ffffff;
   border-bottom: 1px solid #7ed957;
   margin-bottom: 10px;
 }
@@ -37,11 +38,22 @@ header {
   height: 100px;
 }
 
-.menu-icon {
-  display: none;
-  width: 25px;
-  cursor: pointer;
-  margin-right: 20px;
+nav {
+  margin-left: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
+nav a:hover {
+  color: #7ed957;
 }
 
 .sidebar {
@@ -86,6 +98,15 @@ header {
   left: 15px;
   font-size: 30px;
   cursor: pointer;
+  color: #7ed957;
+}
+
+.headerp {
+  cursor: default;
+  color: #7ed957;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 22px;
 }
 
 .dashboard {
@@ -354,6 +375,14 @@ span {
   border-color: #7ed957;
 }
 
+.apagar {
+  display: flex;
+}
+
+.menu-icon {
+  display: none;
+}
+
 @media (max-width: 440px) {
   header {
     padding-top: 10px;
@@ -477,33 +506,25 @@ span {
     height: 55px;
     font-size: 30px;
   }
-}
 
-.header-container {
-  justify-content: space-between;
-  padding: 10px;
-}
+  .header-container {
+    justify-content: space-between;
+    padding: 10px;
+  }
 
-.logo {
-  width: 85px;
-  height: 85px;
-  margin: 0;
-}
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+  }
 
-.apagar {
-  display: none;
-}
+  .apagar {
+    display: none;
+  }
 
-.menu-icon {
-  display: block;
-  width: 32px;
-  height: 30px;
-}
-
-.icone-perfil {
-  margin-left: auto;
-  margin-right: 10px;
-  width: 55px;
-  height: 55px;
-  font-size: 22px;
+  .menu-icon {
+    display: block;
+    width: 32px;
+    height: 30px;
+  }
 }
