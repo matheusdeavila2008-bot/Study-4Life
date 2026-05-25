@@ -5,7 +5,8 @@ from banco import (
     login,
     cadastrar_usuario,
     registrar_acesso_usuario,
-    pegar_dados_perfil
+    pegar_dados_perfil,
+    atualizar_tempo_site
 )
 
 app = Flask(__name__)
@@ -72,6 +73,20 @@ def rota_perfil(usuario_id):
         }), 404
 
     return jsonify(dados)
+
+
+@app.route("/tempo", methods=["POST"])
+def rota_tempo():
+    dados = request.get_json()
+
+    usuario_id = dados["usuario_id"]
+    minutos = dados["minutos"]
+
+    resultado = atualizar_tempo_site(usuario_id, minutos)
+
+    return jsonify({
+        "mensagem": resultado
+    })
 
 
 if __name__ == "__main__":

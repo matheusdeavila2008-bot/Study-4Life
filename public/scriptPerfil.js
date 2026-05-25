@@ -1,4 +1,6 @@
-// nome do usuário logado
+// =========================
+// NOME DO USUÁRIO LOGADO
+// =========================
 const nomeSalvo = localStorage.getItem("usuario_nome");
 const nomeUsuario = document.getElementById("nomeUsuario");
 
@@ -8,7 +10,10 @@ if (nomeSalvo) {
   nomeUsuario.innerHTML = `<span>Estudante</span>`;
 }
 
-// menu lateral
+
+// =========================
+// MENU LATERAL
+// =========================
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
@@ -26,77 +31,172 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
+// =========================
+// VARIÁVEIS PERFIL
+// =========================
 let xp = 0;
 let xpMeta = 100;
 let nivel = 0;
 let feitas = 0;
 
-const avatares = ["🧑‍🎓", "👨‍💻", "👩‍💻", "🧠", "🚀", "😎"];
+
+// =========================
+// AVATARES
+// =========================
+const avatares = [
+  "🧑‍🎓",
+  "👨‍💻",
+  "👩‍💻",
+  "🧠",
+  "🚀",
+  "😎"
+];
+
 let avatarAtual = 0;
 
+
+// =========================
+// ATUALIZAR BARRA XP
+// =========================
 function atualizarBarra() {
+
   let xpNivelAtual = xp % 100;
+
   let porcentagem = (xpNivelAtual / xpMeta) * 100;
 
-  document.getElementById("barraXp").style.width = porcentagem + "%";
-  document.getElementById("xpAtual").textContent = xpNivelAtual;
-  document.getElementById("xpMeta").textContent = xpMeta;
+  document.getElementById("barraXp").style.width =
+    porcentagem + "%";
+
+  document.getElementById("xpAtual").textContent =
+    xpNivelAtual;
+
+  document.getElementById("xpMeta").textContent =
+    xpMeta;
 }
 
+
+// =========================
+// CONCLUIR META
+// =========================
 function concluirMeta(valorXP) {
+
   xp += valorXP;
+
   feitas++;
 
   nivel = Math.floor(xp / 100);
 
-  document.getElementById("boxNivel").textContent = nivel;
-  document.getElementById("nivelMini").textContent = nivel;
-  document.getElementById("feitas").textContent = feitas;
+  document.getElementById("boxNivel").textContent =
+    nivel;
+
+  document.getElementById("nivelMini").textContent =
+    nivel;
+
+  document.getElementById("feitas").textContent =
+    feitas;
 
   atualizarBarra();
 }
 
+
+// =========================
+// TROCAR AVATAR
+// =========================
 function trocarAvatar() {
+
   avatarAtual++;
 
   if (avatarAtual >= avatares.length) {
     avatarAtual = 0;
   }
 
-  document.getElementById("avatarBtn").textContent = avatares[avatarAtual];
+  document.getElementById("avatarBtn").textContent =
+    avatares[avatarAtual];
 }
 
+
+// =========================
+// MENU CONFIG
+// =========================
 function toggleConfig() {
+
   const menu = document.getElementById("menuConfig");
+
   const btn = document.querySelector(".btn-config");
+
   const seta = document.getElementById("setaConfig");
 
   menu.classList.toggle("ativo");
+
   btn.classList.toggle("aberto");
 
   if (menu.classList.contains("ativo")) {
+
     seta.textContent = "▴";
+
   } else {
+
     seta.textContent = "▾";
   }
 }
 
-async function carregarProgressoUsuario() {
-  const usuarioId = localStorage.getItem("usuario_id");
 
-  const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
+// =========================
+// CARREGAR DADOS PERFIL
+// =========================
+async function carregarProgressoUsuario() {
+
+  const usuarioId =
+    localStorage.getItem("usuario_id");
+
+  if (!usuarioId) {
+    return;
+  }
+
+  const resposta = await fetch(
+    `http://127.0.0.1:5000/perfil/${usuarioId}`
+  );
+
   const dados = await resposta.json();
 
   xp = dados.xp;
+
   nivel = dados.nivel;
 
-  document.getElementById("dias").textContent = dados.dias_consecutivos;
-  document.getElementById("boxNivel").textContent = dados.nivel;
-  document.getElementById("nivelMini").textContent = dados.nivel;
-  document.getElementById("horas").textContent = `${dados.horas_totais}h`;
-  document.getElementById("ranking").textContent = `#${dados.ranking}`;
+
+  // dias consecutivos
+  document.getElementById("dias").textContent =
+    dados.dias_consecutivos;
+
+
+  // nível
+  document.getElementById("boxNivel").textContent =
+    dados.nivel;
+
+  document.getElementById("nivelMini").textContent =
+    dados.nivel;
+
+
+  // horas totais formatadas
+  const horasFormatadas = String(
+    Math.floor(dados.horas_totais)
+  ).padStart(2, "0");
+
+  document.getElementById("horas").textContent =
+    `${horasFormatadas}h`;
+
+
+  // ranking
+  document.getElementById("ranking").textContent =
+    `#${dados.ranking}`;
+
 
   atualizarBarra();
 }
 
+
+// =========================
+// INICIAR
+// =========================
 carregarProgressoUsuario();
