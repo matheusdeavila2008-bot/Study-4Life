@@ -62,6 +62,8 @@ const questoes = [
   },
 ];
 
+const QUIZ_ID = "portugues-gramatica-lvl-1";
+
 let atual = 0;
 let acertos = 0;
 
@@ -70,7 +72,7 @@ function carregarQuestao() {
 
   document.getElementById("imagemQuestao").src = q.imagem;
   document.getElementById("pergunta").textContent = q.pergunta;
-  document.getElementById("contador").textContent = `${atual + 1}/10`;
+  document.getElementById("contador").textContent = `${atual + 1}/${questoes.length}`;
 
   const progresso = ((atual + 1) / questoes.length) * 100;
   document.getElementById("barra").style.width = progresso + "%";
@@ -113,8 +115,16 @@ function responder(botao, indice) {
   }, 1000);
 }
 
-function finalizarQuiz() {
+async function finalizarQuiz() {
   const aprovado = acertos >= 7;
+
+  let xpGanho = 0;
+  let mensagemXp = "";
+
+  if (aprovado) {
+    xpGanho = acertos * 100;
+    mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
+  }
 
   document.getElementById("conteudoQuiz").innerHTML = `
     <div class="final">
@@ -124,7 +134,15 @@ function finalizarQuiz() {
       ${
         aprovado
           ? `
-            <p class="aprovado">Parabéns! Você concluiu esse level.</p>
+            <p class="aprovado">
+              Parabéns! Você concluiu esse level.
+            </p>
+
+            <p class="aprovado">
+              ${mensagemXp === "XP atualizado com sucesso."
+                ? `Você ganhou ${xpGanho} XP.`
+                : mensagemXp}
+            </p>
 
             <button class="btn-voltar" onclick="voltarFases()">
               Voltar para Fases
@@ -149,7 +167,7 @@ function finalizarQuiz() {
     </div>
   `;
 
-  document.getElementById("contador").textContent = "10/10";
+  document.getElementById("contador").textContent = `${questoes.length}/${questoes.length}`;
   document.getElementById("barra").style.width = "100%";
 }
 

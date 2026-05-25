@@ -46,6 +46,19 @@ class ProgressoUsuario(Base):
 
 
 # =========================
+# TABELA QUIZZES CONCLUÍDOS
+# =========================
+class QuizConcluido(Base):
+    __tablename__ = "quizzes_concluidos"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    quiz_id = Column(String(100), nullable=False)
+    xp_ganho = Column(Integer, default=0)
+    concluido_em = Column(DateTime, default=datetime.now)
+
+
+# =========================
 # TABELA CONTEÚDOS
 # =========================
 class Conteudo(Base):
@@ -240,9 +253,9 @@ def atualizar_tempo_site(usuario_id, minutos):
 
 
 # =========================
-# ADICIONAR XP AO USUÁRIO
+# ADICIONAR XP AO USUÁRIO SEM FARM
 # =========================
-def adicionar_xp(usuario_id, xp_ganho):
+def adicionar_xp(usuario_id, xp_ganho, quiz_id=None):
 
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
@@ -255,9 +268,24 @@ def adicionar_xp(usuario_id, xp_ganho):
     if not progresso:
         return "Progresso não encontrado."
 
-    progresso.xp += xp_ganho
+    if quiz_id:
+        quiz_ja_concluido = session.query(QuizConcluido).filter_by(
+            usuario_id=usuario_id,
+            quiz_id=quiz_id
+        ).first()
 
-    # nível começa em 0 e sobe a cada 100 XP
+        if quiz_ja_concluido:
+            return "Você já recebeu XP por esse quiz."
+
+        novo_quiz_concluido = QuizConcluido(
+            usuario_id=usuario_id,
+            quiz_id=quiz_id,
+            xp_ganho=xp_ganho
+        )
+
+        session.add(novo_quiz_concluido)
+
+    progresso.xp += xp_ganho
     progresso.nivel = progresso.xp // 100
 
     if ranking:

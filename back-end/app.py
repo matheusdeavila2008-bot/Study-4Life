@@ -118,7 +118,7 @@ def rota_tempo():
 
 
 # =========================
-# GANHAR XP NO QUIZ
+# GANHAR XP NO QUIZ SEM FARM
 # =========================
 @app.route("/quiz/xp", methods=["POST"])
 def rota_xp_quiz():
@@ -127,10 +127,12 @@ def rota_xp_quiz():
 
     usuario_id = dados["usuario_id"]
     xp_ganho = dados["xp_ganho"]
+    quiz_id = dados["quiz_id"]
 
     resultado = adicionar_xp(
         usuario_id,
-        xp_ganho
+        xp_ganho,
+        quiz_id
     )
 
     return jsonify({

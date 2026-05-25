@@ -1,9 +1,9 @@
-async function adicionarXpQuiz(xpGanho) {
+async function adicionarXpQuiz(xpGanho, quizId) {
   const usuarioId = localStorage.getItem("usuario_id");
 
   if (!usuarioId) {
     alert("Usuário não encontrado. Faça login novamente.");
-    return;
+    return "Usuário não encontrado.";
   }
 
   const resposta = await fetch("http://127.0.0.1:5000/quiz/xp", {
@@ -13,11 +13,12 @@ async function adicionarXpQuiz(xpGanho) {
     },
     body: JSON.stringify({
       usuario_id: usuarioId,
-      xp_ganho: xpGanho
+      xp_ganho: xpGanho,
+      quiz_id: quizId
     })
   });
 
   const resultado = await resposta.json();
 
-  console.log(resultado.mensagem);
+  return resultado.mensagem;
 }
