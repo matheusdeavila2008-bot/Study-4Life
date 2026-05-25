@@ -4,7 +4,7 @@ from datetime import datetime, date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # conexão com o banco
-engine = create_engine("sqlite:///study4life.db", echo=True)
+engine = create_engine("sqlite:///study4life.db", echo=False)
 
 Base = declarative_base()
 
@@ -23,6 +23,7 @@ class Usuario(Base):
     email = Column(String(120), nullable=False, unique=True)
     senha_hash = Column(String(255), nullable=False)
     cpf = Column(String(14), nullable=False, unique=True)
+    avatar = Column(String(20), default="👨‍💻")
     criado_em = Column(DateTime, default=datetime.now)
 
 
@@ -136,7 +137,8 @@ def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
         nome=nome,
         email=email,
         senha_hash=generate_password_hash(senha),
-        cpf=cpf
+        cpf=cpf,
+        avatar="👨‍💻"
     )
 
     session.add(novo_usuario)
@@ -278,7 +280,6 @@ def pegar_posicao_ranking(usuario_id):
     for posicao, item in enumerate(ranking, start=1):
 
         if item.usuario_id == usuario_id:
-
             return posicao
 
     return None
@@ -289,16 +290,21 @@ def pegar_posicao_ranking(usuario_id):
 # =========================
 def pegar_dados_perfil(usuario_id):
 
+    usuario = session.query(Usuario).filter_by(id=usuario_id).first()
+
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
 
-    if not progresso:
+    if not usuario or not progresso:
         return None
 
     posicao = pegar_posicao_ranking(usuario_id)
 
     return {
+        "usuario_id": usuario.id,
+        "nome": usuario.nome,
+        "avatar": usuario.avatar,
         "dias_consecutivos": progresso.dias_consecutivos,
         "nivel": progresso.nivel,
         "xp": progresso.xp,
@@ -306,6 +312,55 @@ def pegar_dados_perfil(usuario_id):
         "missoes_realizadas": progresso.missoes_realizadas,
         "ranking": posicao
     }
+
+
+# =========================
+# SALVAR AVATAR
+# =========================
+def salvar_avatar(usuario_id, avatar):
+
+    usuario = session.query(Usuario).filter_by(id=usuario_id).first()
+
+    if not usuario:
+        return "Usuário não encontrado."
+
+    usuario.avatar = avatar
+    session.commit()
+
+    return "Avatar atualizado com sucesso."
+
+
+# =========================
+# LISTAR RANKING
+# =========================
+def listar_ranking():
+
+    resultados = (
+        session.query(Usuario, ProgressoUsuario)
+        .join(ProgressoUsuario, Usuario.id == ProgressoUsuario.usuario_id)
+        .order_by(
+            ProgressoUsuario.xp.desc(),
+            ProgressoUsuario.nivel.desc(),
+            ProgressoUsuario.dias_consecutivos.desc()
+        )
+        .all()
+    )
+
+    ranking = []
+
+    for posicao, (usuario, progresso) in enumerate(resultados, start=1):
+
+        ranking.append({
+            "posicao": posicao,
+            "usuario_id": usuario.id,
+            "nome": usuario.nome,
+            "avatar": usuario.avatar,
+            "nivel": progresso.nivel,
+            "xp": progresso.xp,
+            "dias_consecutivos": progresso.dias_consecutivos
+        })
+
+    return ranking
 
 
 # =========================
@@ -437,32 +492,11 @@ def adicionar_pontos_ranking(usuario_id, pontos):
 
 
 # =========================
-# VER RANKING
-# =========================
-def ver_ranking():
-
-    ranking = session.query(Ranking).order_by(
-        Ranking.pontos.desc()
-    ).all()
-
-    for posicao, item in enumerate(ranking, start=1):
-
-        usuario = session.query(Usuario).filter_by(
-            id=item.usuario_id
-        ).first()
-
-        if usuario:
-            print(f"{posicao}º lugar - {usuario.nome} - {item.pontos} pontos")
-
-
-# =========================
 # DELETAR USUÁRIO
 # =========================
 def deletar_usuario(email):
 
-    usuario = session.query(Usuario).filter_by(
-        email=email
-    ).first()
+    usuario = session.query(Usuario).filter_by(email=email).first()
 
     if not usuario:
         return "Usuário não encontrado."
@@ -485,6 +519,23 @@ def listar_usuarios():
 
 
 # =========================
+# VER RANKING
+# =========================
+def ver_ranking():
+
+    ranking = listar_ranking()
+
+    for usuario in ranking:
+        print(
+            f"{usuario['posicao']}º lugar - "
+            f"{usuario['nome']} - "
+            f"{usuario['xp']} XP - "
+            f"Nível {usuario['nivel']} - "
+            f"{usuario['dias_consecutivos']} dias"
+        )
+
+
+# =========================
 # TESTES
 # =========================
 
@@ -498,7 +549,10 @@ def listar_usuarios():
 # ))
 
 # deletar usuário
-# print(deletar_usuario("matehuss@email.com.br"))
+# print(deletar_usuario("mvbs.1711@gmail.com"))
 
 # listar usuários
 # listar_usuarios()
+
+# ver ranking
+# ver_ranking()
