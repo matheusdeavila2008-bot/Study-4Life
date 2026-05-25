@@ -12,52 +12,47 @@ if (nomeSalvo) {
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
-// abrir menu
 function openMenu() {
   menu.classList.add("active");
 }
 
-// fechar menu
 function closeMenu() {
   menu.classList.remove("active");
 }
 
-// fechar ao clicar fora
 document.addEventListener("click", (e) => {
   if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
     menu.classList.remove("active");
   }
 });
 
-let xp = 3400;
-let xpMeta = 4000;
-let nivel = 13;
+let xp = 0;
+let xpMeta = 100;
+let nivel = 0;
 let feitas = 0;
 
 const avatares = ["🧑‍🎓", "👨‍💻", "👩‍💻", "🧠", "🚀", "😎"];
 let avatarAtual = 0;
 
 function atualizarBarra() {
-  let porcentagem = (xp / xpMeta) * 100;
-  if (porcentagem > 100) porcentagem = 100;
+  let xpNivelAtual = xp % 100;
+  let porcentagem = (xpNivelAtual / xpMeta) * 100;
 
   document.getElementById("barraXp").style.width = porcentagem + "%";
-  document.getElementById("xpAtual").textContent = xp;
+  document.getElementById("xpAtual").textContent = xpNivelAtual;
+  document.getElementById("xpMeta").textContent = xpMeta;
 }
 
 function concluirMeta(valorXP) {
   xp += valorXP;
   feitas++;
 
-  if (xp >= xpMeta) {
-    xp -= xpMeta;
-    nivel++;
+  nivel = Math.floor(xp / 100);
 
-    document.getElementById("boxNivel").textContent = nivel;
-    document.getElementById("nivelMini").textContent = nivel;
-  }
-
+  document.getElementById("boxNivel").textContent = nivel;
+  document.getElementById("nivelMini").textContent = nivel;
   document.getElementById("feitas").textContent = feitas;
+
   atualizarBarra();
 }
 
@@ -70,8 +65,6 @@ function trocarAvatar() {
 
   document.getElementById("avatarBtn").textContent = avatares[avatarAtual];
 }
-
-atualizarBarra();
 
 function toggleConfig() {
   const menu = document.getElementById("menuConfig");
@@ -87,3 +80,23 @@ function toggleConfig() {
     seta.textContent = "▾";
   }
 }
+
+async function carregarProgressoUsuario() {
+  const usuarioId = localStorage.getItem("usuario_id");
+
+  const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
+  const dados = await resposta.json();
+
+  xp = dados.xp;
+  nivel = dados.nivel;
+
+  document.getElementById("dias").textContent = dados.dias_consecutivos;
+  document.getElementById("boxNivel").textContent = dados.nivel;
+  document.getElementById("nivelMini").textContent = dados.nivel;
+  document.getElementById("horas").textContent = `${dados.horas_totais}h`;
+  document.getElementById("ranking").textContent = `#${dados.ranking}`;
+
+  atualizarBarra();
+}
+
+carregarProgressoUsuario();

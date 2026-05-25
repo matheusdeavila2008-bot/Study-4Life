@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, sessionmaker
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # conexão com o banco
@@ -36,7 +36,9 @@ class ProgressoUsuario(Base):
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
 
     dias_consecutivos = Column(Integer, default=0)
-    nivel = Column(Integer, default=1)
+    ultimo_acesso = Column(DateTime)
+
+    nivel = Column(Integer, default=0)
     xp = Column(Integer, default=0)
     horas_totais = Column(Float, default=0)
     missoes_realizadas = Column(Integer, default=0)
@@ -140,12 +142,22 @@ def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
     session.add(novo_usuario)
     session.commit()
 
-    progresso = ProgressoUsuario(usuario_id=novo_usuario.id)
-    ranking = Ranking(usuario_id=novo_usuario.id)
+    progresso = ProgressoUsuario(
+        usuario_id=novo_usuario.id,
+        dias_consecutivos=0,
+        nivel=0,
+        xp=0,
+        horas_totais=0,
+        missoes_realizadas=0
+    )
+
+    ranking = Ranking(
+        usuario_id=novo_usuario.id,
+        pontos=0
+    )
 
     session.add(progresso)
     session.add(ranking)
-
     session.commit()
 
     return "Usuário cadastrado com sucesso."
@@ -165,6 +177,135 @@ def login(email, senha):
         return usuario
 
     return None
+
+
+# =========================
+# REGISTRAR ACESSO DIÁRIO
+# =========================
+def registrar_acesso_usuario(usuario_id):
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return None
+
+    hoje = date.today()
+
+    if not progresso.ultimo_acesso:
+        progresso.dias_consecutivos = 1
+        progresso.ultimo_acesso = datetime.now()
+        session.commit()
+        return progresso
+
+    ultimo_dia = progresso.ultimo_acesso.date()
+
+    if ultimo_dia == hoje:
+        return progresso
+
+    elif ultimo_dia == hoje - timedelta(days=1):
+        progresso.dias_consecutivos += 1
+
+    else:
+        progresso.dias_consecutivos = 1
+
+    progresso.ultimo_acesso = datetime.now()
+    session.commit()
+
+    return progresso
+
+
+# =========================
+# ATUALIZAR TEMPO TOTAL NO SITE
+# =========================
+def atualizar_tempo_site(usuario_id, minutos):
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return "Progresso não encontrado."
+
+    horas = minutos / 60
+
+    progresso.horas_totais += horas
+
+    session.commit()
+
+    return "Tempo atualizado com sucesso."
+
+
+# =========================
+# ADICIONAR XP AO USUÁRIO
+# =========================
+def adicionar_xp(usuario_id, xp_ganho):
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    ranking = session.query(Ranking).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return "Progresso não encontrado."
+
+    progresso.xp += xp_ganho
+
+    # nível começa em 0 e sobe a cada 100 XP
+    progresso.nivel = progresso.xp // 100
+
+    if ranking:
+        ranking.pontos = progresso.xp
+
+    session.commit()
+
+    return "XP atualizado com sucesso."
+
+
+# =========================
+# PEGAR POSIÇÃO NO RANKING
+# =========================
+def pegar_posicao_ranking(usuario_id):
+
+    ranking = session.query(Ranking).order_by(
+        Ranking.pontos.desc()
+    ).all()
+
+    for posicao, item in enumerate(ranking, start=1):
+
+        if item.usuario_id == usuario_id:
+
+            return posicao
+
+    return None
+
+
+# =========================
+# PEGAR DADOS DO PERFIL
+# =========================
+def pegar_dados_perfil(usuario_id):
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return None
+
+    posicao = pegar_posicao_ranking(usuario_id)
+
+    return {
+        "dias_consecutivos": progresso.dias_consecutivos,
+        "nivel": progresso.nivel,
+        "xp": progresso.xp,
+        "horas_totais": round(progresso.horas_totais, 2),
+        "missoes_realizadas": progresso.missoes_realizadas,
+        "ranking": posicao
+    }
 
 
 # =========================
@@ -245,7 +386,7 @@ def salvar_chat(usuario_id, pergunta, resposta):
 
 
 # =========================
-# ATUALIZAR PROGRESSO
+# ATUALIZAR PROGRESSO GERAL
 # =========================
 def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=False):
 
@@ -253,13 +394,23 @@ def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=Fals
         usuario_id=usuario_id
     ).first()
 
+    ranking = session.query(Ranking).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return "Progresso não encontrado."
+
     progresso.xp += xp_ganho
     progresso.horas_totais += horas_estudadas
 
     if missao_feita:
         progresso.missoes_realizadas += 1
 
-    progresso.nivel = progresso.xp // 100 + 1
+    progresso.nivel = progresso.xp // 100
+
+    if ranking:
+        ranking.pontos = progresso.xp
 
     session.commit()
 
@@ -267,13 +418,16 @@ def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=Fals
 
 
 # =========================
-# ADICIONAR PONTOS RANKING
+# ADICIONAR PONTOS AO RANKING
 # =========================
 def adicionar_pontos_ranking(usuario_id, pontos):
 
     ranking = session.query(Ranking).filter_by(
         usuario_id=usuario_id
     ).first()
+
+    if not ranking:
+        return "Ranking não encontrado."
 
     ranking.pontos += pontos
 
@@ -297,7 +451,8 @@ def ver_ranking():
             id=item.usuario_id
         ).first()
 
-        print(f"{posicao}º lugar - {usuario.nome} - {item.pontos} pontos")
+        if usuario:
+            print(f"{posicao}º lugar - {usuario.nome} - {item.pontos} pontos")
 
 
 # =========================
@@ -343,7 +498,7 @@ def listar_usuarios():
 # ))
 
 # deletar usuário
-print(deletar_usuario("matehuss@email.com.br"))
+# print(deletar_usuario("matehuss@email.com.br"))
 
 # listar usuários
 # listar_usuarios()
