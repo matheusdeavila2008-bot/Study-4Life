@@ -1,5 +1,5 @@
 @charset "utf-8";
- 
+
 * {
   margin: 0;
   padding: 0;
@@ -59,6 +59,7 @@ nav a:hover {
   width: 65px;
   background: #2a2a2a;
   margin-right: 30px;
+  text-decoration: none;
 }
 
 .menu-icon {

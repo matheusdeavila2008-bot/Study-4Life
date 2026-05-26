@@ -35,7 +35,7 @@ document.addEventListener("click", (e) => {
 // =========================
 // VARIÁVEIS PERFIL
 // =========================
-let xp = 0;
+let xpNivel = 0;
 let xpMeta = 100;
 let nivel = 0;
 let feitas = 0;
@@ -57,62 +57,78 @@ let avatarAtual = 0;
 
 
 // =========================
-// ATUALIZAR BARRA XP
+// ATUALIZAR BARRA XP DE NÍVEL
 // =========================
 function atualizarBarra() {
-
-  let xpNivelAtual = xp % 100;
-
+  let xpNivelAtual = xpNivel % 100;
   let porcentagem = (xpNivelAtual / xpMeta) * 100;
 
-  document.getElementById("barraXp").style.width =
-    porcentagem + "%";
-
-  document.getElementById("xpAtual").textContent =
-    xpNivelAtual;
-
-  document.getElementById("xpMeta").textContent =
-    xpMeta;
+  document.getElementById("barraXp").style.width = porcentagem + "%";
+  document.getElementById("xpAtual").textContent = xpNivelAtual;
+  document.getElementById("xpMeta").textContent = xpMeta;
 }
 
 
 // =========================
-// CONCLUIR META
+// CONCLUIR META DIÁRIA
 // =========================
-function concluirMeta(valorXP) {
+async function concluirMeta(valorXP) {
+  const usuarioId = localStorage.getItem("usuario_id");
 
-  xp += valorXP;
+  if (!usuarioId) {
+    alert("Usuário não encontrado.");
+    return;
+  }
 
-  feitas++;
+  const resposta = await fetch("http://127.0.0.1:5000/missao/xp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      usuario_id: usuarioId,
+      xp_ganho: valorXP
+    })
+  });
 
-  nivel = Math.floor(xp / 100);
+  const resultado = await resposta.json();
 
-  document.getElementById("boxNivel").textContent =
-    nivel;
+  console.log(resultado.mensagem);
 
-  document.getElementById("nivelMini").textContent =
-    nivel;
-
-  document.getElementById("feitas").textContent =
-    feitas;
-
-  atualizarBarra();
+  await carregarProgressoUsuario();
 }
 
 
 // =========================
-// TROCAR AVATAR
+// TROCAR AVATAR E SALVAR NO BANCO
 // =========================
-function trocarAvatar() {
-
+async function trocarAvatar() {
   avatarAtual++;
 
   if (avatarAtual >= avatares.length) {
     avatarAtual = 0;
   }
 
-  document.getElementById("avatarBtn").textContent =
-    avatares[avatarAtual];
+  const novoAvatar = avatares[avatarAtual];
+  const usuarioId = localStorage.getItem("usuario_id");
+
+  document.getElementById("avatarBtn").textContent = novoAvatar;
+  localStorage.setItem("usuario_avatar", novoAvatar);
+
+  if (!usuarioId) {
+    return;
+  }
+
+  await fetch("http://127.0.0.1:5000/avatar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      usuario_id: usuarioId,
+      avatar: novoAvatar
+    })
+  });
 }
 
 
@@ -120,23 +136,16 @@ function trocarAvatar() {
 // MENU CONFIG
 // =========================
 function toggleConfig() {
-
   const menu = document.getElementById("menuConfig");
-
   const btn = document.querySelector(".btn-config");
-
   const seta = document.getElementById("setaConfig");
 
   menu.classList.toggle("ativo");
-
   btn.classList.toggle("aberto");
 
   if (menu.classList.contains("ativo")) {
-
     seta.textContent = "▴";
-
   } else {
-
     seta.textContent = "▾";
   }
 }
@@ -146,51 +155,48 @@ function toggleConfig() {
 // CARREGAR DADOS PERFIL
 // =========================
 async function carregarProgressoUsuario() {
-
-  const usuarioId =
-    localStorage.getItem("usuario_id");
+  const usuarioId = localStorage.getItem("usuario_id");
 
   if (!usuarioId) {
     return;
   }
 
-  const resposta = await fetch(
-    `http://127.0.0.1:5000/perfil/${usuarioId}`
-  );
-
+  const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
   const dados = await resposta.json();
 
-  xp = dados.xp;
-
+  xpNivel = dados.xp_nivel;
   nivel = dados.nivel;
+  feitas = dados.missoes_realizadas;
 
+  if (dados.avatar) {
+    document.getElementById("avatarBtn").textContent = dados.avatar;
 
-  // dias consecutivos
-  document.getElementById("dias").textContent =
-    dados.dias_consecutivos;
+    const indiceAvatar = avatares.indexOf(dados.avatar);
 
+    if (indiceAvatar !== -1) {
+      avatarAtual = indiceAvatar;
+    }
 
-  // nível
-  document.getElementById("boxNivel").textContent =
-    dados.nivel;
+    localStorage.setItem("usuario_avatar", dados.avatar);
+  }
 
-  document.getElementById("nivelMini").textContent =
-    dados.nivel;
+  document.getElementById("dias").textContent = dados.dias_consecutivos;
 
+  document.getElementById("boxNivel").textContent = dados.nivel;
 
-  // horas totais formatadas
   const horasFormatadas = String(
     Math.floor(dados.horas_totais)
   ).padStart(2, "0");
 
-  document.getElementById("horas").textContent =
-    `${horasFormatadas}h`;
+  document.getElementById("horas").textContent = `${horasFormatadas}h`;
 
+  document.getElementById("ranking").textContent = `#${dados.ranking}`;
 
-  // ranking
-  document.getElementById("ranking").textContent =
-    `#${dados.ranking}`;
+  document.getElementById("feitas").textContent = dados.missoes_realizadas;
 
+  if (document.getElementById("xpQuiz")) {
+    document.getElementById("xpQuiz").textContent = dados.xp_quiz;
+  }
 
   atualizarBarra();
 }
