@@ -10,7 +10,9 @@ from banco import (
     adicionar_xp_quiz,
     adicionar_xp_nivel,
     salvar_avatar,
-    listar_ranking
+    listar_ranking,
+    pegar_missoes_usuario,
+    concluir_missao
 )
 
 app = Flask(__name__)
@@ -142,7 +144,7 @@ def rota_xp_quiz():
 
 
 # =========================
-# GANHAR XP DE NÍVEL POR MISSÃO
+# GANHAR XP DE NÍVEL MANUAL
 # =========================
 @app.route("/missao/xp", methods=["POST"])
 def rota_xp_missao():
@@ -156,6 +158,38 @@ def rota_xp_missao():
         usuario_id,
         xp_ganho,
         missao_feita=True
+    )
+
+    return jsonify({
+        "mensagem": resultado
+    })
+
+
+# =========================
+# PEGAR MISSÕES DIÁRIAS
+# =========================
+@app.route("/missoes/<int:usuario_id>", methods=["GET"])
+def rota_missoes(usuario_id):
+
+    missoes = pegar_missoes_usuario(usuario_id)
+
+    return jsonify(missoes)
+
+
+# =========================
+# CONCLUIR MISSÃO DIÁRIA
+# =========================
+@app.route("/missoes/concluir", methods=["POST"])
+def rota_concluir_missao():
+
+    dados = request.get_json()
+
+    usuario_id = dados["usuario_id"]
+    missao_id = dados["missao_id"]
+
+    resultado = concluir_missao(
+        usuario_id,
+        missao_id
     )
 
     return jsonify({

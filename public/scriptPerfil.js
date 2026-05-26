@@ -70,36 +70,6 @@ function atualizarBarra() {
 
 
 // =========================
-// CONCLUIR META DIÁRIA
-// =========================
-async function concluirMeta(valorXP) {
-  const usuarioId = localStorage.getItem("usuario_id");
-
-  if (!usuarioId) {
-    alert("Usuário não encontrado.");
-    return;
-  }
-
-  const resposta = await fetch("http://127.0.0.1:5000/missao/xp", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      usuario_id: usuarioId,
-      xp_ganho: valorXP
-    })
-  });
-
-  const resultado = await resposta.json();
-
-  console.log(resultado.mensagem);
-
-  await carregarProgressoUsuario();
-}
-
-
-// =========================
 // TROCAR AVATAR E SALVAR NO BANCO
 // =========================
 async function trocarAvatar() {
@@ -152,6 +122,75 @@ function toggleConfig() {
 
 
 // =========================
+// CARREGAR MISSÕES DIÁRIAS
+// =========================
+async function carregarMissoesDiarias() {
+  const usuarioId = localStorage.getItem("usuario_id");
+  const areaMissoes = document.getElementById("areaMissoes");
+
+  if (!usuarioId || !areaMissoes) {
+    return;
+  }
+
+  const resposta = await fetch(`http://127.0.0.1:5000/missoes/${usuarioId}`);
+  const missoes = await resposta.json();
+
+  areaMissoes.innerHTML = "";
+
+  missoes.forEach((missao) => {
+    const concluida = missao.concluida === 1;
+
+    areaMissoes.innerHTML += `
+      <div class="missao ${concluida ? "missao-concluida" : ""}">
+        <button
+          class="missao-left"
+          onclick="concluirMissao(${missao.id})"
+          ${concluida ? "disabled" : ""}
+        >
+          <span>${concluida ? "✅" : ""} ${missao.titulo}</span>
+        </button>
+
+        <div class="recompensa">
+          ${concluida ? "Concluída" : `+${missao.xp} XP`}
+        </div>
+      </div>
+    `;
+  });
+}
+
+
+// =========================
+// CONCLUIR MISSÃO
+// =========================
+async function concluirMissao(missaoId) {
+  const usuarioId = localStorage.getItem("usuario_id");
+
+  if (!usuarioId) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  const resposta = await fetch("http://127.0.0.1:5000/missoes/concluir", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      usuario_id: usuarioId,
+      missao_id: missaoId
+    })
+  });
+
+  const resultado = await resposta.json();
+
+  console.log(resultado.mensagem);
+
+  await carregarProgressoUsuario();
+  await carregarMissoesDiarias();
+}
+
+
+// =========================
 // CARREGAR DADOS PERFIL
 // =========================
 async function carregarProgressoUsuario() {
@@ -166,7 +205,7 @@ async function carregarProgressoUsuario() {
 
   xpNivel = dados.xp_nivel;
   nivel = dados.nivel;
-  feitas = dados.missoes_realizadas;
+  feitas = dados.missoes_concluidas_hoje;
 
   if (dados.avatar) {
     document.getElementById("avatarBtn").textContent = dados.avatar;
@@ -192,7 +231,7 @@ async function carregarProgressoUsuario() {
 
   document.getElementById("ranking").textContent = `#${dados.ranking}`;
 
-  document.getElementById("feitas").textContent = dados.missoes_realizadas;
+  document.getElementById("feitas").textContent = dados.missoes_concluidas_hoje;
 
   if (document.getElementById("xpQuiz")) {
     document.getElementById("xpQuiz").textContent = dados.xp_quiz;
@@ -206,3 +245,4 @@ async function carregarProgressoUsuario() {
 // INICIAR
 // =========================
 carregarProgressoUsuario();
+carregarMissoesDiarias();

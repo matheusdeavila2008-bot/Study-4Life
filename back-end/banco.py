@@ -2,19 +2,65 @@ from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, F
 from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime, date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
 
-# conexão com o banco
 engine = create_engine("sqlite:///study4life.db", echo=False)
 
 Base = declarative_base()
-
 Session = sessionmaker(bind=engine)
 session = Session()
 
 
-# =========================
-# TABELA USUÁRIOS
-# =========================
+MISSOES_DISPONIVEIS = [
+    ("Estudar por 1 hora", 60),
+    ("Concluir 1 aula", 80),
+    ("Responder Quiz", 40),
+    ("Entrar no site hoje", 20),
+    ("Acessar a biblioteca", 30),
+    ("Favoritar conteúdo", 35),
+    ("Ler resumo", 25),
+    ("Estudar Matemática", 45),
+    ("Estudar Português", 45),
+    ("Estudar Ciências", 45),
+    ("Abrir o ranking", 20),
+    ("Usar StudyChat.IA", 50),
+    ("Fazer 5 perguntas IA", 60),
+    ("Estudar 30 minutos", 30),
+    ("Estudar 2 horas", 100),
+    ("Concluir 2 quizzes", 80),
+    ("Manter sequência diária", 120),
+    ("Abrir área de foco", 30),
+    ("Fazer revisão", 50),
+    ("Adicionar aos favoritos", 35),
+    ("Completar 3 ações", 70)
+]
+
+
+MAPA_EVENTOS_MISSOES = {
+    "estudar_1_hora": "Estudar por 1 hora",
+    "concluir_1_aula": "Concluir 1 aula",
+    "responder_quiz": "Responder Quiz",
+    "entrar_site": "Entrar no site hoje",
+    "abrir_biblioteca": "Acessar a biblioteca",
+    "favoritar_conteudo": "Favoritar conteúdo",
+    "ler_resumo": "Ler resumo",
+    "estudar_matematica": "Estudar Matemática",
+    "estudar_portugues": "Estudar Português",
+    "estudar_ciencias": "Estudar Ciências",
+    "abrir_ranking": "Abrir o ranking",
+    "usar_chat_ia": "Usar StudyChat.IA",
+    "fazer_5_perguntas_ia": "Fazer 5 perguntas IA",
+    "estudar_30_minutos": "Estudar 30 minutos",
+    "estudar_2_horas": "Estudar 2 horas",
+    "concluir_2_quizzes": "Concluir 2 quizzes",
+    "manter_sequencia": "Manter sequência diária",
+    "abrir_foco": "Abrir área de foco",
+    "fazer_revisao": "Fazer revisão",
+    "adicionar_favoritos": "Adicionar aos favoritos",
+    "completar_3_acoes": "Completar 3 ações"
+}
+
+
 class Usuario(Base):
     __tablename__ = "usuarios"
 
@@ -27,9 +73,6 @@ class Usuario(Base):
     criado_em = Column(DateTime, default=datetime.now)
 
 
-# =========================
-# TABELA PROGRESSO
-# =========================
 class ProgressoUsuario(Base):
     __tablename__ = "progresso_usuario"
 
@@ -40,20 +83,13 @@ class ProgressoUsuario(Base):
     ultimo_acesso = Column(DateTime)
 
     nivel = Column(Integer, default=0)
-
-    # XP de evolução pessoal, ganho pelas metas diárias
     xp_nivel = Column(Integer, default=0)
-
-    # XP competitivo, ganho nos quizzes e usado no ranking
     xp_quiz = Column(Integer, default=0)
 
     horas_totais = Column(Float, default=0)
     missoes_realizadas = Column(Integer, default=0)
 
 
-# =========================
-# TABELA QUIZZES CONCLUÍDOS
-# =========================
 class QuizConcluido(Base):
     __tablename__ = "quizzes_concluidos"
 
@@ -64,9 +100,17 @@ class QuizConcluido(Base):
     concluido_em = Column(DateTime, default=datetime.now)
 
 
-# =========================
-# TABELA CONTEÚDOS
-# =========================
+class MissaoDiaria(Base):
+    __tablename__ = "missoes_diarias"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    titulo = Column(String(200), nullable=False)
+    xp = Column(Integer, nullable=False)
+    concluida = Column(Integer, default=0)
+    data_missao = Column(DateTime, default=datetime.now)
+
+
 class Conteudo(Base):
     __tablename__ = "conteudos"
 
@@ -79,9 +123,6 @@ class Conteudo(Base):
     link = Column(String(255))
 
 
-# =========================
-# TABELA HISTÓRICO
-# =========================
 class HistoricoConteudo(Base):
     __tablename__ = "historico_conteudos"
 
@@ -91,9 +132,6 @@ class HistoricoConteudo(Base):
     visualizado_em = Column(DateTime, default=datetime.now)
 
 
-# =========================
-# TABELA FAVORITOS
-# =========================
 class Favorito(Base):
     __tablename__ = "favoritos"
 
@@ -103,53 +141,35 @@ class Favorito(Base):
     favoritado_em = Column(DateTime, default=datetime.now)
 
 
-# =========================
-# TABELA CHAT IA
-# =========================
 class ChatHistorico(Base):
     __tablename__ = "chat_historico"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
-
     pergunta = Column(Text, nullable=False)
     resposta = Column(Text, nullable=False)
-
     criado_em = Column(DateTime, default=datetime.now)
 
 
-# =========================
-# TABELA RANKING
-# =========================
 class Ranking(Base):
     __tablename__ = "ranking"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
-
     pontos = Column(Integer, default=0)
 
 
-# cria as tabelas
 Base.metadata.create_all(engine)
 
 
-# =========================
-# CADASTRAR USUÁRIO
-# =========================
 def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
-
     if senha != confirmar_senha:
         return "As senhas não coincidem."
 
-    email_existente = session.query(Usuario).filter_by(email=email).first()
-
-    if email_existente:
+    if session.query(Usuario).filter_by(email=email).first():
         return "Esse e-mail já está cadastrado."
 
-    cpf_existente = session.query(Usuario).filter_by(cpf=cpf).first()
-
-    if cpf_existente:
+    if session.query(Usuario).filter_by(cpf=cpf).first():
         return "Esse CPF já está cadastrado."
 
     novo_usuario = Usuario(
@@ -185,11 +205,7 @@ def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
     return "Usuário cadastrado com sucesso."
 
 
-# =========================
-# LOGIN
-# =========================
 def login(email, senha):
-
     usuario = session.query(Usuario).filter_by(email=email).first()
 
     if not usuario:
@@ -201,11 +217,7 @@ def login(email, senha):
     return None
 
 
-# =========================
-# REGISTRAR ACESSO DIÁRIO
-# =========================
 def registrar_acesso_usuario(usuario_id):
-
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -238,11 +250,117 @@ def registrar_acesso_usuario(usuario_id):
     return progresso
 
 
-# =========================
-# ATUALIZAR TEMPO TOTAL NO SITE
-# =========================
-def atualizar_tempo_site(usuario_id, minutos):
+def gerar_missoes_diarias(usuario_id):
+    hoje = date.today()
 
+    missoes_existentes = session.query(MissaoDiaria).filter_by(
+        usuario_id=usuario_id
+    ).all()
+
+    if missoes_existentes:
+        data_existente = missoes_existentes[0].data_missao.date()
+
+        if data_existente == hoje:
+            return
+
+        for missao in missoes_existentes:
+            session.delete(missao)
+
+        session.commit()
+
+    missoes_sorteadas = random.sample(MISSOES_DISPONIVEIS, 3)
+
+    for titulo, xp in missoes_sorteadas:
+        nova_missao = MissaoDiaria(
+            usuario_id=usuario_id,
+            titulo=titulo,
+            xp=xp,
+            concluida=0
+        )
+
+        session.add(nova_missao)
+
+    session.commit()
+
+
+def pegar_missoes_usuario(usuario_id):
+    gerar_missoes_diarias(usuario_id)
+
+    missoes = session.query(MissaoDiaria).filter_by(
+        usuario_id=usuario_id
+    ).all()
+
+    lista = []
+
+    for missao in missoes:
+        lista.append({
+            "id": missao.id,
+            "titulo": missao.titulo,
+            "xp": missao.xp,
+            "concluida": missao.concluida
+        })
+
+    return lista
+
+
+def concluir_missao(usuario_id, missao_id):
+    missao = session.query(MissaoDiaria).filter_by(
+        id=missao_id,
+        usuario_id=usuario_id
+    ).first()
+
+    if not missao:
+        return "Missão não encontrada."
+
+    if missao.concluida == 1:
+        return "Missão já concluída."
+
+    missao.concluida = 1
+
+    adicionar_xp_nivel(
+        usuario_id,
+        missao.xp,
+        missao_feita=True
+    )
+
+    session.commit()
+
+    return "Missão concluída com sucesso."
+
+
+def concluir_missao_por_evento(usuario_id, evento):
+    titulo_missao = MAPA_EVENTOS_MISSOES.get(evento)
+
+    if not titulo_missao:
+        return "Evento de missão não encontrado."
+
+    gerar_missoes_diarias(usuario_id)
+
+    missao = session.query(MissaoDiaria).filter_by(
+        usuario_id=usuario_id,
+        titulo=titulo_missao
+    ).first()
+
+    if not missao:
+        return "Essa missão não está ativa hoje."
+
+    if missao.concluida == 1:
+        return "Missão já concluída."
+
+    missao.concluida = 1
+
+    adicionar_xp_nivel(
+        usuario_id,
+        missao.xp,
+        missao_feita=True
+    )
+
+    session.commit()
+
+    return "Missão concluída automaticamente."
+
+
+def atualizar_tempo_site(usuario_id, minutos):
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -251,19 +369,23 @@ def atualizar_tempo_site(usuario_id, minutos):
         return "Progresso não encontrado."
 
     horas = minutos / 60
-
     progresso.horas_totais += horas
 
     session.commit()
 
+    if progresso.horas_totais >= 0.5:
+        concluir_missao_por_evento(usuario_id, "estudar_30_minutos")
+
+    if progresso.horas_totais >= 1:
+        concluir_missao_por_evento(usuario_id, "estudar_1_hora")
+
+    if progresso.horas_totais >= 2:
+        concluir_missao_por_evento(usuario_id, "estudar_2_horas")
+
     return "Tempo atualizado com sucesso."
 
 
-# =========================
-# ADICIONAR XP DE QUIZ SEM FARM
-# =========================
 def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
-
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -299,14 +421,12 @@ def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
 
     session.commit()
 
+    concluir_missao_por_evento(usuario_id, "responder_quiz")
+
     return "XP Quiz atualizado com sucesso."
 
 
-# =========================
-# ADICIONAR XP DE NÍVEL
-# =========================
 def adicionar_xp_nivel(usuario_id, xp_ganho, missao_feita=False):
-
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -325,35 +445,23 @@ def adicionar_xp_nivel(usuario_id, xp_ganho, missao_feita=False):
     return "XP de nível atualizado com sucesso."
 
 
-# =========================
-# COMPATIBILIDADE COM ROTA ANTIGA
-# =========================
 def adicionar_xp(usuario_id, xp_ganho, quiz_id=None):
     return adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id)
 
 
-# =========================
-# PEGAR POSIÇÃO NO RANKING
-# =========================
 def pegar_posicao_ranking(usuario_id):
-
     ranking = session.query(Ranking).order_by(
         Ranking.pontos.desc()
     ).all()
 
     for posicao, item in enumerate(ranking, start=1):
-
         if item.usuario_id == usuario_id:
             return posicao
 
     return None
 
 
-# =========================
-# PEGAR DADOS DO PERFIL
-# =========================
 def pegar_dados_perfil(usuario_id):
-
     usuario = session.query(Usuario).filter_by(id=usuario_id).first()
 
     progresso = session.query(ProgressoUsuario).filter_by(
@@ -365,6 +473,9 @@ def pegar_dados_perfil(usuario_id):
 
     posicao = pegar_posicao_ranking(usuario_id)
 
+    missoes = pegar_missoes_usuario(usuario_id)
+    missoes_concluidas_hoje = sum(1 for missao in missoes if missao["concluida"] == 1)
+
     return {
         "usuario_id": usuario.id,
         "nome": usuario.nome,
@@ -375,15 +486,12 @@ def pegar_dados_perfil(usuario_id):
         "xp_quiz": progresso.xp_quiz,
         "horas_totais": round(progresso.horas_totais, 2),
         "missoes_realizadas": progresso.missoes_realizadas,
+        "missoes_concluidas_hoje": missoes_concluidas_hoje,
         "ranking": posicao
     }
 
 
-# =========================
-# SALVAR AVATAR
-# =========================
 def salvar_avatar(usuario_id, avatar):
-
     usuario = session.query(Usuario).filter_by(id=usuario_id).first()
 
     if not usuario:
@@ -395,11 +503,7 @@ def salvar_avatar(usuario_id, avatar):
     return "Avatar atualizado com sucesso."
 
 
-# =========================
-# LISTAR RANKING
-# =========================
 def listar_ranking():
-
     resultados = (
         session.query(Usuario, ProgressoUsuario)
         .join(ProgressoUsuario, Usuario.id == ProgressoUsuario.usuario_id)
@@ -414,7 +518,6 @@ def listar_ranking():
     ranking = []
 
     for posicao, (usuario, progresso) in enumerate(resultados, start=1):
-
         ranking.append({
             "posicao": posicao,
             "usuario_id": usuario.id,
@@ -430,11 +533,7 @@ def listar_ranking():
     return ranking
 
 
-# =========================
-# CADASTRAR CONTEÚDO
-# =========================
 def cadastrar_conteudo(titulo, autor, resumo, categoria, imagem, link):
-
     conteudo = Conteudo(
         titulo=titulo,
         autor=autor,
@@ -450,11 +549,7 @@ def cadastrar_conteudo(titulo, autor, resumo, categoria, imagem, link):
     return "Conteúdo cadastrado com sucesso."
 
 
-# =========================
-# SALVAR HISTÓRICO
-# =========================
 def salvar_historico(usuario_id, conteudo_id):
-
     historico = HistoricoConteudo(
         usuario_id=usuario_id,
         conteudo_id=conteudo_id
@@ -466,11 +561,7 @@ def salvar_historico(usuario_id, conteudo_id):
     return "Histórico salvo com sucesso."
 
 
-# =========================
-# FAVORITAR CONTEÚDO
-# =========================
 def favoritar_conteudo(usuario_id, conteudo_id):
-
     favorito_existente = session.query(Favorito).filter_by(
         usuario_id=usuario_id,
         conteudo_id=conteudo_id
@@ -487,14 +578,13 @@ def favoritar_conteudo(usuario_id, conteudo_id):
     session.add(favorito)
     session.commit()
 
+    concluir_missao_por_evento(usuario_id, "favoritar_conteudo")
+    concluir_missao_por_evento(usuario_id, "adicionar_favoritos")
+
     return "Conteúdo favoritado com sucesso."
 
 
-# =========================
-# SALVAR CHAT IA
-# =========================
 def salvar_chat(usuario_id, pergunta, resposta):
-
     chat = ChatHistorico(
         usuario_id=usuario_id,
         pergunta=pergunta,
@@ -504,14 +594,12 @@ def salvar_chat(usuario_id, pergunta, resposta):
     session.add(chat)
     session.commit()
 
+    concluir_missao_por_evento(usuario_id, "usar_chat_ia")
+
     return "Chat salvo com sucesso."
 
 
-# =========================
-# ATUALIZAR PROGRESSO GERAL
-# =========================
 def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=False):
-
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -532,11 +620,7 @@ def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=Fals
     return "Progresso atualizado com sucesso."
 
 
-# =========================
-# ADICIONAR PONTOS AO RANKING
-# =========================
 def adicionar_pontos_ranking(usuario_id, pontos):
-
     ranking = session.query(Ranking).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -556,11 +640,7 @@ def adicionar_pontos_ranking(usuario_id, pontos):
     return "Ranking atualizado com sucesso."
 
 
-# =========================
-# DELETAR USUÁRIO
-# =========================
 def deletar_usuario(email):
-
     usuario = session.query(Usuario).filter_by(email=email).first()
 
     if not usuario:
@@ -572,22 +652,14 @@ def deletar_usuario(email):
     return "Usuário deletado com sucesso."
 
 
-# =========================
-# LISTAR USUÁRIOS
-# =========================
 def listar_usuarios():
-
     usuarios = session.query(Usuario).all()
 
     for usuario in usuarios:
         print(usuario.id, usuario.nome, usuario.email)
 
 
-# =========================
-# VER RANKING
-# =========================
 def ver_ranking():
-
     ranking = listar_ranking()
 
     for usuario in ranking:
@@ -598,7 +670,6 @@ def ver_ranking():
             f"Nível {usuario['nivel']} - "
             f"{usuario['dias_consecutivos']} dias"
         )
-
 
 # =========================
 # TESTES
