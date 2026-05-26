@@ -40,7 +40,13 @@ class ProgressoUsuario(Base):
     ultimo_acesso = Column(DateTime)
 
     nivel = Column(Integer, default=0)
-    xp = Column(Integer, default=0)
+
+    # XP de evolução pessoal, ganho pelas metas diárias
+    xp_nivel = Column(Integer, default=0)
+
+    # XP competitivo, ganho nos quizzes e usado no ranking
+    xp_quiz = Column(Integer, default=0)
+
     horas_totais = Column(Float, default=0)
     missoes_realizadas = Column(Integer, default=0)
 
@@ -161,7 +167,8 @@ def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
         usuario_id=novo_usuario.id,
         dias_consecutivos=0,
         nivel=0,
-        xp=0,
+        xp_nivel=0,
+        xp_quiz=0,
         horas_totais=0,
         missoes_realizadas=0
     )
@@ -253,9 +260,9 @@ def atualizar_tempo_site(usuario_id, minutos):
 
 
 # =========================
-# ADICIONAR XP AO USUÁRIO SEM FARM
+# ADICIONAR XP DE QUIZ SEM FARM
 # =========================
-def adicionar_xp(usuario_id, xp_ganho, quiz_id=None):
+def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
 
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
@@ -285,15 +292,44 @@ def adicionar_xp(usuario_id, xp_ganho, quiz_id=None):
 
         session.add(novo_quiz_concluido)
 
-    progresso.xp += xp_ganho
-    progresso.nivel = progresso.xp // 100
+    progresso.xp_quiz += xp_ganho
 
     if ranking:
-        ranking.pontos = progresso.xp
+        ranking.pontos = progresso.xp_quiz
 
     session.commit()
 
-    return "XP atualizado com sucesso."
+    return "XP Quiz atualizado com sucesso."
+
+
+# =========================
+# ADICIONAR XP DE NÍVEL
+# =========================
+def adicionar_xp_nivel(usuario_id, xp_ganho, missao_feita=False):
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return "Progresso não encontrado."
+
+    progresso.xp_nivel += xp_ganho
+    progresso.nivel = progresso.xp_nivel // 100
+
+    if missao_feita:
+        progresso.missoes_realizadas += 1
+
+    session.commit()
+
+    return "XP de nível atualizado com sucesso."
+
+
+# =========================
+# COMPATIBILIDADE COM ROTA ANTIGA
+# =========================
+def adicionar_xp(usuario_id, xp_ganho, quiz_id=None):
+    return adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id)
 
 
 # =========================
@@ -335,7 +371,8 @@ def pegar_dados_perfil(usuario_id):
         "avatar": usuario.avatar,
         "dias_consecutivos": progresso.dias_consecutivos,
         "nivel": progresso.nivel,
-        "xp": progresso.xp,
+        "xp_nivel": progresso.xp_nivel,
+        "xp_quiz": progresso.xp_quiz,
         "horas_totais": round(progresso.horas_totais, 2),
         "missoes_realizadas": progresso.missoes_realizadas,
         "ranking": posicao
@@ -367,7 +404,7 @@ def listar_ranking():
         session.query(Usuario, ProgressoUsuario)
         .join(ProgressoUsuario, Usuario.id == ProgressoUsuario.usuario_id)
         .order_by(
-            ProgressoUsuario.xp.desc(),
+            ProgressoUsuario.xp_quiz.desc(),
             ProgressoUsuario.nivel.desc(),
             ProgressoUsuario.dias_consecutivos.desc()
         )
@@ -384,7 +421,9 @@ def listar_ranking():
             "nome": usuario.nome,
             "avatar": usuario.avatar,
             "nivel": progresso.nivel,
-            "xp": progresso.xp,
+            "xp": progresso.xp_quiz,
+            "xp_quiz": progresso.xp_quiz,
+            "xp_nivel": progresso.xp_nivel,
             "dias_consecutivos": progresso.dias_consecutivos
         })
 
@@ -477,23 +516,16 @@ def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=Fals
         usuario_id=usuario_id
     ).first()
 
-    ranking = session.query(Ranking).filter_by(
-        usuario_id=usuario_id
-    ).first()
-
     if not progresso:
         return "Progresso não encontrado."
 
-    progresso.xp += xp_ganho
+    progresso.xp_nivel += xp_ganho
     progresso.horas_totais += horas_estudadas
 
     if missao_feita:
         progresso.missoes_realizadas += 1
 
-    progresso.nivel = progresso.xp // 100
-
-    if ranking:
-        ranking.pontos = progresso.xp
+    progresso.nivel = progresso.xp_nivel // 100
 
     session.commit()
 
@@ -509,10 +541,15 @@ def adicionar_pontos_ranking(usuario_id, pontos):
         usuario_id=usuario_id
     ).first()
 
-    if not ranking:
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not ranking or not progresso:
         return "Ranking não encontrado."
 
-    ranking.pontos += pontos
+    progresso.xp_quiz += pontos
+    ranking.pontos = progresso.xp_quiz
 
     session.commit()
 
@@ -557,7 +594,7 @@ def ver_ranking():
         print(
             f"{usuario['posicao']}º lugar - "
             f"{usuario['nome']} - "
-            f"{usuario['xp']} XP - "
+            f"{usuario['xp_quiz']} XP Quiz - "
             f"Nível {usuario['nivel']} - "
             f"{usuario['dias_consecutivos']} dias"
         )
@@ -577,7 +614,7 @@ def ver_ranking():
 # ))
 
 # deletar usuário
-# print(deletar_usuario("mvbs.1711@gmail.com"))
+# print(deletar_usuario("tvonline242526@gmail.coma"))
 
 # listar usuários
 # listar_usuarios()

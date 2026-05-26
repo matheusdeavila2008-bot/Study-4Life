@@ -57,6 +57,7 @@ nav a:hover {
   width: 65px;
   background: #2a2a2a;
   margin-right: 30px;
+  text-decoration: none;
 }
 
 .menu-icon {
@@ -227,7 +228,7 @@ span {
     overflow-x: hidden;
   }
 
- header {
+  header {
     margin-bottom: 0;
   }
 

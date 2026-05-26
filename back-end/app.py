@@ -7,7 +7,8 @@ from banco import (
     registrar_acesso_usuario,
     pegar_dados_perfil,
     atualizar_tempo_site,
-    adicionar_xp,
+    adicionar_xp_quiz,
+    adicionar_xp_nivel,
     salvar_avatar,
     listar_ranking
 )
@@ -118,7 +119,7 @@ def rota_tempo():
 
 
 # =========================
-# GANHAR XP NO QUIZ SEM FARM
+# GANHAR XP QUIZ SEM FARM
 # =========================
 @app.route("/quiz/xp", methods=["POST"])
 def rota_xp_quiz():
@@ -129,10 +130,32 @@ def rota_xp_quiz():
     xp_ganho = dados["xp_ganho"]
     quiz_id = dados["quiz_id"]
 
-    resultado = adicionar_xp(
+    resultado = adicionar_xp_quiz(
         usuario_id,
         xp_ganho,
         quiz_id
+    )
+
+    return jsonify({
+        "mensagem": resultado
+    })
+
+
+# =========================
+# GANHAR XP DE NÍVEL POR MISSÃO
+# =========================
+@app.route("/missao/xp", methods=["POST"])
+def rota_xp_missao():
+
+    dados = request.get_json()
+
+    usuario_id = dados["usuario_id"]
+    xp_ganho = dados["xp_ganho"]
+
+    resultado = adicionar_xp_nivel(
+        usuario_id,
+        xp_ganho,
+        missao_feita=True
     )
 
     return jsonify({

@@ -55,11 +55,15 @@
           <div class="progressooi" id="progressoFoco"></div>
           <h1 id="tempoFoco">25:00</h1>
         </div>
+
         <div class="botoes">
-          <button onclick="iniciarFoco()"><img src="play.png" /></button>
-          <button onclick="pausar()"><img src="pause.png" /></button>
-          <button onclick="resetar()"><img src="refresh.png" /></button>
+          <button onclick="iniciarFoco()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M320-200v-560l440 280-440 280Z"/></svg></button>
+
+          <button onclick="pausar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg></button>
+
+          <button onclick="resetar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z"/></svg></button>
         </div>
+
       </section>
       <!-- area do descanso -->
       <section class="caixa2">
@@ -68,11 +72,15 @@
           <div class="progressooi" id="progressoDescanso"></div>
           <h1 id="tempoDescanso">05:00</h1>
         </div>
+
         <div class="botoes">
-          <button onclick="iniciarDescanso()"><img src="play.png" /></button>
-          <button onclick="pausar()"><img src="pause.png" /></button>
-          <button onclick="resetar()"><img src="refresh.png" /></button>
+          <button onclick="iniciarDescanso()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M320-200v-560l440 280-440 280Z"/></svg></button>
+
+          <button onclick="pausar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg></button>
+          
+          <button onclick="resetar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z"/></svg></button>
         </div>
+
       </section>
     </div>
   </main>
@@ -80,6 +88,7 @@
   <!-- alarme para tocar apos o termino dos minutos definidos -->
   <audio id="alarme" src="universfield-ringtone-047-494553.mp3"></audio>
 
+  <script src="avatarHeader.js"></script>
   <script src="contadorTempo.js"></script>
   <script src="protegerPagina.js"></script>
   <script src="scriptFoco.js"></script>
