@@ -11,55 +11,57 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-MISSOES_DISPONIVEIS = [
+MISSOES = [
+    ("Estudar por 30 minutos", 40),
     ("Estudar por 1 hora", 60),
+    ("Estudar por 2 horas", 120),
     ("Concluir 1 aula", 80),
-    ("Responder Quiz", 40),
-    ("Entrar no site hoje", 20),
-    ("Acessar a biblioteca", 30),
+    ("Responder um quiz", 50),
+    ("Concluir 2 quizzes", 90),
+    ("Acertar 10 perguntas", 100),
     ("Favoritar conteúdo", 35),
-    ("Ler resumo", 25),
-    ("Estudar Matemática", 45),
-    ("Estudar Português", 45),
-    ("Estudar Ciências", 45),
-    ("Abrir o ranking", 20),
-    ("Usar StudyChat.IA", 50),
-    ("Fazer 5 perguntas IA", 60),
-    ("Estudar 30 minutos", 30),
-    ("Estudar 2 horas", 100),
-    ("Concluir 2 quizzes", 80),
-    ("Manter sequência diária", 120),
     ("Abrir área de foco", 30),
-    ("Fazer revisão", 50),
-    ("Adicionar aos favoritos", 35),
-    ("Completar 3 ações", 70)
+    ("Usar timer foco", 60),
+    ("Entrar no site hoje", 20),
+    ("Estudar Matemática", 70),
+    ("Estudar Português", 70),
+    ("Estudar Ciências", 70),
+    ("Estudar Geografia", 70),
+    ("Estudar Filosofia", 70),
+    ("Estudar História", 70),
+    ("Estudar Física", 70),
+    ("Estudar Química", 70),
+    ("Estudar Redação", 70),
+    ("Estudar Biologia", 70),
+    ("Estudar Línguas Estrangeiras", 70),
+    ("Estudar Tecnologias", 70),
 ]
 
-
 MAPA_EVENTOS_MISSOES = {
+    "estudar_30_minutos": "Estudar por 30 minutos",
     "estudar_1_hora": "Estudar por 1 hora",
+    "estudar_2_horas": "Estudar por 2 horas",
     "concluir_1_aula": "Concluir 1 aula",
-    "responder_quiz": "Responder Quiz",
-    "entrar_site": "Entrar no site hoje",
-    "abrir_biblioteca": "Acessar a biblioteca",
+    "responder_quiz": "Responder um quiz",
+    "concluir_2_quizzes": "Concluir 2 quizzes",
+    "acertar_10_perguntas": "Acertar 10 perguntas",
     "favoritar_conteudo": "Favoritar conteúdo",
-    "ler_resumo": "Ler resumo",
+    "abrir_foco": "Abrir área de foco",
+    "usar_timer_foco": "Usar timer foco",
+    "entrar_site": "Entrar no site hoje",
     "estudar_matematica": "Estudar Matemática",
     "estudar_portugues": "Estudar Português",
     "estudar_ciencias": "Estudar Ciências",
-    "abrir_ranking": "Abrir o ranking",
-    "usar_chat_ia": "Usar StudyChat.IA",
-    "fazer_5_perguntas_ia": "Fazer 5 perguntas IA",
-    "estudar_30_minutos": "Estudar 30 minutos",
-    "estudar_2_horas": "Estudar 2 horas",
-    "concluir_2_quizzes": "Concluir 2 quizzes",
-    "manter_sequencia": "Manter sequência diária",
-    "abrir_foco": "Abrir área de foco",
-    "fazer_revisao": "Fazer revisão",
-    "adicionar_favoritos": "Adicionar aos favoritos",
-    "completar_3_acoes": "Completar 3 ações"
+    "estudar_geografia": "Estudar Geografia",
+    "estudar_filosofia": "Estudar Filosofia",
+    "estudar_historia": "Estudar História",
+    "estudar_fisica": "Estudar Física",
+    "estudar_quimica": "Estudar Química",
+    "estudar_redacao": "Estudar Redação",
+    "estudar_biologia": "Estudar Biologia",
+    "estudar_linguas": "Estudar Línguas Estrangeiras",
+    "estudar_tecnologias": "Estudar Tecnologias",
 }
-
 
 class Usuario(Base):
     __tablename__ = "usuarios"
@@ -229,23 +231,24 @@ def registrar_acesso_usuario(usuario_id):
 
     if not progresso.ultimo_acesso:
         progresso.dias_consecutivos = 1
-        progresso.ultimo_acesso = datetime.now()
-        session.commit()
-        return progresso
-
-    ultimo_dia = progresso.ultimo_acesso.date()
-
-    if ultimo_dia == hoje:
-        return progresso
-
-    elif ultimo_dia == hoje - timedelta(days=1):
-        progresso.dias_consecutivos += 1
 
     else:
-        progresso.dias_consecutivos = 1
+        ultimo_dia = progresso.ultimo_acesso.date()
+
+        if ultimo_dia == hoje:
+            concluir_missao_por_evento(usuario_id, "entrar_site")
+            return progresso
+
+        elif ultimo_dia == hoje - timedelta(days=1):
+            progresso.dias_consecutivos += 1
+
+        else:
+            progresso.dias_consecutivos = 1
 
     progresso.ultimo_acesso = datetime.now()
     session.commit()
+
+    concluir_missao_por_evento(usuario_id, "entrar_site")
 
     return progresso
 
@@ -268,7 +271,7 @@ def gerar_missoes_diarias(usuario_id):
 
         session.commit()
 
-    missoes_sorteadas = random.sample(MISSOES_DISPONIVEIS, 3)
+    missoes_sorteadas = random.sample(MISSOES, 3)
 
     for titulo, xp in missoes_sorteadas:
         nova_missao = MissaoDiaria(
@@ -579,7 +582,6 @@ def favoritar_conteudo(usuario_id, conteudo_id):
     session.commit()
 
     concluir_missao_por_evento(usuario_id, "favoritar_conteudo")
-    concluir_missao_por_evento(usuario_id, "adicionar_favoritos")
 
     return "Conteúdo favoritado com sucesso."
 
@@ -594,7 +596,6 @@ def salvar_chat(usuario_id, pergunta, resposta):
     session.add(chat)
     session.commit()
 
-    concluir_missao_por_evento(usuario_id, "usar_chat_ia")
 
     return "Chat salvo com sucesso."
 

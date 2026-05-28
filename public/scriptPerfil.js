@@ -142,13 +142,9 @@ async function carregarMissoesDiarias() {
 
     areaMissoes.innerHTML += `
       <div class="missao ${concluida ? "missao-concluida" : ""}">
-        <button
-          class="missao-left"
-          onclick="concluirMissao(${missao.id})"
-          ${concluida ? "disabled" : ""}
-        >
+        <div class="missao-left">
           <span>${concluida ? "✅" : ""} ${missao.titulo}</span>
-        </button>
+        </div>
 
         <div class="recompensa">
           ${concluida ? "Concluída" : `+${missao.xp} XP`}
@@ -156,37 +152,6 @@ async function carregarMissoesDiarias() {
       </div>
     `;
   });
-}
-
-
-// =========================
-// CONCLUIR MISSÃO
-// =========================
-async function concluirMissao(missaoId) {
-  const usuarioId = localStorage.getItem("usuario_id");
-
-  if (!usuarioId) {
-    alert("Usuário não encontrado.");
-    return;
-  }
-
-  const resposta = await fetch("http://127.0.0.1:5000/missoes/concluir", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      usuario_id: usuarioId,
-      missao_id: missaoId
-    })
-  });
-
-  const resultado = await resposta.json();
-
-  console.log(resultado.mensagem);
-
-  await carregarProgressoUsuario();
-  await carregarMissoesDiarias();
 }
 
 
@@ -220,7 +185,6 @@ async function carregarProgressoUsuario() {
   }
 
   document.getElementById("dias").textContent = dados.dias_consecutivos;
-
   document.getElementById("boxNivel").textContent = dados.nivel;
 
   const horasFormatadas = String(
@@ -228,9 +192,7 @@ async function carregarProgressoUsuario() {
   ).padStart(2, "0");
 
   document.getElementById("horas").textContent = `${horasFormatadas}h`;
-
   document.getElementById("ranking").textContent = `#${dados.ranking}`;
-
   document.getElementById("feitas").textContent = dados.missoes_concluidas_hoje;
 
   if (document.getElementById("xpQuiz")) {
