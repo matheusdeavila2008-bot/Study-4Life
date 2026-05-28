@@ -26,10 +26,11 @@ let tempoDescanso = tempoTotalDescanso;
 let modo = "foco";
 let intervalo = null;
 
-// FORMATAR 
+// FORMATAR
 function formatarTempo(segundos) {
   let min = Math.floor(segundos / 60);
   let sec = segundos % 60;
+
   return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 }
 
@@ -64,6 +65,7 @@ function atualizarTela() {
 
 function tocarAlarme() {
   const audio = document.getElementById("alarme");
+
   if (audio) {
     audio.currentTime = 0;
     audio.play();
@@ -73,21 +75,31 @@ function tocarAlarme() {
 // salvar
 function salvarEstado() {
   localStorage.setItem("modo", modo);
-  localStorage.setItem("fim", Date.now() + getTempoAtual() * 1000);
+
+  localStorage.setItem(
+    "fim",
+    Date.now() + getTempoAtual() * 1000
+  );
 }
 
 // tempo atual
 function getTempoAtual() {
-  return modo === "foco" ? tempoFoco : tempoDescanso;
+  return modo === "foco"
+    ? tempoFoco
+    : tempoDescanso;
 }
 
 function iniciarTimer() {
   if (intervalo) return;
 
+  // MISSÃO: usar timer foco
+  if (typeof registrarEventoMissao === "function") {
+    registrarEventoMissao("usar_timer_foco");
+  }
+
   salvarEstado();
 
   intervalo = setInterval(() => {
-
     if (modo === "foco") {
       if (tempoFoco > 0) {
         tempoFoco--;
@@ -95,30 +107,40 @@ function iniciarTimer() {
         tocarAlarme();
 
         setTimeout(() => {
-          alert("Tempo de foco acabou! Hora do descanso!");
+          alert(
+            "Tempo de foco acabou! Hora do descanso!"
+          );
         }, 500);
 
         modo = "descanso";
-        tempoDescanso = tempoTotalDescanso;
+
+        tempoDescanso =
+          tempoTotalDescanso;
+
         salvarEstado();
       }
-    }
 
-    else {
+    } else {
       if (tempoDescanso > 0) {
         tempoDescanso--;
       } else {
         tocarAlarme();
 
         setTimeout(() => {
-          alert("Descanso acabou! Volte ao foco!");
+          alert(
+            "Descanso acabou! Volte ao foco!"
+          );
         }, 500);
 
         modo = "foco";
-        tempoFoco = tempoTotalFoco;
+
+        tempoFoco =
+          tempoTotalFoco;
+
         salvarEstado();
       }
     }
+
     atualizarTela();
 
   }, 1000);
@@ -137,32 +159,43 @@ function iniciarDescanso() {
 
 function pausar() {
   clearInterval(intervalo);
+
   intervalo = null;
+
   localStorage.removeItem("fim");
 }
 
 function resetar() {
   clearInterval(intervalo);
+
   intervalo = null;
 
   tempoFoco = tempoTotalFoco;
   tempoDescanso = tempoTotalDescanso;
+
   modo = "foco";
 
   localStorage.clear();
+
   atualizarTela();
 }
 
 function recuperarEstado() {
-  const fim = localStorage.getItem("fim");
-  const modoSalvo = localStorage.getItem("modo");
+  const fim =
+    localStorage.getItem("fim");
+
+  const modoSalvo =
+    localStorage.getItem("modo");
 
   if (!fim || !modoSalvo) return;
 
-  let restante = Math.floor((fim - Date.now()) / 1000);
+  let restante = Math.floor(
+    (fim - Date.now()) / 1000
+  );
 
   if (restante <= 0) {
     localStorage.clear();
+
     return;
   }
 
@@ -179,3 +212,8 @@ function recuperarEstado() {
 
 recuperarEstado();
 atualizarTela();
+
+// MISSÃO: abrir área de foco
+if (typeof registrarEventoMissao === "function") {
+  registrarEventoMissao("abrir_foco");
+}

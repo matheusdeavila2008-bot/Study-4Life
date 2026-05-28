@@ -2,6 +2,7 @@ async function registrarEventoMissao(evento) {
   const usuarioId = localStorage.getItem("usuario_id");
 
   if (!usuarioId) {
+    console.log("Usuário não encontrado.");
     return;
   }
 
@@ -18,5 +19,8 @@ async function registrarEventoMissao(evento) {
 
   const resultado = await resposta.json();
 
-  console.log(resultado.mensagem);
+  console.log("Evento:", evento);
+  console.log("Resposta:", resultado.mensagem);
+
+  return resultado;
 }

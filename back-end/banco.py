@@ -260,18 +260,44 @@ def gerar_missoes_diarias(usuario_id):
         usuario_id=usuario_id
     ).all()
 
-    if missoes_existentes:
-        data_existente = missoes_existentes[0].data_missao.date()
+    # apaga missões antigas
+    for missao in missoes_existentes:
+        if missao.data_missao.date() != hoje:
+            session.delete(missao)
 
-        if data_existente == hoje:
-            return
+    session.commit()
 
-        for missao in missoes_existentes:
+    # pega missões de hoje
+    missoes_hoje = session.query(MissaoDiaria).filter_by(
+        usuario_id=usuario_id
+    ).all()
+
+    # se já tiver mais de 3, remove as extras
+    if len(missoes_hoje) > 3:
+        for missao in missoes_hoje[3:]:
             session.delete(missao)
 
         session.commit()
+        return
 
-    missoes_sorteadas = random.sample(MISSOES, 3)
+    # se já tiver exatamente 3, não cria mais
+    if len(missoes_hoje) == 3:
+        return
+
+    # cria somente o que falta para completar 3
+    quantidade_faltando = 3 - len(missoes_hoje)
+
+    titulos_existentes = [missao.titulo for missao in missoes_hoje]
+
+    missoes_disponiveis = [
+        missao for missao in MISSOES
+        if missao[0] not in titulos_existentes
+    ]
+
+    missoes_sorteadas = random.sample(
+        missoes_disponiveis,
+        quantidade_faltando
+    )
 
     for titulo, xp in missoes_sorteadas:
         nova_missao = MissaoDiaria(
