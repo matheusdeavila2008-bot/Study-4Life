@@ -297,6 +297,18 @@ nav a:hover {
   font-weight: 700;
 }
 
+.missao button {
+  background: transparent;
+  border: none;
+  color: #7ed957;
+  font-size: 18px;
+}
+
+.missao button:disabled {
+  opacity: 1;
+  color: #7ed957;
+}
+
 /*responsividade*/
 @media (max-width: 800px) {
   body {

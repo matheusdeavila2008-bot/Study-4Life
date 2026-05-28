@@ -124,6 +124,13 @@ async function finalizarQuiz() {
   if (aprovado) {
     xpGanho = acertos * 100;
     mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
+
+    registrarEventoMissao("responder_quiz");
+    registrarEventoMissao("estudar_portugues");
+
+    if (acertos >= 10) {
+      registrarEventoMissao("acertar_10_perguntas");
+    }
   }
 
   document.getElementById("conteudoQuiz").innerHTML = `
@@ -139,9 +146,12 @@ async function finalizarQuiz() {
             </p>
 
             <p class="aprovado">
-              ${mensagemXp === "XP atualizado com sucesso."
-                ? `Você ganhou ${xpGanho} XP.`
-                : mensagemXp}
+              ${
+                mensagemXp === "XP Quiz atualizado com sucesso." ||
+                mensagemXp === "XP atualizado com sucesso."
+                  ? `Você ganhou ${xpGanho} XP Quiz.`
+                  : mensagemXp
+              }
             </p>
 
             <button class="btn-voltar" onclick="voltarFases()">

@@ -1,13 +1,13 @@
 // perguntas quiz ciencias
 const questoes = [
   {
-    imagem: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dttps://picsum.photos/900/400?1",
+    imagem: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual é a unidade básica da vida?",
     respostas: ["Átomo", "Célula", "Molécula", "Tecido"],
     correta: 1,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1722707492894-2839a324624e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'ttps://picsum.photos/900/400?2",
+    imagem: "https://plus.unsplash.com/premium_photo-1722707492894-2839a324624e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual órgão do corpo humano bombeia o sangue?",
     respostas: ["Pulmão", "Fígado", "Coração", "Rim"],
     correta: 2,
@@ -57,10 +57,17 @@ const questoes = [
   {
     imagem: "https://plus.unsplash.com/premium_photo-1661713818588-8210ce5880e5?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "O que os seres vivos precisam para sobreviver?",
-    respostas: ["Apenas luz", "Apenas água", "Energia e recursos do ambiente", "Apenas ar"],
+    respostas: [
+      "Apenas luz",
+      "Apenas água",
+      "Energia e recursos do ambiente",
+      "Apenas ar"
+    ],
     correta: 2,
   },
 ];
+
+const QUIZ_ID = "ciencias-lvl-1";
 
 let atual = 0;
 let acertos = 0;
@@ -80,14 +87,19 @@ function carregarQuestao() {
 
   q.respostas.forEach((texto, indice) => {
     const btn = document.createElement("button");
+
     btn.textContent = texto;
+
     btn.onclick = () => responder(btn, indice);
+
     area.appendChild(btn);
   });
 }
 
 function responder(botao, indice) {
+
   const correta = questoes[atual].correta;
+
   const botoes = document.querySelectorAll(".respostas button");
 
   botoes.forEach((btn) => {
@@ -95,36 +107,84 @@ function responder(botao, indice) {
   });
 
   if (indice === correta) {
+
     botao.classList.add("correta");
+
     acertos++;
+
   } else {
+
     botao.classList.add("errada");
+
     botoes[correta].classList.add("correta");
   }
 
   setTimeout(() => {
+
     atual++;
 
     if (atual < questoes.length) {
+
       carregarQuestao();
+
     } else {
+
       finalizarQuiz();
     }
+
   }, 1000);
 }
 
-function finalizarQuiz() {
+async function finalizarQuiz() {
+
   const aprovado = acertos >= 7;
+
+  let xpGanho = 0;
+
+  let mensagemXp = "";
+
+  if (aprovado) {
+
+    xpGanho = acertos * 100;
+
+    mensagemXp = await adicionarXpQuiz(
+      xpGanho,
+      QUIZ_ID
+    );
+
+    // MISSÕES
+    registrarEventoMissao("responder_quiz");
+    registrarEventoMissao("estudar_ciencias");
+
+    if (acertos >= 10) {
+      registrarEventoMissao("acertar_10_perguntas");
+    }
+  }
 
   document.getElementById("conteudoQuiz").innerHTML = `
     <div class="final">
+
       <h2>Quiz Finalizado 🎉</h2>
-      <p>Você acertou ${acertos} de ${questoes.length} questões.</p>
+
+      <p>
+        Você acertou ${acertos} de ${questoes.length} questões.
+      </p>
 
       ${
         aprovado
           ? `
-            <p class="aprovado">Parabéns! Você concluiu esse level</p>
+            <p class="aprovado">
+              Parabéns! Você concluiu esse level
+            </p>
+
+            <p class="aprovado">
+              ${
+                mensagemXp === "XP Quiz atualizado com sucesso." ||
+                mensagemXp === "XP atualizado com sucesso."
+                  ? `Você ganhou ${xpGanho} XP Quiz.`
+                  : mensagemXp
+              }
+            </p>
 
             <button class="btn-voltar" onclick="voltarFases()">
               Voltar para Fases
@@ -136,6 +196,7 @@ function finalizarQuiz() {
             </p>
 
             <div class="acoes-finais">
+
               <button class="btn-retry" onclick="reiniciarQuiz()">
                 Tentar Novamente
               </button>
@@ -143,13 +204,16 @@ function finalizarQuiz() {
               <button class="btn-voltar" onclick="voltarFases()">
                 Voltar para Fases
               </button>
+
             </div>
           `
       }
+
     </div>
   `;
 
   document.getElementById("contador").textContent = "10/10";
+
   document.getElementById("barra").style.width = "100%";
 }
 
@@ -158,7 +222,9 @@ function voltarFases() {
 }
 
 function reiniciarQuiz() {
+
   atual = 0;
+
   acertos = 0;
 
   document.getElementById("conteudoQuiz").innerHTML = `

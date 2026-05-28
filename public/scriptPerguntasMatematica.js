@@ -63,6 +63,8 @@ const questoes = [
   },
 ];
 
+const QUIZ_ID = "matematica-lvl-1";
+
 let atual = 0;
 let acertos = 0;
 
@@ -114,8 +116,28 @@ function responder(botao, indice) {
   }, 1000);
 }
 
-function finalizarQuiz() {
+async function finalizarQuiz() {
   const aprovado = acertos >= 7;
+
+  let xpGanho = 0;
+  let mensagemXp = "";
+
+  if (aprovado) {
+    xpGanho = acertos * 100;
+
+    mensagemXp = await adicionarXpQuiz(
+      xpGanho,
+      QUIZ_ID
+    );
+
+    // MISSÕES
+    registrarEventoMissao("responder_quiz");
+    registrarEventoMissao("estudar_matematica");
+
+    if (acertos >= 10) {
+      registrarEventoMissao("acertar_10_perguntas");
+    }
+  }
 
   document.getElementById("conteudoQuiz").innerHTML = `
     <div class="final">
@@ -125,7 +147,18 @@ function finalizarQuiz() {
       ${
         aprovado
           ? `
-            <p class="aprovado">Parabéns! Você concluiu esse level.</p>
+            <p class="aprovado">
+              Parabéns! Você concluiu esse level.
+            </p>
+
+            <p class="aprovado">
+              ${
+                mensagemXp === "XP Quiz atualizado com sucesso." ||
+                mensagemXp === "XP atualizado com sucesso."
+                  ? `Você ganhou ${xpGanho} XP Quiz.`
+                  : mensagemXp
+              }
+            </p>
 
             <button class="btn-voltar" onclick="voltarFases()">
               Voltar para Fases

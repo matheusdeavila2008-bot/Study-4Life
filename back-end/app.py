@@ -12,7 +12,8 @@ from banco import (
     salvar_avatar,
     listar_ranking,
     pegar_missoes_usuario,
-    concluir_missao
+    concluir_missao,
+    concluir_missao_por_evento
 )
 
 app = Flask(__name__)
@@ -177,7 +178,7 @@ def rota_missoes(usuario_id):
 
 
 # =========================
-# CONCLUIR MISSÃO DIÁRIA
+# CONCLUIR MISSÃO DIÁRIA MANUAL
 # =========================
 @app.route("/missoes/concluir", methods=["POST"])
 def rota_concluir_missao():
@@ -190,6 +191,27 @@ def rota_concluir_missao():
     resultado = concluir_missao(
         usuario_id,
         missao_id
+    )
+
+    return jsonify({
+        "mensagem": resultado
+    })
+
+
+# =========================
+# CONCLUIR MISSÃO POR EVENTO AUTOMÁTICO
+# =========================
+@app.route("/missao/evento", methods=["POST"])
+def rota_evento_missao():
+
+    dados = request.get_json()
+
+    usuario_id = dados["usuario_id"]
+    evento = dados["evento"]
+
+    resultado = concluir_missao_por_evento(
+        usuario_id,
+        evento
     )
 
     return jsonify({

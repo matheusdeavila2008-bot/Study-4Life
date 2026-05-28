@@ -2,25 +2,21 @@
 const menu = document.getElementById("menuLateral");
 const menuIcon = document.querySelector(".menu-icon");
 
-// abrir menu
 function openMenu() {
   menu.classList.add("active");
 }
 
-// fechar menu
 function closeMenu() {
   menu.classList.remove("active");
 }
 
-// fechar ao clicar fora
 document.addEventListener("click", (e) => {
   if (!menu.contains(e.target) && !menuIcon.contains(e.target)) {
     menu.classList.remove("active");
   }
 });
 
-// catalogo
-
+// catálogo
 const wrappers = document.querySelectorAll(".trilho-wrapper");
 
 wrappers.forEach((wrapper) => {
@@ -50,6 +46,7 @@ wrappers.forEach((wrapper) => {
     posicaoAtual += larguraDoCard();
 
     const limite = maximoDeslocamento();
+
     if (posicaoAtual > limite) {
       posicaoAtual = limite;
     }
@@ -81,21 +78,16 @@ wrappers.forEach((wrapper) => {
 // menu lateral das categorias
 const menuCategorias = document.getElementById("menuCategorias");
 
-// abrir menu das categorias
 function openCategorias() {
   menuCategorias.classList.add("active");
 }
 
-// fechar menu das categorias
 function closeCategorias() {
   menuCategorias.classList.remove("active");
 }
 
-// fechar menu ao clicar fora
 document.addEventListener("click", (e) => {
-  const botaoCategorias = document.querySelector(
-    '[onclick="openCategorias()"]',
-  );
+  const botaoCategorias = document.querySelector('[onclick="openCategorias()"]');
 
   if (
     menuCategorias &&
@@ -148,6 +140,8 @@ function salvarSemDuplicar(nomeLista, conteudo) {
     lista.push(conteudo);
     salvarLista(nomeLista, lista);
   }
+
+  return !jaExiste;
 }
 
 cardsModal.forEach((card) => {
@@ -187,26 +181,40 @@ cardsModal.forEach((card) => {
   });
 });
 
+// favoritar conteúdo
 btnFavoritar.addEventListener("click", () => {
   if (conteudoAtual) {
-    salvarSemDuplicar("favoritos", conteudoAtual);
+    const salvouAgora = salvarSemDuplicar("favoritos", conteudoAtual);
+
     btnFavoritar.innerHTML = "★ Favoritado";
+
+    if (salvouAgora) {
+      registrarEventoMissao("favoritar_conteudo");
+    }
+
+    alert("Favoritado com Sucesso");
   }
 });
 
+// acessar conteúdo / concluir 1 aula
 modalLink.addEventListener("click", () => {
   if (conteudoAtual) {
+    registrarEventoMissao("concluir_1_aula");
+
     salvarSemDuplicar("historico", conteudoAtual);
     fecharModalFuncao();
   }
 });
 
+// botão concluir
 btnConcluir.addEventListener("click", () => {
   if (!conteudoAtual) return;
 
   btnConcluir.innerHTML = "✓ Concluído";
 
   localStorage.setItem("concluido_" + conteudoAtual.id, "true");
+
+  alert("Concluido com Sucesso");
 });
 
 function fecharModalFuncao() {
@@ -226,12 +234,4 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modalOverlay.classList.contains("ativo")) {
     fecharModalFuncao();
   }
-});
-
-document.querySelector("#btnFavoritar").addEventListener("click", () => {
-  alert("Favoritado com Sucesso");
-});
-
-document.querySelector("#btnConcluir").addEventListener("click", () => {
-  alert("Concluido com Sucesso");
 });
