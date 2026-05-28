@@ -168,7 +168,9 @@ cardsModal.forEach((card) => {
 
     btnFavoritar.innerHTML = "★ Favoritar";
 
-    const estaConcluido = localStorage.getItem("concluido_" + conteudoAtual.id);
+    const estaConcluido = localStorage.getItem(
+      "concluido_" + conteudoAtual.id
+    );
 
     if (estaConcluido === "true") {
       btnConcluir.innerHTML = "✓ Concluído";
@@ -184,7 +186,10 @@ cardsModal.forEach((card) => {
 // favoritar conteúdo
 btnFavoritar.addEventListener("click", () => {
   if (conteudoAtual) {
-    const salvouAgora = salvarSemDuplicar("favoritos", conteudoAtual);
+    const salvouAgora = salvarSemDuplicar(
+      "favoritos",
+      conteudoAtual
+    );
 
     btnFavoritar.innerHTML = "★ Favoritado";
 
@@ -196,12 +201,11 @@ btnFavoritar.addEventListener("click", () => {
   }
 });
 
-// acessar conteúdo / concluir 1 aula
+// acessar conteúdo
 modalLink.addEventListener("click", () => {
   if (conteudoAtual) {
-    registrarEventoMissao("concluir_1_aula");
-
     salvarSemDuplicar("historico", conteudoAtual);
+
     fecharModalFuncao();
   }
 });
@@ -210,11 +214,27 @@ modalLink.addEventListener("click", () => {
 btnConcluir.addEventListener("click", () => {
   if (!conteudoAtual) return;
 
+  // salva nos concluídos sem duplicar
+  const salvouAgora = salvarSemDuplicar(
+    "concluidos",
+    conteudoAtual
+  );
+
+  // altera visual do botão
   btnConcluir.innerHTML = "✓ Concluído";
 
-  localStorage.setItem("concluido_" + conteudoAtual.id, "true");
+  // salva estado individual
+  localStorage.setItem(
+    "concluido_" + conteudoAtual.id,
+    "true"
+  );
 
-  alert("Concluido com Sucesso");
+  // missão
+  if (salvouAgora) {
+    registrarEventoMissao("concluir_1_aula");
+  }
+
+  alert("Concluído com Sucesso");
 });
 
 function fecharModalFuncao() {

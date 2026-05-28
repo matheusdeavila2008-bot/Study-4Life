@@ -1,63 +1,94 @@
 // perguntas quiz portugues
 const questoes = [
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1725075086642-584ef254b39c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1725075086642-584ef254b39c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual palavra é um substantivo?",
     respostas: ["Correr", "Bonito", "Casa", "Rapidamente"],
     correta: 2,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1663040081470-397e31e4b2a6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1663040081470-397e31e4b2a6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual palavra é um verbo?",
     respostas: ["Escola", "Estudar", "Azul", "Feliz"],
     correta: 1,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1540479859555-17af45c78602?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2lkc3xlbnwwfHwwfHx8MA%3D%3D",
+    imagem:
+      "https://images.unsplash.com/photo-1540479859555-17af45c78602?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2lkc3xlbnwwfHwwfHx8MA%3D%3D",
     pergunta: "Em qual frase o uso do plural está correto?",
-    respostas: ["Os menino brinca.", "As casa são grandes.", "Os meninos brincam.", "A meninas canta."],
+    respostas: [
+      "Os menino brinca.",
+      "As casa são grandes.",
+      "Os meninos brincam.",
+      "A meninas canta.",
+    ],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1695238668015-7bc526956af7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://images.unsplash.com/photo-1695238668015-7bc526956af7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual palavra é um adjetivo?",
     respostas: ["Mesa", "Belo", "Andar", "Ontem"],
     correta: 1,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1705018501151-4045c97658a3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://plus.unsplash.com/premium_photo-1705018501151-4045c97658a3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual é o pronome da frase: “Ela chegou cedo”?",
     respostas: ["Chegou", "Cedo", "Ela", "Frase"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1525255946160-aac47911684e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJvYXJkfGVufDB8fDB8fHww",
+    imagem:
+      "https://images.unsplash.com/photo-1525255946160-aac47911684e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJvYXJkfGVufDB8fDB8fHww",
     pergunta: "Qual palavra está escrita corretamente?",
     respostas: ["Exceção", "Eseção", "Exessão", "Excessão"],
     correta: 0,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1558487085-3602292ea018?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://images.unsplash.com/photo-1558487085-3602292ea018?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual frase está pontuada corretamente?",
-    respostas: ["João tudo bem?", "João, tudo bem?", "João tudo, bem?", "João tudo bem."],
+    respostas: [
+      "João tudo bem?",
+      "João, tudo bem?",
+      "João tudo, bem?",
+      "João tudo bem.",
+    ],
     correta: 1,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    pergunta: "Em “Os alunos inteligentes estudam bastante”, qual palavra é artigo?",
+    imagem:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    pergunta:
+      "Em “Os alunos inteligentes estudam bastante”, qual palavra é artigo?",
     respostas: ["Exceção", "Inteligentes", "Os", "Estudam"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1635372722656-389f87a941b7?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem:
+      "https://images.unsplash.com/photo-1635372722656-389f87a941b7?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     pergunta: "Qual frase está no tempo passado?",
-    respostas: ["Eu estudo matemática.", "Eu estudarei matemática.", "Eu estudei matemática.", "Eu estudaria matemática."],
+    respostas: [
+      "Eu estudo matemática.",
+      "Eu estudarei matemática.",
+      "Eu estudei matemática.",
+      "Eu estudaria matemática.",
+    ],
     correta: 2,
   },
   {
-    imagem: "https://thumbs.dreamstime.com/b/texto-do-advérbio-nos-cubos-156294976.jpg",
+    imagem:
+      "https://thumbs.dreamstime.com/b/texto-do-advérbio-nos-cubos-156294976.jpg",
     pergunta: "Qual frase contém um advérbio?",
-    respostas: ["O carro vermelho chegou.", "Ela canta bem.", "Pedro comprou pão.", "A menina sorriu."],
+    respostas: [
+      "O carro vermelho chegou.",
+      "Ela canta bem.",
+      "Pedro comprou pão.",
+      "A menina sorriu.",
+    ],
     correta: 1,
   },
 ];
@@ -72,7 +103,8 @@ function carregarQuestao() {
 
   document.getElementById("imagemQuestao").src = q.imagem;
   document.getElementById("pergunta").textContent = q.pergunta;
-  document.getElementById("contador").textContent = `${atual + 1}/${questoes.length}`;
+  document.getElementById("contador").textContent =
+    `${atual + 1}/${questoes.length}`;
 
   const progresso = ((atual + 1) / questoes.length) * 100;
   document.getElementById("barra").style.width = progresso + "%";
@@ -125,11 +157,11 @@ async function finalizarQuiz() {
     xpGanho = acertos * 100;
     mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
 
-    registrarEventoMissao("responder_quiz");
-    registrarEventoMissao("estudar_portugues");
+    await registrarEventoMissao("responder_quiz");
+    await registrarEventoMissao("estudar_portugues");
 
     if (acertos >= 10) {
-      registrarEventoMissao("acertar_10_perguntas");
+      await registrarEventoMissao("acertar_10_perguntas");
     }
   }
 
@@ -177,7 +209,8 @@ async function finalizarQuiz() {
     </div>
   `;
 
-  document.getElementById("contador").textContent = `${questoes.length}/${questoes.length}`;
+  document.getElementById("contador").textContent =
+    `${questoes.length}/${questoes.length}`;
   document.getElementById("barra").style.width = "100%";
 }
 

@@ -132,26 +132,37 @@ async function carregarMissoesDiarias() {
     return;
   }
 
-  const resposta = await fetch(`http://127.0.0.1:5000/missoes/${usuarioId}`);
-  const missoes = await resposta.json();
+  try {
+    const resposta = await fetch(`http://127.0.0.1:5000/missoes/${usuarioId}`);
 
-  areaMissoes.innerHTML = "";
+    if (!resposta.ok) {
+      console.log("Erro ao buscar missões.");
+      return;
+    }
 
-  missoes.forEach((missao) => {
-    const concluida = missao.concluida === 1;
+    const missoes = await resposta.json();
 
-    areaMissoes.innerHTML += `
-      <div class="missao ${concluida ? "missao-concluida" : ""}">
-        <div class="missao-left">
-          <span>${concluida ? "✅" : ""} ${missao.titulo}</span>
+    areaMissoes.innerHTML = "";
+
+    missoes.forEach((missao) => {
+      const concluida = missao.concluida === 1;
+
+      areaMissoes.innerHTML += `
+        <div class="missao ${concluida ? "missao-concluida" : ""}">
+          <div class="missao-left">
+            <span>${concluida ? "✅" : ""} ${missao.titulo}</span>
+          </div>
+
+          <div class="recompensa">
+            ${concluida ? "Concluída" : `+${missao.xp} XP`}
+          </div>
         </div>
+      `;
+    });
 
-        <div class="recompensa">
-          ${concluida ? "Concluída" : `+${missao.xp} XP`}
-        </div>
-      </div>
-    `;
-  });
+  } catch (erro) {
+    console.log("Erro ao carregar missões:", erro);
+  }
 }
 
 
@@ -165,46 +176,63 @@ async function carregarProgressoUsuario() {
     return;
   }
 
-  const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
-  const dados = await resposta.json();
+  try {
+    const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
 
-  xpNivel = dados.xp_nivel;
-  nivel = dados.nivel;
-  feitas = dados.missoes_concluidas_hoje;
-
-  if (dados.avatar) {
-    document.getElementById("avatarBtn").textContent = dados.avatar;
-
-    const indiceAvatar = avatares.indexOf(dados.avatar);
-
-    if (indiceAvatar !== -1) {
-      avatarAtual = indiceAvatar;
+    if (!resposta.ok) {
+      console.log("Erro ao buscar dados do perfil.");
+      return;
     }
 
-    localStorage.setItem("usuario_avatar", dados.avatar);
+    const dados = await resposta.json();
+
+    xpNivel = dados.xp_nivel;
+    nivel = dados.nivel;
+    feitas = dados.missoes_concluidas_hoje;
+
+    if (dados.avatar) {
+      document.getElementById("avatarBtn").textContent = dados.avatar;
+
+      const indiceAvatar = avatares.indexOf(dados.avatar);
+
+      if (indiceAvatar !== -1) {
+        avatarAtual = indiceAvatar;
+      }
+
+      localStorage.setItem("usuario_avatar", dados.avatar);
+    }
+
+    document.getElementById("dias").textContent = dados.dias_consecutivos;
+    document.getElementById("boxNivel").textContent = dados.nivel;
+
+    const horasFormatadas = String(
+      Math.floor(dados.horas_totais)
+    ).padStart(2, "0");
+
+    document.getElementById("horas").textContent = `${horasFormatadas}h`;
+    document.getElementById("ranking").textContent = `#${dados.ranking}`;
+
+    document.getElementById("feitas").textContent =
+      dados.missoes_concluidas_hoje;
+
+    if (document.getElementById("xpQuiz")) {
+      document.getElementById("xpQuiz").textContent = dados.xp_quiz;
+    }
+
+    atualizarBarra();
+
+  } catch (erro) {
+    console.log("Erro ao carregar perfil:", erro);
   }
-
-  document.getElementById("dias").textContent = dados.dias_consecutivos;
-  document.getElementById("boxNivel").textContent = dados.nivel;
-
-  const horasFormatadas = String(
-    Math.floor(dados.horas_totais)
-  ).padStart(2, "0");
-
-  document.getElementById("horas").textContent = `${horasFormatadas}h`;
-  document.getElementById("ranking").textContent = `#${dados.ranking}`;
-  document.getElementById("feitas").textContent = dados.missoes_concluidas_hoje;
-
-  if (document.getElementById("xpQuiz")) {
-    document.getElementById("xpQuiz").textContent = dados.xp_quiz;
-  }
-
-  atualizarBarra();
 }
 
 
 // =========================
 // INICIAR
 // =========================
-carregarProgressoUsuario();
-carregarMissoesDiarias();
+async function iniciarPerfil() {
+  await carregarProgressoUsuario();
+  await carregarMissoesDiarias();
+}
+
+iniciarPerfil();
