@@ -194,7 +194,7 @@ async function finalizarQuiz() {
 }
 
 function voltarFases() {
-  window.location.href = "quizIngles.html";
+  window.location.href = "quizLinguagens.html";
 }
 
 function reiniciarQuiz() {
