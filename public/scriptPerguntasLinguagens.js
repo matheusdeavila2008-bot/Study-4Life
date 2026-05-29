@@ -1,88 +1,78 @@
-// perguntas quiz história antiga
+// perguntas quiz inglês básico
 const questoes = [
   {
     imagem:
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Qual civilização construiu as pirâmides de Gizé?",
-    respostas: ["Romanos", "Egípcios", "Gregos", "Fenícios"],
-    correta: 1,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "O rio mais importante para o desenvolvimento do Egito Antigo foi:",
-    respostas: ["Rio Tigre", "Rio Nilo", "Rio Eufrates", "Rio Jordão"],
-    correta: 1,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1565378437776-93b2674e830e?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Qual povo da Antiguidade ficou conhecido por criar a democracia em Atenas?",
-    respostas: ["Gregos", "Persas", "Egípcios", "Hebreus"],
-    correta: 0,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1605209989526-6fb4c1beff2d?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Na Roma Antiga, quem era o principal grupo formado por cidadãos ricos e poderosos?",
-    respostas: ["Plebeus", "Escravizados", "Patrícios", "Gladiadores"],
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual é a tradução de "Hello"?',
+    respostas: ["Tchau", "Obrigado", "Olá", "Boa noite"],
     correta: 2,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1525874684015-58379d421a52?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Qual foi uma das principais contribuições dos fenícios?",
-    respostas: [
-      "Criação do alfabeto",
-      "Construção das pirâmides",
-      "Invenção da pólvora",
-      "Criação do feudalismo",
-    ],
-    correta: 0,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1548586196-aa5803b77379?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "A Mesopotâmia ficava localizada entre quais rios?",
-    respostas: [
-      "Nilo e Jordão",
-      "Tigre e Eufrates",
-      "Amazonas e Paraná",
-      "Danúbio e Reno",
-    ],
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual é a tradução de "Book"?',
+    respostas: ["Mesa", "Livro", "Caneta", "Caderno"],
     correta: 1,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Qual povo antigo é conhecido pelo Código de Hamurábi?",
-    respostas: ["Babilônios", "Gregos", "Romanos", "Fenícios"],
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Como se diz "Bom dia" em inglês?',
+    respostas: ["Good afternoon", "Good evening", "Good night", "Good morning"],
+    correta: 3,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual é a tradução de "Dog"?',
+    respostas: ["Gato", "Pássaro", "Cachorro", "Peixe"],
+    correta: 2,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual dessas palavras significa "Água"?',
+    respostas: ["Milk", "Juice", "Water", "Bread"],
+    correta: 2,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Como se diz "Obrigado" em inglês?',
+    respostas: ["Please", "Sorry", "Thanks", "Welcome"],
+    correta: 2,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual é a tradução de "House"?',
+    respostas: ["Escola", "Carro", "Janela", "Casa"],
+    correta: 3,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual pronome significa "Eu"?',
+    respostas: ["You", "He", "I", "They"],
+    correta: 2,
+  },
+  {
+    imagem:
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Como se diz "Escola" em inglês?',
+    respostas: ["School", "Street", "Teacher", "Student"],
     correta: 0,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1605130284535-11dd9eedc58a?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Na Grécia Antiga, as cidades independentes eram chamadas de:",
-    respostas: ["Feudos", "Impérios", "Pólis", "Províncias"],
-    correta: 2,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1569511166187-97eb6e387e19?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "Qual cidade-estado grega era conhecida pela formação militar rígida?",
-    respostas: ["Atenas", "Esparta", "Corinto", "Tebas"],
+      "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1170&auto=format&fit=crop",
+    pergunta: 'Qual é a tradução de "Apple"?',
+    respostas: ["Banana", "Maçã", "Laranja", "Uva"],
     correta: 1,
-  },
-  {
-    imagem:
-      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1170&auto=format&fit=crop",
-    pergunta: "O Coliseu é uma construção associada a qual civilização antiga?",
-    respostas: ["Egípcia", "Grega", "Romana", "Persa"],
-    correta: 2,
   },
 ];
 
-const QUIZ_ID = "historia-antiga-lvl-1";
+const QUIZ_ID = "ingles-basico-lvl-1";
 
 let atual = 0;
 let acertos = 0;
@@ -147,7 +137,7 @@ async function finalizarQuiz() {
     mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
 
     await registrarEventoMissao("responder_quiz");
-    await registrarEventoMissao("estudar_historia");
+    await registrarEventoMissao("estudar_ingles");
 
     if (acertos >= 10) {
       await registrarEventoMissao("acertar_10_perguntas");
@@ -204,7 +194,7 @@ async function finalizarQuiz() {
 }
 
 function voltarFases() {
-  window.location.href = "quizHistoria.html";
+  window.location.href = "quizIngles.html";
 }
 
 function reiniciarQuiz() {

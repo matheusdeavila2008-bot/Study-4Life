@@ -2,7 +2,7 @@
 const questoes = [
   {
     imagem:
-      "https://images.unsplash.com/photo-1656863492763-23732b72ea4d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1656863492763-23732b72ea4d?q=80&w=1170&auto=format&fit=crop",
     pergunta: "O que significa HTML?",
     respostas: [
       "Hyper Text Markup Language",
@@ -14,21 +14,21 @@ const questoes = [
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1569323112699-e222ee4916e5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1569323112699-e222ee4916e5?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual linguagem é usada para estilizar páginas web?",
     respostas: ["Python", "CSS", "Java", "C++"],
     correta: 1,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual linguagem é usada para interatividade em sites?",
     respostas: ["JavaScript", "SQL", "PHP", "C#"],
     correta: 0,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?q=80&w=1332&auto=format&fit=crop",
     pergunta:
       "Qual símbolo é usado para comentários em JavaScript de uma linha?",
     respostas: ["<!-- -->", "##", "//", "**"],
@@ -36,7 +36,7 @@ const questoes = [
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1774901128283-64c62117216a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1774901128283-64c62117216a?q=80&w=1170&auto=format&fit=crop",
     pergunta: "O que o comando console.log() faz em JavaScript?",
     respostas: [
       "Cria um botão",
@@ -48,14 +48,14 @@ const questoes = [
   },
   {
     imagem:
-      "https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=1200&auto=format&fit=crop",
     pergunta: "Qual tag HTML cria um link?",
     respostas: ["<img>", "<p>", "<a>", "<div>"],
     correta: 2,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?q=80&w=1171&auto=format&fit=crop",
     pergunta: "O que significa CSS?",
     respostas: [
       "Creative Style System",
@@ -67,21 +67,21 @@ const questoes = [
   },
   {
     imagem:
-      "https://plus.unsplash.com/premium_photo-1681487942927-e1a2786e6036?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1681487942927-e1a2786e6036?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual desses é um banco de dados?",
     respostas: ["MySQL", "Photoshop", "Chrome", "Figma"],
     correta: 0,
   },
   {
     imagem:
-      "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual estrutura é usada para repetir ações no código?",
     respostas: ["Loop", "Link.", "Input", "Array"],
     correta: 0,
   },
   {
     imagem:
-      "https://plus.unsplash.com/premium_photo-1678565999332-1cde462f7b24?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1678565999332-1cde462f7b24?q=80&w=1170&auto=format&fit=crop",
     pergunta: "O que faz o comando if em programação?",
     respostas: [
       "Repete o código infinitamente",
@@ -103,7 +103,8 @@ function carregarQuestao() {
 
   document.getElementById("imagemQuestao").src = q.imagem;
   document.getElementById("pergunta").textContent = q.pergunta;
-  document.getElementById("contador").textContent = `${atual + 1}/10`;
+  document.getElementById("contador").textContent =
+    `${atual + 1}/${questoes.length}`;
 
   const progresso = ((atual + 1) / questoes.length) * 100;
   document.getElementById("barra").style.width = progresso + "%";
@@ -154,18 +155,13 @@ async function finalizarQuiz() {
 
   if (aprovado) {
     xpGanho = acertos * 100;
+    mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
 
-    mensagemXp = await adicionarXpQuiz(
-      xpGanho,
-      QUIZ_ID
-    );
-
-    // MISSÕES
-    registrarEventoMissao("responder_quiz");
-    registrarEventoMissao("estudar_tecnologias");
+    await registrarEventoMissao("responder_quiz");
+    await registrarEventoMissao("estudar_tecnologias");
 
     if (acertos >= 10) {
-      registrarEventoMissao("acertar_10_perguntas");
+      await registrarEventoMissao("acertar_10_perguntas");
     }
   }
 
@@ -213,7 +209,8 @@ async function finalizarQuiz() {
     </div>
   `;
 
-  document.getElementById("contador").textContent = "10/10";
+  document.getElementById("contador").textContent =
+    `${questoes.length}/${questoes.length}`;
   document.getElementById("barra").style.width = "100%";
 }
 
