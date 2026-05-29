@@ -1,67 +1,67 @@
 // perguntas quiz ciencias
 const questoes = [
   {
-    imagem: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=1332&auto=format&fit=crop",
     pergunta: "Qual é a unidade básica da vida?",
     respostas: ["Átomo", "Célula", "Molécula", "Tecido"],
     correta: 1,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1722707492894-2839a324624e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://plus.unsplash.com/premium_photo-1722707492894-2839a324624e?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual órgão do corpo humano bombeia o sangue?",
     respostas: ["Pulmão", "Fígado", "Coração", "Rim"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual gás as plantas absorvem na fotossíntese?",
     respostas: ["Oxigênio", "Nitrogênio", "Gás carbônico", "Hidrogênio"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1523825086357-39d9158d4ba8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1523825086357-39d9158d4ba8?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual parte da planta fixa o vegetal no solo?",
     respostas: ["Flor", "Folha", "Raiz", "Fruto"],
     correta: 2,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1722947097108-9af829cf1ded?q=80&w=1112&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://plus.unsplash.com/premium_photo-1722947097108-9af829cf1ded?q=80&w=1112&auto=format&fit=crop",
     pergunta: "Qual sistema do corpo humano é responsável pela respiração?",
     respostas: ["Digestório", "Respiratório", "Nervoso", "Circulatório"],
     correta: 1,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1581323463131-327617e6962c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1581323463131-327617e6962c?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual animal é mamífero?",
     respostas: ["Galinha", "Sapo", "Baleia", "Peixe"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1641903202531-bfa6bf0c6419?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1641903202531-bfa6bf0c6419?q=80&w=1332&auto=format&fit=crop",
     pergunta: "Onde fica armazenado o material genético da célula?",
     respostas: ["Membrana", "Citoplasma", "Núcleo", "Parede celular"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1615752592676-f6bd84f9419d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1615752592676-f6bd84f9419d?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual vitamina é produzida com ajuda da luz solar?",
     respostas: ["Vitamina A", "Vitamina C", "Vitamina D", "Vitamina K"],
     correta: 2,
   },
   {
-    imagem: "https://images.unsplash.com/photo-1586726370832-3440a511e479?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://images.unsplash.com/photo-1586726370832-3440a511e479?q=80&w=1170&auto=format&fit=crop",
     pergunta: "Qual é o maior órgão do corpo humano?",
     respostas: ["Pulmão", "Pele", "Cérebro", "Estômago"],
     correta: 1,
   },
   {
-    imagem: "https://plus.unsplash.com/premium_photo-1661713818588-8210ce5880e5?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imagem: "https://plus.unsplash.com/premium_photo-1661713818588-8210ce5880e5?q=80&w=1169&auto=format&fit=crop",
     pergunta: "O que os seres vivos precisam para sobreviver?",
     respostas: [
       "Apenas luz",
       "Apenas água",
       "Energia e recursos do ambiente",
-      "Apenas ar"
+      "Apenas ar",
     ],
     correta: 2,
   },
@@ -77,7 +77,9 @@ function carregarQuestao() {
 
   document.getElementById("imagemQuestao").src = q.imagem;
   document.getElementById("pergunta").textContent = q.pergunta;
-  document.getElementById("contador").textContent = `${atual + 1}/10`;
+
+  document.getElementById("contador").textContent =
+    `${atual + 1}/${questoes.length}`;
 
   const progresso = ((atual + 1) / questoes.length) * 100;
   document.getElementById("barra").style.width = progresso + "%";
@@ -89,7 +91,6 @@ function carregarQuestao() {
     const btn = document.createElement("button");
 
     btn.textContent = texto;
-
     btn.onclick = () => responder(btn, indice);
 
     area.appendChild(btn);
@@ -97,7 +98,6 @@ function carregarQuestao() {
 }
 
 function responder(botao, indice) {
-
   const correta = questoes[atual].correta;
 
   const botoes = document.querySelectorAll(".respostas button");
@@ -107,44 +107,31 @@ function responder(botao, indice) {
   });
 
   if (indice === correta) {
-
     botao.classList.add("correta");
-
     acertos++;
-
   } else {
-
     botao.classList.add("errada");
-
     botoes[correta].classList.add("correta");
   }
 
   setTimeout(() => {
-
     atual++;
 
     if (atual < questoes.length) {
-
       carregarQuestao();
-
     } else {
-
       finalizarQuiz();
     }
-
   }, 1000);
 }
 
 async function finalizarQuiz() {
-
   const aprovado = acertos >= 7;
 
   let xpGanho = 0;
-
   let mensagemXp = "";
 
   if (aprovado) {
-
     xpGanho = acertos * 100;
 
     mensagemXp = await adicionarXpQuiz(
@@ -152,12 +139,11 @@ async function finalizarQuiz() {
       QUIZ_ID
     );
 
-    // MISSÕES
-    registrarEventoMissao("responder_quiz");
-    registrarEventoMissao("estudar_ciencias");
+    await registrarEventoMissao("responder_quiz");
+    await registrarEventoMissao("estudar_ciencias");
 
     if (acertos >= 10) {
-      registrarEventoMissao("acertar_10_perguntas");
+      await registrarEventoMissao("acertar_10_perguntas");
     }
   }
 
@@ -174,7 +160,7 @@ async function finalizarQuiz() {
         aprovado
           ? `
             <p class="aprovado">
-              Parabéns! Você concluiu esse level
+              Parabéns! Você concluiu esse level.
             </p>
 
             <p class="aprovado">
@@ -212,7 +198,8 @@ async function finalizarQuiz() {
     </div>
   `;
 
-  document.getElementById("contador").textContent = "10/10";
+  document.getElementById("contador").textContent =
+    `${questoes.length}/${questoes.length}`;
 
   document.getElementById("barra").style.width = "100%";
 }
@@ -222,9 +209,7 @@ function voltarFases() {
 }
 
 function reiniciarQuiz() {
-
   atual = 0;
-
   acertos = 0;
 
   document.getElementById("conteudoQuiz").innerHTML = `
