@@ -359,8 +359,9 @@ span {
   display: flex;
 }
 
-.menu-config button {
+.menu-config button{
   flex: 1;
+  text-align: center;
   background: #111827;
   color: white;
   border: 1px solid #222;

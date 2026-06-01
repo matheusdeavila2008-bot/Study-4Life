@@ -13,8 +13,11 @@ from banco import (
     listar_ranking,
     pegar_missoes_usuario,
     concluir_missao,
-    concluir_missao_por_evento
+    concluir_missao_por_evento,
+    salvar_chat
 )
+
+from machine_learning import responder_pergunta
 
 app = Flask(__name__)
 CORS(app)
@@ -250,9 +253,33 @@ def rota_ranking():
 
     return jsonify(ranking)
 
+# =========================
+# CENTRAL DE AJUDA (MACHINE LEARNING)
+# =========================
+@app.route("/ajuda", methods=["POST"])
+def rota_ajuda():
+
+    dados = request.get_json()
+
+    usuario_id = dados["usuario_id"]
+    pergunta = dados["pergunta"]
+
+    resposta = responder_pergunta(pergunta)
+
+    # salvar_chat(
+    #     usuario_id,
+    #     pergunta,
+    #     resposta
+    # )
+
+    return jsonify({
+        "sucesso": True,
+        "pergunta": pergunta,
+        "resposta": resposta
+    })
 
 # =========================
 # INICIAR SERVIDOR
 # =========================
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, use_reloader=False) 
