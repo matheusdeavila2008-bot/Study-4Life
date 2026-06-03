@@ -143,8 +143,18 @@ class Favorito(Base):
     favoritado_em = Column(DateTime, default=datetime.now)
 
 
-class ChatHistorico(Base):
-    __tablename__ = "chat_historico"
+class ChatHistoricoIA(Base):
+    __tablename__ = "chat_historico_ia"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    pergunta = Column(Text, nullable=False)
+    resposta = Column(Text, nullable=False)
+    criado_em = Column(DateTime, default=datetime.now)
+
+
+class ChatHistoricoAjuda(Base):
+    __tablename__ = "chat_historico_ajuda"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
@@ -612,8 +622,9 @@ def favoritar_conteudo(usuario_id, conteudo_id):
     return "Conteúdo favoritado com sucesso."
 
 
-def salvar_chat(usuario_id, pergunta, resposta):
-    chat = ChatHistorico(
+def salvar_chat_ia(usuario_id, pergunta, resposta):
+
+    chat = ChatHistoricoIA(
         usuario_id=usuario_id,
         pergunta=pergunta,
         resposta=resposta
@@ -622,8 +633,42 @@ def salvar_chat(usuario_id, pergunta, resposta):
     session.add(chat)
     session.commit()
 
+    return "Chat IA salvo com sucesso."
 
-    return "Chat salvo com sucesso."
+
+def salvar_chat_ajuda(usuario_id, pergunta, resposta):
+
+    chat = ChatHistoricoAjuda(
+        usuario_id=usuario_id,
+        pergunta=pergunta,
+        resposta=resposta
+    )
+
+    session.add(chat)
+    session.commit()
+
+    return "Chat Ajuda salvo com sucesso."
+
+def listar_chats_ia_usuario(usuario_id):
+
+    chats = (
+        session.query(ChatHistoricoIA)
+        .filter_by(usuario_id=usuario_id)
+        .order_by(ChatHistoricoIA.criado_em.desc())
+        .all()
+    )
+
+    resultado = []
+
+    for chat in chats:
+        resultado.append({
+            "id": chat.id,
+            "pergunta": chat.pergunta,
+            "resposta": chat.resposta,
+            "criado_em": str(chat.criado_em)
+        })
+
+    return resultado
 
 
 def atualizar_progresso(usuario_id, xp_ganho, horas_estudadas, missao_feita=False):
@@ -697,6 +742,7 @@ def ver_ranking():
             f"Nível {usuario['nivel']} - "
             f"{usuario['dias_consecutivos']} dias"
         )
+
 
 # =========================
 # TESTES

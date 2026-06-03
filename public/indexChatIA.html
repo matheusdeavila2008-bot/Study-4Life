@@ -50,38 +50,35 @@
   <main class="layout-chat">
     <!-- historico de chats -->
     <section class="historico fechado">
-      <button class="novo-chat"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+      <button type="button" class="novo-chat" onclick="novoChat()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
           width="24px" fill="#FFFFFF">
           <path
             d="M280-280h280v-80H280v80Zm0-160h400v-80H280v80Zm0-160h400v-80H280v80Zm-80 480q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
         </svg> Novo Chat</button>
       <h2>Chats Recentes</h2>
-      <div class="item-historico">Dúvidas em Português</div>
-      <div class="item-historico">Como usar Display Grid</div>
-      <div class="item-historico">Corrigir Redação</div>
-      <div class="item-historico">Como usar Git e GitHub</div>
-      <div class="item-historico">Dicas de Programação</div>
+      <div id="historicoChats"></div>
     </section>
 
     <!-- chat, section principal -->
     <section class="conteinarChat">
-      <div class="chat-central">
+  <div class="chat-central">
 
-        <div class="box-resposta" id="chatBox">
-          <div class="mensagem ia">Qual sua dúvida? 👇</div>
-        </div>
+    <div class="box-resposta" id="chatBox">
+      <div class="mensagem ia">Qual sua dúvida? 👇</div>
+    </div>
 
-        <div class="input-area">
-          <input id="pergunta" class="caixa-pergunta" type="text" placeholder="Digite sua pergunta..." />
-          <button class="botao-enviar" onclick="enviarMensagem()">Enviar</button>
-        </div>
-      </div>
-    </section>
+    <div class="input-area">
+      <input id="pergunta" class="caixa-pergunta" type="text" placeholder="Digite sua pergunta..." />
+      <button type="button" class="botao-enviar" onclick="enviarMensagem()">Enviar</button>
+    </div>
+
+  </div>
+</section>
   </main>
 
   <script src="avatarHeader.js"></script>
   <script src="contadorTempo.js"></script>
-  <script src="protegerPagina.js"></script>
+  <!-- <script src="protegerPagina.js"></script> -->
   <script src="scriptChatIA.js"></script>
 </body>
 

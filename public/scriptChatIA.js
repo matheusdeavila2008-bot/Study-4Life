@@ -21,31 +21,112 @@ function toggleHistorico() {
   historico.classList.toggle("fechado");
 }
 
-function enviarMensagem() {
+async function enviarMensagem() {
   const input = document.getElementById("pergunta");
   const texto = input.value.trim();
   const chatBox = document.getElementById("chatBox");
 
   if (texto === "") return;
 
-  // mensagem do usuário
   const msgUser = document.createElement("div");
   msgUser.classList.add("mensagem", "usuario");
   msgUser.innerText = texto;
   chatBox.appendChild(msgUser);
 
-  // resposta da IA
   const msgIA = document.createElement("div");
   msgIA.classList.add("mensagem", "ia");
   msgIA.innerText = "Pensando...";
   chatBox.appendChild(msgIA);
 
   input.value = "";
-
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  setTimeout(() => {
-    msgIA.innerText = "Essa é uma resposta simulada da IA 😉";
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 1000);
+  try {
+    const resposta = await fetch("http://127.0.0.1:5000/chat-ia", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        usuario_id: localStorage.getItem("usuario_id") || 1,
+        pergunta: texto
+      })
+    });
+
+    const dados = await resposta.json();
+
+    msgIA.innerText = dados.resposta;
+
+    if (dados.sucesso) {
+      carregarHistorico();
+    }
+
+  } catch (error) {
+    console.error(error);
+    msgIA.innerText = "Erro ao conectar com a IA.";
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+document.getElementById("pergunta").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    enviarMensagem();
+  }
+});
+
+async function carregarHistorico() {
+  const usuarioId = localStorage.getItem("usuario_id") || 1;
+
+  const resposta = await fetch(
+    `http://127.0.0.1:5000/historico-chat-ia/${usuarioId}`
+  );
+
+  const chats = await resposta.json();
+
+  const historico = document.getElementById("historicoChats");
+  historico.innerHTML = "";
+
+  chats.forEach(chat => {
+    const item = document.createElement("div");
+    item.classList.add("item-historico");
+
+   item.innerHTML = `
+  <strong>${chat.pergunta.length > 32 ? chat.pergunta.substring(0, 32) + "..." : chat.pergunta}</strong>
+  <small>Conversa salva</small>
+`;
+
+    item.onclick = () => abrirChat(chat);
+
+    historico.appendChild(item);
+  });
+}
+
+function abrirChat(chat) {
+  const chatBox = document.getElementById("chatBox");
+
+  chatBox.innerHTML = "";
+
+  const msgUser = document.createElement("div");
+  msgUser.classList.add("mensagem", "usuario");
+  msgUser.innerText = chat.pergunta;
+  chatBox.appendChild(msgUser);
+
+  const msgIA = document.createElement("div");
+  msgIA.classList.add("mensagem", "ia");
+  msgIA.innerText = chat.resposta;
+  chatBox.appendChild(msgIA);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function novoChat() {
+  const chatBox = document.getElementById("chatBox");
+
+  chatBox.innerHTML = `
+    <div class="mensagem ia">Qual sua dúvida? 👇</div>
+  `;
+}
+
+carregarHistorico();
