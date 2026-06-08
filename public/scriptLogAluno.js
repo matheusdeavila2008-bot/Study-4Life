@@ -12,7 +12,7 @@ formLoginAluno.addEventListener("submit", async function(event) {
     senha: senha
   };
 
-  const resposta = await fetch("https://study-4life-production-038f.up.railway.app", {
+  const resposta = await fetch("https://study-4life-production-038f.up.railway.app/indexLogaluno.html", {
 
     method: "POST",
 
