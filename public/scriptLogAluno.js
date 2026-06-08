@@ -12,7 +12,7 @@ formLoginAluno.addEventListener("submit", async function(event) {
     senha: senha
   };
 
-  const resposta = await fetch("http://127.0.0.1:5000/login", {
+  const resposta = await fetch("https://study-4life-production.up.railway.app/login", {
 
     method: "POST",
 
