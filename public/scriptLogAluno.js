@@ -8,7 +8,7 @@ formLoginAluno.addEventListener("submit", async function(event) {
 
   const dados = { email, senha };
 
-  const resposta = await fetch("https://study-4life-production-038f.up.railway.app/login", {
+  const resposta = await fetch("/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
