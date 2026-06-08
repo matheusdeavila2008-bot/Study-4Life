@@ -36,7 +36,11 @@ async function enviarPergunta() {
 
         digitando.remove();
 
-        adicionarMensagem(dados.resposta, "bot");
+        if (dados.resposta) {
+            adicionarMensagem(dados.resposta, "bot");
+        } else {
+            adicionarMensagem("Não encontrei uma resposta para essa dúvida.", "bot");
+        }
 
     } catch (erro) {
         digitando.remove();
