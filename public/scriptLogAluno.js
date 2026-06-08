@@ -1,7 +1,6 @@
 const formLoginAluno = document.getElementById("formLoginAluno");
 
-formLoginAluno.addEventListener("submit", async function(event) {
-
+formLoginAluno.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const email = document.getElementById("email").value;
@@ -9,25 +8,23 @@ formLoginAluno.addEventListener("submit", async function(event) {
 
   const dados = {
     email: email,
-    senha: senha
+    senha: senha,
   };
 
-  const resposta = await fetch("https://study-4life-production-038f.up.railway.app/login", {
-
+  const baseUrl = window.BACKEND_URL || "http://127.0.0.1:5000";
+  const resposta = await fetch(`${baseUrl}/login`, {
     method: "POST",
 
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
 
-    body: JSON.stringify(dados)
-
+    body: JSON.stringify(dados),
   });
 
   const resultado = await resposta.json();
 
   if (resultado.sucesso) {
-
     // salva login
     localStorage.setItem("usuario_logado", "true");
 
@@ -40,11 +37,7 @@ formLoginAluno.addEventListener("submit", async function(event) {
 
     // vai para home
     window.location.href = "indexHome.html";
-
   } else {
-
     alert(resultado.mensagem);
-
   }
-
 });
