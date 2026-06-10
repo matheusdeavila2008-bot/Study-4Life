@@ -8,7 +8,7 @@ formLoginAluno.addEventListener("submit", async function(event) {
 
   const dados = { email, senha };
 
-  const resposta = await fetch("/login", {
+const resposta = await fetch("http://127.0.0.1:5000/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
