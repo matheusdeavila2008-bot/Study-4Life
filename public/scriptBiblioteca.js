@@ -255,3 +255,73 @@ document.addEventListener("keydown", (e) => {
     fecharModalFuncao();
   }
 });
+
+// barra de pesquisa funcional
+const formPesquisa = document.querySelector(".form");
+const inputPesquisa = document.querySelector(".input");
+const cardsPesquisa = document.querySelectorAll(".card.abrir-modal");
+
+formPesquisa.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+inputPesquisa.addEventListener("input", () => {
+  const termo = inputPesquisa.value.toLowerCase().trim();
+
+  cardsPesquisa.forEach((card) => {
+    const titulo = card.dataset.titulo?.toLowerCase() || "";
+    const autor = card.dataset.autor?.toLowerCase() || "";
+    const resumo = card.dataset.resumo?.toLowerCase() || "";
+    const categoria1 = card.dataset.categoria1?.toLowerCase() || "";
+    const categoria2 = card.dataset.categoria2?.toLowerCase() || "";
+    const textoCard = card.innerText.toLowerCase();
+
+    const encontrou =
+      titulo.includes(termo) ||
+      autor.includes(termo) ||
+      resumo.includes(termo) ||
+      categoria1.includes(termo) ||
+      categoria2.includes(termo) ||
+      textoCard.includes(termo);
+
+    card.style.display = encontrou ? "block" : "none";
+  });
+
+  atualizarSecoesCatalogo();
+});
+
+formPesquisa.addEventListener("reset", () => {
+  setTimeout(() => {
+    cardsPesquisa.forEach((card) => {
+      card.style.display = "block";
+    });
+
+    atualizarSecoesCatalogo();
+  }, 0);
+});
+
+function atualizarSecoesCatalogo() {
+  const catalogos = document.querySelectorAll(".catalogo");
+
+  catalogos.forEach((catalogo) => {
+    const cardsVisiveis = catalogo.querySelectorAll(
+      ".card.abrir-modal:not([style*='display: none'])"
+    );
+
+    const tituloSection = catalogo.previousElementSibling;
+
+    if (cardsVisiveis.length === 0) {
+      catalogo.style.display = "none";
+
+      if (tituloSection) {
+        tituloSection.style.display = "none";
+      }
+    } else {
+      catalogo.style.display = "block";
+
+      if (tituloSection) {
+        tituloSection.style.display = "block";
+      }
+    }
+  });
+}
