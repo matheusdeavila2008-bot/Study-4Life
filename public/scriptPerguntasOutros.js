@@ -1,4 +1,18 @@
-// perguntas quiz Git e GitHub
+// =========================
+// CONFIGURAÇÃO DA API
+// =========================
+
+// Se você está salvando no Railway, deixe assim:
+// const API_BASE_PERGUNTAS = "https://study-4life-production-c3a4.up.railway.app";
+
+// Se estiver testando com o back-end local, use esta linha no lugar da de cima:
+const API_BASE_PERGUNTAS = "http://127.0.0.1:5000";
+
+
+// =========================
+// PERGUNTAS QUIZ GIT E GITHUB
+// =========================
+
 const questoes = [
   {
     imagem:
@@ -87,23 +101,156 @@ const questoes = [
   },
 ];
 
-const QUIZ_ID = "git-github-lvl-1";
+
+// =========================
+// ID DO QUIZ
+// Precisa ser igual ao id da fase no scriptMapaQuizOutros.js
+// =========================
+
+const QUIZ_ID = "outros-gitgithub-lvl-1";
+
+
+// =========================
+// VARIÁVEIS DO QUIZ
+// =========================
 
 let atual = 0;
 let acertos = 0;
 
+
+// =========================
+// PEGAR USUÁRIO LOGADO
+// =========================
+
+function pegarUsuarioId() {
+  const usuarioSalvo =
+    localStorage.getItem("usuario") ||
+    localStorage.getItem("usuarioLogado");
+
+  if (usuarioSalvo) {
+    try {
+      const usuario = JSON.parse(usuarioSalvo);
+      return usuario.id || usuario.usuario_id;
+    } catch (erro) {
+      console.error("Erro ao ler usuário do localStorage:", erro);
+    }
+  }
+
+  return localStorage.getItem("usuario_id");
+}
+
+
+// =========================
+// CALCULAR ESTRELAS
+// =========================
+
+function calcularEstrelas(acertos) {
+  if (acertos >= 10) return 3;
+  if (acertos >= 8) return 2;
+  if (acertos >= 7) return 1;
+  return 0;
+}
+
+
+// =========================
+// CONCLUIR QUIZ NO BANCO
+// =========================
+
+async function concluirQuizNoBanco(quiz_id, xp_ganho, estrelas) {
+  const usuario_id = pegarUsuarioId();
+
+  if (!usuario_id) {
+    return {
+      sucesso: false,
+      mensagem: "Usuário não encontrado. Faça login novamente.",
+    };
+  }
+
+  try {
+    const resposta = await fetch(`${API_BASE_PERGUNTAS}/quiz/concluir`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        usuario_id,
+        quiz_id,
+        xp_ganho,
+        estrelas,
+      }),
+    });
+
+    const dados = await resposta.json();
+
+    console.log("Resposta ao concluir quiz:", dados);
+
+    return dados;
+
+  } catch (erro) {
+    console.error("Erro ao concluir quiz:", erro);
+
+    return {
+      sucesso: false,
+      mensagem: "Erro de comunicação com o servidor.",
+    };
+  }
+}
+
+
+// =========================
+// REGISTRAR MISSÃO POR EVENTO
+// =========================
+
+async function registrarEventoMissaoSeguro(evento) {
+  const usuario_id = pegarUsuarioId();
+
+  if (!usuario_id) return;
+
+  try {
+    await fetch(`${API_BASE_PERGUNTAS}/missao/evento`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        usuario_id,
+        evento,
+      }),
+    });
+  } catch (erro) {
+    console.error("Erro ao registrar missão:", erro);
+  }
+}
+
+
+// =========================
+// CARREGAR QUESTÃO
+// =========================
+
 function carregarQuestao() {
   const q = questoes[atual];
 
-  document.getElementById("imagemQuestao").src = q.imagem;
-  document.getElementById("pergunta").textContent = q.pergunta;
-  document.getElementById("contador").textContent =
-    `${atual + 1}/${questoes.length}`;
+  const imagemQuestao = document.getElementById("imagemQuestao");
+  const pergunta = document.getElementById("pergunta");
+  const contador = document.getElementById("contador");
+  const barra = document.getElementById("barra");
+  const area = document.getElementById("respostas");
+
+  if (!imagemQuestao || !pergunta || !contador || !barra || !area) {
+    console.error("Elementos do quiz não encontrados no HTML.");
+    return;
+  }
+
+  imagemQuestao.src = q.imagem;
+  imagemQuestao.alt = q.pergunta;
+
+  pergunta.textContent = q.pergunta;
+
+  contador.textContent = `${atual + 1}/${questoes.length}`;
 
   const progresso = ((atual + 1) / questoes.length) * 100;
-  document.getElementById("barra").style.width = progresso + "%";
+  barra.style.width = progresso + "%";
 
-  const area = document.getElementById("respostas");
   area.innerHTML = "";
 
   q.respostas.forEach((texto, indice) => {
@@ -113,6 +260,11 @@ function carregarQuestao() {
     area.appendChild(btn);
   });
 }
+
+
+// =========================
+// RESPONDER
+// =========================
 
 function responder(botao, indice) {
   const correta = questoes[atual].correta;
@@ -127,7 +279,10 @@ function responder(botao, indice) {
     acertos++;
   } else {
     botao.classList.add("errada");
-    botoes[correta].classList.add("correta");
+
+    if (botoes[correta]) {
+      botoes[correta].classList.add("correta");
+    }
   }
 
   setTimeout(() => {
@@ -141,6 +296,11 @@ function responder(botao, indice) {
   }, 1000);
 }
 
+
+// =========================
+// FINALIZAR QUIZ
+// =========================
+
 async function finalizarQuiz() {
   const aprovado = acertos >= 7;
 
@@ -149,17 +309,31 @@ async function finalizarQuiz() {
 
   if (aprovado) {
     xpGanho = acertos * 100;
-    mensagemXp = await adicionarXpQuiz(xpGanho, QUIZ_ID);
 
-    await registrarEventoMissao("responder_quiz");
-    await registrarEventoMissao("estudar_git");
+    const estrelas = calcularEstrelas(acertos);
+
+    const resultadoQuiz = await concluirQuizNoBanco(
+      QUIZ_ID,
+      xpGanho,
+      estrelas
+    );
+
+    mensagemXp = resultadoQuiz.mensagem || "Quiz concluído.";
+
+    await registrarEventoMissaoSeguro("responder_quiz");
 
     if (acertos >= 10) {
-      await registrarEventoMissao("acertar_10_perguntas");
+      await registrarEventoMissaoSeguro("acertar_10_perguntas");
     }
   }
 
-  document.getElementById("conteudoQuiz").innerHTML = `
+  const conteudoQuiz = document.getElementById("conteudoQuiz");
+  const contador = document.getElementById("contador");
+  const barra = document.getElementById("barra");
+
+  if (!conteudoQuiz) return;
+
+  conteudoQuiz.innerHTML = `
     <div class="final">
       <h2>Quiz Finalizado 🎉</h2>
       <p>Você acertou ${acertos} de ${questoes.length} questões.</p>
@@ -173,6 +347,7 @@ async function finalizarQuiz() {
 
             <p class="aprovado">
               ${
+                mensagemXp === "Quiz concluído com sucesso." ||
                 mensagemXp === "XP Quiz atualizado com sucesso." ||
                 mensagemXp === "XP atualizado com sucesso."
                   ? `Você ganhou ${xpGanho} XP Quiz.`
@@ -203,20 +378,38 @@ async function finalizarQuiz() {
     </div>
   `;
 
-  document.getElementById("contador").textContent =
-    `${questoes.length}/${questoes.length}`;
-  document.getElementById("barra").style.width = "100%";
+  if (contador) {
+    contador.textContent = `${questoes.length}/${questoes.length}`;
+  }
+
+  if (barra) {
+    barra.style.width = "100%";
+  }
 }
 
+
+// =========================
+// VOLTAR PARA FASES
+// =========================
+
 function voltarFases() {
-  window.location.href = "quizGit.html";
+  window.location.href = "quizOutros.html";
 }
+
+
+// =========================
+// REINICIAR QUIZ
+// =========================
 
 function reiniciarQuiz() {
   atual = 0;
   acertos = 0;
 
-  document.getElementById("conteudoQuiz").innerHTML = `
+  const conteudoQuiz = document.getElementById("conteudoQuiz");
+
+  if (!conteudoQuiz) return;
+
+  conteudoQuiz.innerHTML = `
     <div class="area-img">
       <img id="imagemQuestao" src="" alt="Imagem da questão">
     </div>
@@ -228,5 +421,10 @@ function reiniciarQuiz() {
 
   carregarQuestao();
 }
+
+
+// =========================
+// INICIAR
+// =========================
 
 carregarQuestao();
