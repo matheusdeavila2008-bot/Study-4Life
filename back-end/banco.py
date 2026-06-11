@@ -4,7 +4,11 @@ from datetime import datetime, date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
 
-engine = create_engine("sqlite:///study4life.db", echo=False)
+engine = create_engine(
+    "sqlite:///study4life.db",
+    echo=False,
+    connect_args={"check_same_thread": False}
+)
 
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
@@ -63,6 +67,7 @@ MAPA_EVENTOS_MISSOES = {
     "estudar_tecnologias": "Estudar Tecnologias",
 }
 
+
 class Usuario(Base):
     __tablename__ = "usuarios"
 
@@ -99,6 +104,7 @@ class QuizConcluido(Base):
     usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
     quiz_id = Column(String(100), nullable=False)
     xp_ganho = Column(Integer, default=0)
+    estrelas = Column(Integer, default=0)
     concluido_em = Column(DateTime, default=datetime.now)
 
 
@@ -172,6 +178,71 @@ class Ranking(Base):
 
 
 Base.metadata.create_all(engine)
+
+
+def garantir_coluna_estrelas_quiz():
+    with engine.begin() as conexao:
+        colunas = conexao.exec_driver_sql(
+            "PRAGMA table_info(quizzes_concluidos)"
+        ).fetchall()
+
+        nomes_colunas = [coluna[1] for coluna in colunas]
+
+        if "estrelas" not in nomes_colunas:
+            conexao.exec_driver_sql(
+                "ALTER TABLE quizzes_concluidos ADD COLUMN estrelas INTEGER DEFAULT 0"
+            )
+
+
+garantir_coluna_estrelas_quiz()
+
+
+def calcular_rank_quiz(xp_quiz):
+    if xp_quiz >= 50000:
+        return {
+            "rank": "Lendário",
+            "proximo_rank": None,
+            "xp_proximo_rank": None,
+            "progresso_rank": 100
+        }
+
+    ranks = [
+        {"nome": "Aprendiz", "xp": 0},
+        {"nome": "Explorador", "xp": 1000},
+        {"nome": "Competidor", "xp": 3000},
+        {"nome": "Avançado", "xp": 7000},
+        {"nome": "Especialista", "xp": 12000},
+        {"nome": "Mestre", "xp": 20000},
+        {"nome": "Lendário", "xp": 50000},
+    ]
+
+    rank_atual = ranks[0]
+    proximo_rank = ranks[1]
+
+    for indice, rank in enumerate(ranks):
+        if xp_quiz >= rank["xp"]:
+            rank_atual = rank
+
+            if indice + 1 < len(ranks):
+                proximo_rank = ranks[indice + 1]
+            else:
+                proximo_rank = None
+
+    if not proximo_rank:
+        progresso_rank = 100
+        xp_proximo_rank = None
+    else:
+        xp_inicio = rank_atual["xp"]
+        xp_fim = proximo_rank["xp"]
+        progresso_rank = int(((xp_quiz - xp_inicio) / (xp_fim - xp_inicio)) * 100)
+        xp_proximo_rank = proximo_rank["xp"]
+
+    return {
+        "rank": rank_atual["nome"],
+        "proximo_rank": proximo_rank["nome"] if proximo_rank else None,
+        "xp_proximo_rank": xp_proximo_rank,
+        "progresso_rank": progresso_rank
+    }
 
 
 def cadastrar_usuario(nome, email, senha, confirmar_senha, cpf):
@@ -270,19 +341,16 @@ def gerar_missoes_diarias(usuario_id):
         usuario_id=usuario_id
     ).all()
 
-    # apaga missões antigas
     for missao in missoes_existentes:
         if missao.data_missao.date() != hoje:
             session.delete(missao)
 
     session.commit()
 
-    # pega missões de hoje
     missoes_hoje = session.query(MissaoDiaria).filter_by(
         usuario_id=usuario_id
     ).all()
 
-    # se já tiver mais de 3, remove as extras
     if len(missoes_hoje) > 3:
         for missao in missoes_hoje[3:]:
             session.delete(missao)
@@ -290,11 +358,9 @@ def gerar_missoes_diarias(usuario_id):
         session.commit()
         return
 
-    # se já tiver exatamente 3, não cria mais
     if len(missoes_hoje) == 3:
         return
 
-    # cria somente o que falta para completar 3
     quantidade_faltando = 3 - len(missoes_hoje)
 
     titulos_existentes = [missao.titulo for missao in missoes_hoje]
@@ -303,6 +369,11 @@ def gerar_missoes_diarias(usuario_id):
         missao for missao in MISSOES
         if missao[0] not in titulos_existentes
     ]
+
+    quantidade_faltando = min(quantidade_faltando, len(missoes_disponiveis))
+
+    if quantidade_faltando <= 0:
+        return
 
     missoes_sorteadas = random.sample(
         missoes_disponiveis,
@@ -424,7 +495,7 @@ def atualizar_tempo_site(usuario_id, minutos):
     return "Tempo atualizado com sucesso."
 
 
-def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
+def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None, estrelas=0):
     progresso = session.query(ProgressoUsuario).filter_by(
         usuario_id=usuario_id
     ).first()
@@ -436,6 +507,32 @@ def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
     if not progresso:
         return "Progresso não encontrado."
 
+    if not ranking:
+        ranking = Ranking(
+            usuario_id=usuario_id,
+            pontos=progresso.xp_quiz
+        )
+        session.add(ranking)
+
+    try:
+        xp_ganho = int(xp_ganho)
+    except:
+        xp_ganho = 0
+
+    try:
+        estrelas = int(estrelas)
+    except:
+        estrelas = 0
+
+    if xp_ganho < 0:
+        xp_ganho = 0
+
+    if estrelas < 0:
+        estrelas = 0
+
+    if estrelas > 3:
+        estrelas = 3
+
     if quiz_id:
         quiz_ja_concluido = session.query(QuizConcluido).filter_by(
             usuario_id=usuario_id,
@@ -443,20 +540,23 @@ def adicionar_xp_quiz(usuario_id, xp_ganho, quiz_id=None):
         ).first()
 
         if quiz_ja_concluido:
+            if estrelas > (quiz_ja_concluido.estrelas or 0):
+                quiz_ja_concluido.estrelas = estrelas
+                session.commit()
+
             return "Você já recebeu XP por esse quiz."
 
         novo_quiz_concluido = QuizConcluido(
             usuario_id=usuario_id,
             quiz_id=quiz_id,
-            xp_ganho=xp_ganho
+            xp_ganho=xp_ganho,
+            estrelas=estrelas
         )
 
         session.add(novo_quiz_concluido)
 
     progresso.xp_quiz += xp_ganho
-
-    if ranking:
-        ranking.pontos = progresso.xp_quiz
+    ranking.pontos = progresso.xp_quiz
 
     session.commit()
 
@@ -513,7 +613,11 @@ def pegar_dados_perfil(usuario_id):
     posicao = pegar_posicao_ranking(usuario_id)
 
     missoes = pegar_missoes_usuario(usuario_id)
-    missoes_concluidas_hoje = sum(1 for missao in missoes if missao["concluida"] == 1)
+    missoes_concluidas_hoje = sum(
+        1 for missao in missoes if missao["concluida"] == 1
+    )
+
+    dados_rank = calcular_rank_quiz(progresso.xp_quiz)
 
     return {
         "usuario_id": usuario.id,
@@ -523,10 +627,145 @@ def pegar_dados_perfil(usuario_id):
         "nivel": progresso.nivel,
         "xp_nivel": progresso.xp_nivel,
         "xp_quiz": progresso.xp_quiz,
+        "rank_quiz": dados_rank["rank"],
         "horas_totais": round(progresso.horas_totais, 2),
         "missoes_realizadas": progresso.missoes_realizadas,
         "missoes_concluidas_hoje": missoes_concluidas_hoje,
         "ranking": posicao
+    }
+
+
+def pegar_progresso_quiz_usuario(usuario_id):
+    usuario = session.query(Usuario).filter_by(id=usuario_id).first()
+
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not usuario or not progresso:
+        return None
+
+    quizzes = session.query(QuizConcluido).filter_by(
+        usuario_id=usuario_id
+    ).all()
+
+    estrelas_total = 0
+    quizzes_concluidos = []
+
+    for quiz in quizzes:
+        estrelas = quiz.estrelas or 0
+        estrelas_total += estrelas
+
+        quizzes_concluidos.append({
+            "quiz_id": quiz.quiz_id,
+            "xp_ganho": quiz.xp_ganho,
+            "estrelas": estrelas,
+            "concluido_em": str(quiz.concluido_em)
+        })
+
+    dados_rank = calcular_rank_quiz(progresso.xp_quiz)
+
+    return {
+        "usuario_id": usuario.id,
+        "nome": usuario.nome,
+        "avatar": usuario.avatar,
+        "xp_quiz": progresso.xp_quiz,
+        "fases_concluidas": len(quizzes_concluidos),
+        "estrelas": estrelas_total,
+        "rank": dados_rank["rank"],
+        "proximo_rank": dados_rank["proximo_rank"],
+        "xp_proximo_rank": dados_rank["xp_proximo_rank"],
+        "progresso_rank": dados_rank["progresso_rank"],
+        "quizzes_concluidos": quizzes_concluidos
+    }
+
+
+def concluir_quiz_com_progresso(usuario_id, quiz_id, xp_ganho, estrelas):
+    progresso = session.query(ProgressoUsuario).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    ranking = session.query(Ranking).filter_by(
+        usuario_id=usuario_id
+    ).first()
+
+    if not progresso:
+        return {
+            "sucesso": False,
+            "mensagem": "Progresso não encontrado."
+        }
+
+    if not ranking:
+        ranking = Ranking(
+            usuario_id=usuario_id,
+            pontos=progresso.xp_quiz
+        )
+        session.add(ranking)
+
+    try:
+        xp_ganho = int(xp_ganho)
+    except:
+        xp_ganho = 0
+
+    try:
+        estrelas = int(estrelas)
+    except:
+        estrelas = 0
+
+    if xp_ganho < 0:
+        xp_ganho = 0
+
+    if estrelas < 0:
+        estrelas = 0
+
+    if estrelas > 3:
+        estrelas = 3
+
+    quiz_ja_concluido = session.query(QuizConcluido).filter_by(
+        usuario_id=usuario_id,
+        quiz_id=quiz_id
+    ).first()
+
+    if quiz_ja_concluido:
+        if estrelas > (quiz_ja_concluido.estrelas or 0):
+            quiz_ja_concluido.estrelas = estrelas
+            session.commit()
+
+            return {
+                "sucesso": True,
+                "mensagem": "Quiz já concluído. Estrelas atualizadas.",
+                "xp_adicionado": 0,
+                "progresso": pegar_progresso_quiz_usuario(usuario_id)
+            }
+
+        return {
+            "sucesso": True,
+            "mensagem": "Você já recebeu XP por esse quiz.",
+            "xp_adicionado": 0,
+            "progresso": pegar_progresso_quiz_usuario(usuario_id)
+        }
+
+    novo_quiz = QuizConcluido(
+        usuario_id=usuario_id,
+        quiz_id=quiz_id,
+        xp_ganho=xp_ganho,
+        estrelas=estrelas
+    )
+
+    session.add(novo_quiz)
+
+    progresso.xp_quiz += xp_ganho
+    ranking.pontos = progresso.xp_quiz
+
+    session.commit()
+
+    concluir_missao_por_evento(usuario_id, "responder_quiz")
+
+    return {
+        "sucesso": True,
+        "mensagem": "Quiz concluído com sucesso.",
+        "xp_adicionado": xp_ganho,
+        "progresso": pegar_progresso_quiz_usuario(usuario_id)
     }
 
 
@@ -557,12 +796,15 @@ def listar_ranking():
     ranking = []
 
     for posicao, (usuario, progresso) in enumerate(resultados, start=1):
+        dados_rank = calcular_rank_quiz(progresso.xp_quiz)
+
         ranking.append({
             "posicao": posicao,
             "usuario_id": usuario.id,
             "nome": usuario.nome,
             "avatar": usuario.avatar,
             "nivel": progresso.nivel,
+            "rank_quiz": dados_rank["rank"],
             "xp": progresso.xp_quiz,
             "xp_quiz": progresso.xp_quiz,
             "xp_nivel": progresso.xp_nivel,
@@ -623,7 +865,6 @@ def favoritar_conteudo(usuario_id, conteudo_id):
 
 
 def salvar_chat_ia(usuario_id, pergunta, resposta):
-
     chat = ChatHistoricoIA(
         usuario_id=usuario_id,
         pergunta=pergunta,
@@ -637,7 +878,6 @@ def salvar_chat_ia(usuario_id, pergunta, resposta):
 
 
 def salvar_chat_ajuda(usuario_id, pergunta, resposta):
-
     chat = ChatHistoricoAjuda(
         usuario_id=usuario_id,
         pergunta=pergunta,
@@ -649,8 +889,8 @@ def salvar_chat_ajuda(usuario_id, pergunta, resposta):
 
     return "Chat Ajuda salvo com sucesso."
 
-def listar_chats_ia_usuario(usuario_id):
 
+def listar_chats_ia_usuario(usuario_id):
     chats = (
         session.query(ChatHistoricoIA)
         .filter_by(usuario_id=usuario_id)
@@ -739,29 +979,7 @@ def ver_ranking():
             f"{usuario['posicao']}º lugar - "
             f"{usuario['nome']} - "
             f"{usuario['xp_quiz']} XP Quiz - "
+            f"{usuario['rank_quiz']} - "
             f"Nível {usuario['nivel']} - "
             f"{usuario['dias_consecutivos']} dias"
         )
-
-
-# =========================
-# TESTES
-# =========================
-
-# cadastrar usuário
-# print(cadastrar_usuario(
-#     nome="Matheus",
-#     email="matheus@email.com",
-#     senha="123456",
-#     confirmar_senha="123456",
-#     cpf="12345678900"
-# ))
-
-# deletar usuário
-# print(deletar_usuario("tvonline242526@gmail.coma"))
-
-# listar usuários
-# listar_usuarios()
-
-# ver ranking
-# ver_ranking()

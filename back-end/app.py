@@ -19,7 +19,9 @@ from banco import (
     listar_ranking,
     pegar_missoes_usuario,
     concluir_missao,
-    concluir_missao_por_evento
+    concluir_missao_por_evento,
+    pegar_progresso_quiz_usuario,
+    concluir_quiz_com_progresso
 )
 
 from machine_learning import responder_pergunta
@@ -32,6 +34,7 @@ load_dotenv()
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
+
 
 # =========================
 # HOME
@@ -60,6 +63,7 @@ def rota_cadastro():
     return jsonify({
         "mensagem": resultado
     })
+
 
 # =========================
 # LOGIN
@@ -92,6 +96,7 @@ def rota_login():
         "mensagem": "E-mail ou senha incorretos."
     })
 
+
 # =========================
 # PERFIL
 
@@ -109,6 +114,7 @@ def rota_perfil(usuario_id):
         }), 404
 
     return jsonify(dados)
+
 
 # =========================
 # TEMPO TOTAL
@@ -130,8 +136,10 @@ def rota_tempo():
         "mensagem": resultado
     })
 
+
 # =========================
 # GANHAR XP QUIZ SEM FARM
+# rota antiga mantida para não quebrar páginas antigas
 
 @app.route("/quiz/xp", methods=["POST"])
 def rota_xp_quiz():
@@ -141,16 +149,70 @@ def rota_xp_quiz():
     usuario_id = dados["usuario_id"]
     xp_ganho = dados["xp_ganho"]
     quiz_id = dados["quiz_id"]
+    estrelas = dados.get("estrelas", 0)
 
     resultado = adicionar_xp_quiz(
         usuario_id,
         xp_ganho,
-        quiz_id
+        quiz_id,
+        estrelas
     )
 
     return jsonify({
         "mensagem": resultado
     })
+
+
+# =========================
+# PEGAR PROGRESSO DA TELA DE QUIZ
+
+@app.route("/quiz/progresso/<int:usuario_id>", methods=["GET"])
+def rota_progresso_quiz(usuario_id):
+
+    dados = pegar_progresso_quiz_usuario(usuario_id)
+
+    if not dados:
+        return jsonify({
+            "sucesso": False,
+            "mensagem": "Progresso do quiz não encontrado."
+        }), 404
+
+    return jsonify({
+        "sucesso": True,
+        "progresso": dados
+    })
+
+
+# =========================
+# CONCLUIR QUIZ COM XP, FASE E ESTRELAS
+
+@app.route("/quiz/concluir", methods=["POST"])
+def rota_concluir_quiz():
+
+    dados = request.get_json()
+
+    usuario_id = dados.get("usuario_id")
+    quiz_id = dados.get("quiz_id")
+    xp_ganho = dados.get("xp_ganho", 0)
+    estrelas = dados.get("estrelas", 0)
+
+    if not usuario_id or not quiz_id:
+        return jsonify({
+            "sucesso": False,
+            "mensagem": "usuario_id e quiz_id são obrigatórios."
+        }), 400
+
+    resultado = concluir_quiz_com_progresso(
+        usuario_id=usuario_id,
+        quiz_id=quiz_id,
+        xp_ganho=xp_ganho,
+        estrelas=estrelas
+    )
+
+    status = 200 if resultado.get("sucesso") else 400
+
+    return jsonify(resultado), status
+
 
 # =========================
 # GANHAR XP DE NÍVEL MANUAL
@@ -173,6 +235,7 @@ def rota_xp_missao():
         "mensagem": resultado
     })
 
+
 # =========================
 # PEGAR MISSÕES DIÁRIAS
 
@@ -182,6 +245,7 @@ def rota_missoes(usuario_id):
     missoes = pegar_missoes_usuario(usuario_id)
 
     return jsonify(missoes)
+
 
 # =========================
 # CONCLUIR MISSÃO DIÁRIA MANUAL
@@ -202,6 +266,7 @@ def rota_concluir_missao():
     return jsonify({
         "mensagem": resultado
     })
+
 
 # =========================
 # CONCLUIR MISSÃO POR EVENTO AUTOMÁTICO
@@ -244,6 +309,7 @@ def rota_avatar():
         "mensagem": resultado
     })
 
+
 # =========================
 # LISTAR RANKING
 
@@ -254,8 +320,9 @@ def rota_ranking():
 
     return jsonify(ranking)
 
+
 # =========================
-# CENTRAL DE AJUDA (MACHINE LEARNING)
+# CENTRAL DE AJUDA MACHINE LEARNING
 
 @app.route("/ajuda", methods=["POST"])
 def rota_ajuda():
@@ -278,6 +345,7 @@ def rota_ajuda():
         "pergunta": pergunta,
         "resposta": resposta
     })
+
 
 # =========================
 # STUDYCHAT.IA
@@ -340,6 +408,7 @@ def rota_chat_ia():
             "resposta": "⏳ O StudyChat.IA atingiu o limite temporário de uso. Aguarde alguns segundos e tente novamente."
         }), 429
 
+
 # =========================
 # HISTÓRICO DO STUDYCHAT.IA
 
@@ -349,6 +418,7 @@ def rota_historico_chat_ia(usuario_id):
     chats = listar_chats_ia_usuario(usuario_id)
 
     return jsonify(chats)
+
 
 # =========================
 # INICIAR SERVIDOR

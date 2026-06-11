@@ -1,13 +1,73 @@
+// =========================
+// MENU LATERAL
+// =========================
+
+const menu = document.getElementById("menuLateral");
+const menuIcon = document.querySelector(".menu-icon");
+
+function openMenu() {
+  if (menu) {
+    menu.classList.add("active");
+  }
+}
+
+function closeMenu() {
+  if (menu) {
+    menu.classList.remove("active");
+  }
+}
+
+document.addEventListener("click", (e) => {
+  if (
+    menu &&
+    menuIcon &&
+    !menu.contains(e.target) &&
+    !menuIcon.contains(e.target)
+  ) {
+    menu.classList.remove("active");
+  }
+});
+
+
+// =========================
+// CONFIGURAÇÃO DA API
+// =========================
+
+// Se você está salvando no Railway, deixe assim:
+// const API_BASE_QUIZ = "https://study-4life-production-c3a4.up.railway.app";
+
+// Se estiver testando com o back-end local, use esta linha no lugar da de cima:
+const API_BASE_QUIZ = "http://127.0.0.1:5000";
+
+
+// =========================
+// PROGRESSO VINDO DO BANCO
+// =========================
+
+let progressoQuiz = {
+  xp_quiz: 0,
+  fases_concluidas: 0,
+  estrelas: 0,
+  rank: "Aprendiz",
+  quizzes_concluidos: [],
+};
+
+
+// =========================
+// MAPA DE FASES - PORTUGUÊS
+// =========================
+
 const mundosQuiz = [
   {
     capitulo: "Capítulo 1",
     titulo: "Gramática",
-    descricao: "Domine classes de palavras, pontuação, concordância e estrutura da língua.",
+    descricao:
+      "Domine classes de palavras, pontuação, concordância e estrutura da língua portuguesa.",
     fases: [
       {
         id: "portugues-gramatica-lvl-1",
         titulo: "Fundamentos",
-        descricao: "Substantivos, verbos, adjetivos e pronomes.",
+        descricao: "Substantivos, verbos, adjetivos, pronomes e artigos.",
         icone: "📘",
         xp: 1000,
         url: "indexPerguntasPortugues.html",
@@ -15,69 +75,75 @@ const mundosQuiz = [
       {
         id: "portugues-gramatica-lvl-2",
         titulo: "Pontuação",
-        descricao: "Vírgula, ponto final, interrogação e exclamação.",
+        descricao: "Treine vírgula, ponto final, interrogação e exclamação.",
         icone: "✍️",
         xp: 1200,
-        url: "quizPortuguesNivel2.html",
+        url: "#",
       },
       {
         id: "portugues-gramatica-lvl-3",
         titulo: "Concordância",
-        descricao: "Concordância verbal e nominal.",
+        descricao: "Aprenda concordância verbal, nominal e uso correto do plural.",
         icone: "🧠",
         xp: 1500,
-        url: "quizPortuguesNivel3.html",
+        url: "#",
       },
       {
         id: "portugues-gramatica-boss",
-        titulo: "Chefão",
-        descricao: "Desafio final de Gramática.",
+        titulo: "Chefão da Gramática",
+        descricao: "Desafio final misturando todos os conteúdos de gramática.",
         icone: "👑",
         xp: 2000,
-        url: "quizPortuguesBoss.html",
+        url: "#",
       },
     ],
   },
   {
     capitulo: "Capítulo 2",
     titulo: "Interpretação de Texto",
-    descricao: "Treine leitura, inferência, sentido do texto e compreensão de enunciados.",
+    descricao:
+      "Treine leitura, inferência, sentido global, compreensão de textos e análise de enunciados.",
     fases: [
       {
         id: "portugues-interpretacao-lvl-1",
         titulo: "Leitura Base",
-        descricao: "Identifique informações explícitas.",
+        descricao: "Identifique informações explícitas em frases e textos curtos.",
         icone: "📖",
         xp: 1000,
-        url: "quizInterpretacaoNivel1.html",
+        url: "#",
       },
       {
         id: "portugues-interpretacao-lvl-2",
         titulo: "Inferência",
-        descricao: "Entenda o que está implícito no texto.",
+        descricao: "Entenda ideias implícitas e sentidos escondidos no texto.",
         icone: "🔎",
         xp: 1200,
-        url: "quizInterpretacaoNivel2.html",
+        url: "#",
       },
       {
         id: "portugues-interpretacao-lvl-3",
         titulo: "Sentido Global",
-        descricao: "Compreenda tema, tese e intenção.",
+        descricao: "Compreenda tema, objetivo, tese e intenção comunicativa.",
         icone: "🧩",
         xp: 1500,
-        url: "quizInterpretacaoNivel3.html",
+        url: "#",
       },
       {
         id: "portugues-interpretacao-boss",
-        titulo: "Chefão",
-        descricao: "Desafio final de interpretação.",
+        titulo: "Chefão da Interpretação",
+        descricao: "Desafio final de leitura e interpretação de texto.",
         icone: "🏆",
         xp: 2000,
-        url: "quizInterpretacaoBoss.html",
+        url: "#",
       },
     ],
   },
 ];
+
+
+// =========================
+// ELEMENTOS DA TELA
+// =========================
 
 const mapaQuiz = document.getElementById("mapaQuiz");
 const xpQuizTela = document.getElementById("xpQuizTela");
@@ -85,28 +151,105 @@ const fasesConcluidasTela = document.getElementById("fasesConcluidasTela");
 const estrelasTela = document.getElementById("estrelasTela");
 const statusGeral = document.getElementById("statusGeral");
 
+
+// =========================
+// PEGAR USUÁRIO LOGADO
+// =========================
+
+function pegarUsuarioId() {
+  const usuarioSalvo =
+    localStorage.getItem("usuario") ||
+    localStorage.getItem("usuarioLogado");
+
+  if (usuarioSalvo) {
+    try {
+      const usuario = JSON.parse(usuarioSalvo);
+      return usuario.id || usuario.usuario_id;
+    } catch (erro) {
+      console.error("Erro ao ler usuário do localStorage:", erro);
+    }
+  }
+
+  return localStorage.getItem("usuario_id");
+}
+
+
+// =========================
+// CARREGAR PROGRESSO DO BANCO
+// =========================
+
+async function carregarProgressoQuiz() {
+  const usuario_id = pegarUsuarioId();
+
+  console.log("ID do usuário usado na tela de fases:", usuario_id);
+
+  if (!usuario_id) {
+    mostrarAviso("Usuário não encontrado. Faça login novamente.");
+    desenharMapa();
+    return;
+  }
+
+  try {
+    const resposta = await fetch(`${API_BASE_QUIZ}/quiz/progresso/${usuario_id}`);
+    const dados = await resposta.json();
+
+    console.log("Resposta do progresso do quiz:", dados);
+
+    if (!dados.sucesso) {
+      mostrarAviso(dados.mensagem || "Erro ao carregar progresso.");
+      desenharMapa();
+      return;
+    }
+
+    progressoQuiz = dados.progresso;
+
+    desenharMapa();
+
+  } catch (erro) {
+    console.error("Erro ao carregar progresso do quiz:", erro);
+    mostrarAviso("Erro de comunicação com o servidor.");
+    desenharMapa();
+  }
+}
+
+
+// =========================
+// FUNÇÕES DE PROGRESSO
+// =========================
+
 function faseFoiConcluida(id) {
-  return localStorage.getItem(`quiz_${id}_concluido`) === "true";
+  return progressoQuiz.quizzes_concluidos.some((quiz) => quiz.quiz_id === id);
 }
 
 function pegarEstrelas(id) {
-  return Number(localStorage.getItem(`quiz_${id}_estrelas`)) || 0;
+  const quiz = progressoQuiz.quizzes_concluidos.find(
+    (quiz) => quiz.quiz_id === id
+  );
+
+  return quiz ? Number(quiz.estrelas) : 0;
 }
 
 function faseEstaDesbloqueada(fases, indice) {
   if (indice === 0) return true;
 
   const faseAnterior = fases[indice - 1];
+
   return faseFoiConcluida(faseAnterior.id);
 }
 
+
+// =========================
+// DESENHAR MAPA NA TELA
+// =========================
+
 function desenharMapa() {
+  if (!mapaQuiz) return;
+
   mapaQuiz.innerHTML = "";
 
   let totalFases = 0;
   let totalConcluidas = 0;
   let totalEstrelas = 0;
-  let xpTotal = 0;
 
   mundosQuiz.forEach((mundo) => {
     totalFases += mundo.fases.length;
@@ -150,10 +293,6 @@ function desenharMapa() {
 
       totalEstrelas += estrelas;
 
-      if (concluida) {
-        xpTotal += fase.xp;
-      }
-
       const botao = document.createElement("button");
       botao.classList.add("fase-game");
 
@@ -187,13 +326,37 @@ function desenharMapa() {
     mapaQuiz.appendChild(mundoCard);
   });
 
-  xpQuizTela.textContent = xpTotal;
-  fasesConcluidasTela.textContent = `${totalConcluidas}/${totalFases}`;
-  estrelasTela.textContent = totalEstrelas;
-  statusGeral.textContent = `${totalConcluidas} fases concluídas`;
-
-  atualizarRank(totalConcluidas);
+  atualizarCardsSuperiores(totalConcluidas, totalFases, totalEstrelas);
+  atualizarRank();
 }
+
+
+// =========================
+// ATUALIZAR CARDS SUPERIORES
+// =========================
+
+function atualizarCardsSuperiores(totalConcluidas, totalFases, totalEstrelas) {
+  if (xpQuizTela) {
+    xpQuizTela.textContent = progressoQuiz.xp_quiz || 0;
+  }
+
+  if (fasesConcluidasTela) {
+    fasesConcluidasTela.textContent = `${totalConcluidas}/${totalFases}`;
+  }
+
+  if (estrelasTela) {
+    estrelasTela.textContent = totalEstrelas;
+  }
+
+  if (statusGeral) {
+    statusGeral.textContent = `${totalConcluidas} fases concluídas`;
+  }
+}
+
+
+// =========================
+// ESTRELAS
+// =========================
 
 function montarEstrelas(quantidade) {
   let estrelas = "";
@@ -205,19 +368,23 @@ function montarEstrelas(quantidade) {
   return estrelas;
 }
 
-function atualizarRank(totalConcluidas) {
+
+// =========================
+// RANK
+// =========================
+
+function atualizarRank() {
   const rank = document.querySelector(".rank-card strong");
 
-  if (totalConcluidas >= 8) {
-    rank.textContent = "Mestre";
-  } else if (totalConcluidas >= 5) {
-    rank.textContent = "Avançado";
-  } else if (totalConcluidas >= 2) {
-    rank.textContent = "Explorador";
-  } else {
-    rank.textContent = "Aprendiz";
+  if (rank) {
+    rank.textContent = progressoQuiz.rank || "Aprendiz";
   }
 }
+
+
+// =========================
+// ABRIR FASE
+// =========================
 
 function abrirFase(fase, desbloqueada) {
   if (!desbloqueada) {
@@ -225,8 +392,18 @@ function abrirFase(fase, desbloqueada) {
     return;
   }
 
+  if (fase.url === "#") {
+    mostrarAviso("Essa fase ainda está em desenvolvimento.");
+    return;
+  }
+
   window.location.href = fase.url;
 }
+
+
+// =========================
+// AVISO
+// =========================
 
 function mostrarAviso(texto) {
   let aviso = document.querySelector(".aviso-bloqueado");
@@ -245,4 +422,9 @@ function mostrarAviso(texto) {
   }, 2200);
 }
 
-desenharMapa();
+
+// =========================
+// INICIAR
+// =========================
+
+carregarProgressoQuiz();
