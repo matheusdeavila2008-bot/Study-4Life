@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 from google import genai
@@ -26,10 +26,17 @@ from banco import (
 
 from machine_learning import responder_pergunta
 
-app = Flask(__name__)
-CORS(app)
+
+# =========================
+# CONFIGURAÇÕES INICIAIS
 
 load_dotenv()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PUBLIC_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "public"))
+
+app = Flask(__name__)
+CORS(app)
 
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
@@ -37,11 +44,11 @@ client = genai.Client(
 
 
 # =========================
-# HOME
+# FRONTEND / HOME
 
 @app.route("/")
 def home():
-    return "Backend do Study 4 Life está funcionando!"
+    return send_from_directory(PUBLIC_DIR, "index.html")
 
 
 # =========================
@@ -421,11 +428,23 @@ def rota_historico_chat_ia(usuario_id):
 
 
 # =========================
-# INICIAR SERVIDOR
+# SERVIR ARQUIVOS DO FRONTEND
+# Essa rota precisa ficar no final para não atrapalhar as rotas da API.
 
-app.run(
-    host="0.0.0.0",
-    port=int(os.environ.get("PORT", 5000)),
-    debug=False,
-    use_reloader=False
-)
+@app.route("/<path:arquivo>")
+def arquivos_frontend(arquivo):
+    return send_from_directory(PUBLIC_DIR, arquivo)
+
+
+# =========================
+# INICIAR SERVIDOR LOCAL
+# No Render com gunicorn, essa parte não é executada.
+# Ela serve apenas para rodar localmente com: python back-end/app.py
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False,
+        use_reloader=False
+    )
