@@ -6,7 +6,7 @@
 // const API_BASE_PERGUNTAS = "https://study-4life-production-c3a4.up.railway.app";
 
 // Se estiver testando com o back-end local, use esta linha no lugar da de cima:
-const API_BASE_PERGUNTAS = "http://127.0.0.1:5000";
+const API_BASE_PERGUNTAS = "";
 
 
 // =========================

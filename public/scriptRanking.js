@@ -63,7 +63,7 @@ function textoDias(dias) {
 }
 
 async function carregarRanking() {
-  const resposta = await fetch("http://127.0.0.1:5000/ranking");
+  const resposta = await fetch("/ranking");
   const ranking = await resposta.json();
 
   podioRanking.innerHTML = "";

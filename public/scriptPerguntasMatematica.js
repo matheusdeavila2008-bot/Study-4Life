@@ -33,7 +33,7 @@ document.addEventListener("click", (e) => {
 // CONFIGURAÇÃO DA API
 // =========================
 
-const API_BASE_PERGUNTAS_MAT = "http://127.0.0.1:5000";
+const API_BASE_PERGUNTAS_MAT = "";
 
 
 // =========================

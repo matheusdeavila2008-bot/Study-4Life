@@ -89,7 +89,7 @@ async function trocarAvatar() {
     return;
   }
 
-  await fetch("http://127.0.0.1:5000/avatar", {
+  await fetch("/avatar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -133,7 +133,7 @@ async function carregarMissoesDiarias() {
   }
 
   try {
-    const resposta = await fetch(`http://127.0.0.1:5000/missoes/${usuarioId}`);
+    const resposta = await fetch(`/missoes/${usuarioId}`);
 
     if (!resposta.ok) {
       console.log("Erro ao buscar missões.");
@@ -177,7 +177,7 @@ async function carregarProgressoUsuario() {
   }
 
   try {
-    const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
+    const resposta = await fetch(`/perfil/${usuarioId}`);
 
     if (!resposta.ok) {
       console.log("Erro ao buscar dados do perfil.");

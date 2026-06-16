@@ -42,7 +42,7 @@ async function enviarMensagem() {
   chatBox.scrollTop = chatBox.scrollHeight;
 
   try {
-    const resposta = await fetch("http://127.0.0.1:5000/chat-ia", {
+    const resposta = await fetch("/chat-ia", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -80,7 +80,7 @@ async function carregarHistorico() {
   const usuarioId = localStorage.getItem("usuario_id") || 1;
 
   const resposta = await fetch(
-    `http://127.0.0.1:5000/historico-chat-ia/${usuarioId}`
+    `/historico-chat-ia/${usuarioId}`
   );
 
   const chats = await resposta.json();

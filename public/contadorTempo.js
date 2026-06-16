@@ -17,7 +17,7 @@ async function enviarTempoParaBanco() {
 
   const minutos = segundosNoSite / 60;
 
-  await fetch("http://127.0.0.1:5000/tempo", {
+  await fetch("/tempo", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -43,7 +43,7 @@ window.addEventListener("beforeunload", () => {
   const minutos = segundosNoSite / 60;
 
   navigator.sendBeacon(
-    "http://127.0.0.1:5000/tempo",
+    "/tempo",
     new Blob(
       [
         JSON.stringify({

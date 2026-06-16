@@ -6,7 +6,7 @@ async function adicionarXpQuiz(xpGanho, quizId) {
     return "Usuário não encontrado.";
   }
 
-  const resposta = await fetch("http://127.0.0.1:5000/quiz/xp", {
+  const resposta = await fetch("/quiz/xp", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

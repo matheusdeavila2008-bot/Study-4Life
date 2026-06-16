@@ -32,7 +32,7 @@ async function carregarDadosHome() {
     return;
   }
 
-  const resposta = await fetch(`http://127.0.0.1:5000/perfil/${usuarioId}`);
+  const resposta = await fetch(`/perfil/${usuarioId}`);
   const dados = await resposta.json();
 
   const nivel = String(dados.nivel).padStart(2, "0");
