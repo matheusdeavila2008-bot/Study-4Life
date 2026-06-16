@@ -20,22 +20,35 @@ formCadastroAluno.addEventListener("submit", async function (event) {
     email: email,
     senha: senha,
     confirmar_senha: confirmarSenha,
-    cpf: cpf,
+    cpf: cpf
   };
 
-  const resposta = await fetch("http://127.0.0.1:5000/cadastro", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(dados),
-  });
+  try {
+    const resposta = await fetch("/cadastro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dados)
+    });
 
-  const resultado = await resposta.json();
+    if (!resposta.ok) {
+      const erro = await resposta.text();
+      console.log("Erro do backend:", erro);
+      alert("Erro ao conectar com o servidor.");
+      return;
+    }
 
-alert(resultado.mensagem);
+    const resultado = await resposta.json();
 
-if (resultado.mensagem.toLowerCase().includes("sucesso")) {
-  window.location.assign("indexLogaluno.html");
-}
+    alert(resultado.mensagem);
+
+    if (resultado.mensagem.toLowerCase().includes("sucesso")) {
+      window.location.assign("indexLogaluno.html");
+    }
+
+  } catch (erro) {
+    console.log("Erro na conexão:", erro);
+    alert("Não foi possível conectar ao servidor.");
+  }
 });
