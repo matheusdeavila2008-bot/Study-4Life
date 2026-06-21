@@ -12,7 +12,7 @@
 [![Gemini API](https://img.shields.io/badge/Google%20Gemini-IA-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
 [![License: MIT](https://img.shields.io/badge/Licença-MIT-yellow.svg)](LICENSE)
 
-[Acessar o site](https://study-4life-production-c3a4.up.railway.app) · [Reportar bug](../../issues) · [Sugerir feature](../../issues)
+[Acessar o site](https://study-4life.onrender.com) · [Reportar bug](../../issues) · [Sugerir feature](../../issues)
 
 </div>
 
