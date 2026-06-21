@@ -16,8 +16,6 @@
 
 </div>
 
----
-
 ## 📖 Sobre o projeto
 
 **Study 4Life** é uma plataforma web de estudos para estudantes, com conteúdo organizado por matéria, sistema de quizzes, missões diárias, ranking entre alunos e um assistente de IA (StudyChat.IA) para tirar dúvidas. A ideia é unir conteúdo de qualidade com elementos de gamificação — XP, níveis, missões e ranking — para manter o aluno engajado nos estudos.
