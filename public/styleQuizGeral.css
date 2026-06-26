@@ -93,6 +93,38 @@ nav a:hover {
   cursor: pointer;
 }
 
+.discord-link {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.discord-link:hover {
+  color: #7ed957;
+}
+
+.discord-link:hover .nextstep-color {
+  color: #7ed957;
+}
+
+.nextstep-color {
+  color: #6b1fad;
+  transition: 0.3s;
+}
+
+.discord-link .dc-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+
+.discord-link .dc-icon path {
+  fill: currentColor;
+  transition: 0.3s;
+}
+
 /* MENU LATERAL */
 .sidebar {
   position: fixed;

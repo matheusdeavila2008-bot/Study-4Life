@@ -38,6 +38,38 @@ header{
   height: 100px;
 }
 
+.discord-link {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.discord-link:hover {
+  color: #7ed957;
+}
+
+.discord-link:hover .nextstep-color {
+  color: #7ed957;
+}
+
+.nextstep-color {
+  color: #6b1fad;
+  transition: 0.3s;
+}
+
+.discord-link .dc-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+
+.discord-link .dc-icon path {
+  fill: currentColor;
+  transition: 0.3s;
+}
+
 nav {
   margin-left: 40px;
   display: flex;
@@ -131,10 +163,6 @@ nav a:hover {
 .usuario-nome h1 {
   font-size: 42px;
   font-weight: 800;
-}
-
-span {
-  color: #7ed957;
 }
 
 .avatar {
@@ -527,5 +555,6 @@ span {
     display: block;
     width: 32px;
     height: 30px;
+    cursor: pointer;
   }
 }
